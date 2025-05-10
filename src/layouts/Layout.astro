@@ -1,18 +1,26 @@
 ---
 import "@fontsource-variable/onest";
 import "../styles/global.css";
+import Header from "../components/global/organisms/header.astro";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>PrometeonDev</title>
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
-  <body>
+
+  <body class="bg-background dark:bg-dark-background text-dark dark:text-light">
+    <Header />
     <slot />
   </body>
 </html>

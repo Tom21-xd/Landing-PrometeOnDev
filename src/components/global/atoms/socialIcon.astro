@@ -1,0 +1,17 @@
+---
+interface SocialIconProps {
+  href: string;
+  icon: string;
+}
+
+const { href, icon } = Astro.props as SocialIconProps;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="text-dark dark:text-white dark:text-light text-xl flex items-center justify-center w-10 h-10 rounded-full border border-primary dark:border-dark-primary hover:text-primary transition-all duration-300 ease-out"
+>
+  <i class={icon}></i>
+</a>
