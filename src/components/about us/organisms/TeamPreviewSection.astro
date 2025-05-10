@@ -1,0 +1,73 @@
+---
+import Heading from '../atoms/heading.astro'
+import TeamMemberCard from '../molecules/TeamMemberCard.astro'
+
+export const team = [
+  {
+    name: "Brayan Estupiñán",
+    role: "Photographer",
+    image: "/brayan.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Johan Ramirez",
+    role: "Photographer",
+    image: "/johan.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Sebastián Sierra",
+    role: "Photographer",
+    image: "/sebastian.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Brayan Gómez",
+    role: "Photographer",
+    image: "/brayan.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Michael Martinez",
+    role: "Photographer",
+    image: "/michael.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Danna Navia",
+    role: "Photographer",
+    image: "/danna.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+];
+const selected = team.sort(() => 0.5 - Math.random()).slice(0, 3);
+---
+<section class="py-12 px-4 text-white bg-black">
+  <div class="flex justify-between items-center mb-8">
+    <Heading level="2" text="Our Team" />
+    <a href="/our_team" class="text-sm font-medium hover:underline">View All →</a>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5">
+    {selected.map((member) => (
+      <TeamMemberCard {...member} />
+    ))}
+  </div>
+</section>
