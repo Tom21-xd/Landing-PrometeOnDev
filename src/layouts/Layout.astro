@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/onest";
 import "../styles/global.css";
+import Footer from "../components/global/footer.astro";
 ---
 
 <!doctype html>
@@ -9,11 +10,25 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>PrometeOnDev - Desarrollo de Software, Web y Móvil</title>
+    <meta
+      name="description"
+      content="PrometeOnDev es una empresa de desarrollo de software que ofrece soluciones innovadoras en desarrollo web, móvil, inteligencia artificial y dashboards. Simplificamos la tecnología para llevar tu negocio al siguiente nivel."
+    />
+    <meta
+      name="keywords"
+      content="desarrollo de software, desarrollo web, desarrollo móvil, inteligencia artificial, dashboards, tecnología, prometeondev, landing page"
+    />
+    <meta name="author" content="PrometeOnDev" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+
+    />
   </head>
   <body>
     <slot />
+    <Footer />
   </body>
 </html>
 
