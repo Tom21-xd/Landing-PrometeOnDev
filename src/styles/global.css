@@ -1,73 +1,22 @@
 @import "tailwindcss";
 
-:root {
-  /* Base Colors */
-  --client-primary: #1b7be7;
-  --client-secondary: #429da4;
-  --client-accent: #69bf62;
-  --client-highlight: #91e220;
-  --client-dark: #292735;
 
-  /* Lighter Variations */
-  --client-primary-light: #63a8f2;
-  --client-secondary-light: #6ebfb7;
-  --client-accent-light: #8eea81;
-  --client-highlight-light: #b6f254;
-  --client-dark-light: #3b3b3b;
+@theme {
+  --color-primary: #1b7be7;
+  --color-secondary: #429da4;
+  --color-accent: #69bf62;
+  --color-highlight: #91e220;
+  --color-dark: #292735;
 
-  /* Darker Variations */
-  --client-primary-dark: #145bb6;
-  --client-secondary-dark: #327a79;
-  --client-accent-dark: #4b9139;
-  --client-highlight-dark: #6eac1a;
-  --client-dark-darker: #1b1b1b;
-}
+  --color-primary-light: #63a8f2;
+  --color-secondary-light: #6ebfb7;
+  --color-accent-light: #8eea81;
+  --color-highlight-light: #b6f254;
+  --color-dark-light: #3b3b3b;
 
-/* Tailwind Color Overrides */
-@layer utilities {
-  .bg-client-primary {
-    background-color: var(--client-primary) !important;
-  }
-  .bg-client-secondary {
-    background-color: var(--client-secondary) !important;
-  }
-  .bg-client-accent {
-    background-color: var(--client-accent) !important;
-  }
-  .bg-client-highlight {
-    background-color: var(--client-highlight) !important;
-  }
-  .bg-client-dark {
-    background-color: var(--client-dark) !important;
-  }
-  .bg-client-primary-light {
-    background-color: var(--client-primary-light) !important;
-  }
-  .bg-client-secondary-light {
-    background-color: var(--client-secondary-light) !important;
-  }
-  .bg-client-accent-light {
-    background-color: var(--client-accent-light) !important;
-  }
-  .bg-client-highlight-light {
-    background-color: var(--client-highlight-light) !important;
-  }
-  .bg-client-dark-light {
-    background-color: var(--client-dark-light) !important;
-  }
-  .bg-client-primary-dark {
-    background-color: var(--client-primary-dark) !important;
-  }
-  .bg-client-secondary-dark {
-    background-color: var(--client-secondary-dark) !important;
-  }
-  .bg-client-accent-dark {
-    background-color: var(--client-accent-dark) !important;
-  }
-  .bg-client-highlight-dark {
-    background-color: var(--client-highlight-dark) !important;
-  }
-  .bg-client-dark-darker {
-    background-color: var(--client-dark-darker) !important;
-  }
+  --color-primary-dark: #145bb6;
+  --color-secondary-dark: #327a79;
+  --color-accent-dark: #4b9139;
+  --color-highlight-dark: #6eac1a;
+  --color-dark-darker: #1b1b1b;
 }
