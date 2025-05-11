@@ -2,10 +2,11 @@
 import "@fontsource-variable/onest";
 import "../styles/global.css";
 import Footer from "../components/global/footer.astro";
+import Header from "../components/global/organisms/header.astro";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -23,13 +24,15 @@ import Footer from "../components/global/footer.astro";
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-
     />
   </head>
-  <body>
+
+  <body class="bg-background dark:bg-dark-background text-dark dark:text-light">
+    <Header />
     <slot />
     <Footer />
   </body>
+
 </html>
 
 <style>

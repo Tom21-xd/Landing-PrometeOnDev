@@ -1,0 +1,70 @@
+---
+import Heading from '../atoms/heading.astro'
+import TeamMemberCard from '../molecules/TeamMemberCard.astro'
+
+export const team = [
+  {
+    name: "Brayan Estupiñán",
+    role: "Photographer",
+    image: "/brayan.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Johan Ramirez",
+    role: "Photographer",
+    image: "/johan.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Sebastián Sierra",
+    role: "Photographer",
+    image: "/sebastian.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Brayan Gómez",
+    role: "Photographer",
+    image: "/brayan.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Michael Martinez",
+    role: "Photographer",
+    image: "/michael.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+  {
+    name: "Danna Navia",
+    role: "Photographer",
+    image: "/danna.webp",
+    socials: {
+      github: "https://github.com/johnlewis",
+      linkedin: "https://linkedin.com/in/johnlewis",
+    },
+  },
+];
+---
+
+<section class="py-12 px-4 bg-black text-white">
+  <Heading level="2" text="Meet the Entire Team" />
+  <div class="grid md:grid-cols-3 gap-6 mt-6">
+    {team.map((member) => (
+      <TeamMemberCard {...member} />
+    ))}
+  </div>
+</section>
