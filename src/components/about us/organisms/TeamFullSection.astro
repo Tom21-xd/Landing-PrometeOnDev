@@ -60,11 +60,14 @@ export const team = [
 ];
 ---
 
-<section class="py-12 px-4 bg-black text-white">
-  <Heading level="2" text="Meet the Entire Team" />
-  <div class="grid md:grid-cols-3 gap-6 mt-6">
-    {team.map((member) => (
-      <TeamMemberCard {...member} />
-    ))}
+<section class="py-12 text-white">
+  <div class="max-w-[1200px] mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Conoce todo el equipo</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {team.map((member) => (
+        <TeamMemberCard {...member} />
+      ))}
+    </div>
   </div>
 </section>
+
