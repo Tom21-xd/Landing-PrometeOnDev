@@ -1,6 +1,6 @@
 ---
-import Heading from '../atoms/heading.astro'
-import TeamMemberCard from '../molecules/TeamMemberCard.astro'
+import Heading from "../atoms/heading.astro";
+import TeamMemberCard from "../molecules/TeamMemberCard.astro";
 
 export const team = [
   {
@@ -60,14 +60,20 @@ export const team = [
 ];
 const selected = team.sort(() => 0.5 - Math.random()).slice(0, 3);
 ---
-<section class="py-12 px-4 text-white bg-black">
-  <div class="flex justify-between items-center mb-8">
-    <Heading level="2" text="Our Team" />
-    <a href="/our_team" class="text-sm font-medium hover:underline">View All →</a>
-  </div>
-  <div class="grid md:grid-cols-3 gap-5">
-    {selected.map((member) => (
-      <TeamMemberCard {...member} />
-    ))}
+
+<section class="py-12 text-white">
+  <div class="max-w-[1200px] mx-auto px-4">
+    <div
+      class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4"
+    >
+      <Heading level="2" text="Nuestro equipo" />
+      <a
+        href="/our_team"
+        class="text-sm font-medium hover:underline text-blue-400">Ver todos →</a
+      >
+    </div>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {selected.map((member) => <TeamMemberCard {...member} />)}
+    </div>
   </div>
 </section>
