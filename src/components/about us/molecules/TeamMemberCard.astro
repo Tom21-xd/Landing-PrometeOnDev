@@ -2,12 +2,12 @@
 const { name, role, image, socials = {} } = Astro.props;
 ---
 
-<div class="bg-black text-white group relative overflow-hidden rounded-md shadow-md">
+<div class="bg-black text-white group relative overflow-hidden rounded-md shadow-md w-[300px] mx-auto">
   <!-- Imagen con overlay -->
   <div class="relative h-[400px] overflow-hidden">
-    <img src={image} alt={name} class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+    <img src={image} alt={name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
 
-    <!-- Overlay centrado + íconos sociales con animación -->
+    <!-- Overlay con íconos -->
     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
       <div class="flex space-x-6">
         {socials.github && (
@@ -24,7 +24,7 @@ const { name, role, image, socials = {} } = Astro.props;
     </div>
   </div>
 
-  <!-- Información textual -->
+  <!-- Texto -->
   <div class="p-4">
     <h3 class="text-lg font-semibold">{name}</h3>
     <p class="text-sm text-gray-400">{role}</p>
