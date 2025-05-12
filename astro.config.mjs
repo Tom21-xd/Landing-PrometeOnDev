@@ -9,5 +9,5 @@ export default defineConfig({
     ssr: {
       noExternal: ['@fontsource-variable/onest']
     }
-  }
+  },
 });

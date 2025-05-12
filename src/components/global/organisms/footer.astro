@@ -1,13 +1,13 @@
 ---
+import Logo from "../atoms/logo.astro";
+
 
 ---
 
 <footer
   class="bg-background dark:bg-dark-background py-12 flex flex-col items-center gap-8 text-dark dark:text-white transition-colors"
 >
-  <div class="flex items-center">
-    <img src="/src/assets/astro.svg" alt="Prometeon" class="h-16 w-auto" />
-  </div>
+      <Logo title="Prometeon" subtitle="Software Development" />
 
   <nav>
     <ul class="flex gap-8 text-lg font-semibold">
@@ -64,7 +64,6 @@
     </ul>
   </nav>
 
-  <!-- Íconos sociales -->
   <div class="flex gap-6">
     <a href="#" class="text-2xl hover:text-accent dark:hover:text-accent-light"
       ><i class="fa-brands fa-facebook"></i></a
