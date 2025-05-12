@@ -10,6 +10,4 @@ export default defineConfig({
       noExternal: ['@fontsource-variable/onest']
     }
   },
-
-  integrations: [react()]
 });
