@@ -1,0 +1,32 @@
+---
+interface Props {
+  name: string;
+  image: string;
+}
+
+const { name, image } = Astro.props;
+---
+<div class="logo-slide">
+  <img src={image} alt={name} class="h-12 w-auto" />
+</div>
+
+<style>
+  .logo-slide {
+    flex-shrink: 0;
+    width: 150px;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-slide img {
+    filter: grayscale(100%) brightness(0.8);
+    transition: all 0.3s ease;
+  }
+
+  .logo-slide:hover img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
+  }
+</style>

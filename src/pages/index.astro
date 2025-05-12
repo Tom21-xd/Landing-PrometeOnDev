@@ -1,20 +1,17 @@
 ---
+import HeroSection from "../components/index/organisms/heroSection.astro";
+import ProductGrid from "../components/index/organisms/productGrid.astro";
+import TechCarousel from "../components/index/organisms/techCarousel.astro";
 import Layout from "../layouts/Layout.astro";
+
 ---
 
 <Layout>
-  <div
-    class="bg-background dark:bg-dark-background text-dark dark:text-dark-light min-h-screen flex flex-col items-center justify-center p-8 transition-colors">
-    <h1 class="text-primary dark:text-dark-primary text-5xl font-bold mb-6">
-      ¡Bienvenido a Prometeon!
-    </h1>
-    <p class="text-secondary dark:text-dark-secondary text-xl mb-8">
-      Esta es tu landing page con soporte para modo claro y oscuro.
-    </p>
-    <button
-      class="bg-accent dark:bg-dark-accent text-background dark:text-dark-background px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-accent-dark dark:hover:bg-dark-accent-dark transition-colors"
-    >
-      Cambiar Tema
-    </button>
-  </div>
+  <HeroSection 
+    title="Donde las ideas encuentran propósito" 
+    imageUrl="/home/5.webp" 
+  />
+   <ProductGrid />
+   <TechCarousel />
 </Layout>
+  

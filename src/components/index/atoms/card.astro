@@ -1,0 +1,160 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  glowColor?: string;
+  glowSize?: number;
+  hoverOffset?: number;
+  leftText?: string;
+  rightText?: string;
+}
+
+const { 
+  title, 
+  image,
+  glowColor = "rgba(255,255,255,0.2)", 
+  glowSize = 150,
+  hoverOffset = 5,
+  leftText,
+  rightText
+} = Astro.props;
+---
+
+<div class="card-container">
+  <div class="hover-reveal-card">
+    <div class="card-content">
+      <div class="card-image">
+        <img src={image} alt={title} />
+      </div>
+      <h3 class="card-title">{title}</h3>
+    </div>
+  </div>
+  <div class="side-texts">
+    {leftText && <div class="side-text left">{leftText}</div>}
+    {rightText && <div class="side-text right">{rightText}</div>}
+  </div>
+</div>
+
+<style>
+  .card-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Altura fija para mantener consistencia */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .hover-reveal-card {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    border-radius: 20px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .card-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .card-image {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.8s ease;
+    filter: grayscale(100%) brightness(0.7);
+  }
+
+  .card-title {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  .side-texts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .side-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all 0.5s ease;
+    white-space: nowrap;
+  }
+
+  .left {
+    left: 0;
+    text-align: right;
+    transform: translateX(-100%) translateY(-50%);
+    padding-right: 2rem;
+  }
+
+  .right {
+    right: 0;
+    text-align: left;
+    transform: translateX(100%) translateY(-50%);
+    padding-left: 2rem;
+  }
+
+  .hover-reveal-card:hover ~ .side-texts .side-text,
+  .card-container:hover .side-text {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+
+  .hover-reveal-card:hover .card-image img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.15);
+  }
+
+  .hover-reveal-card:hover {
+    transform: translateY(-15px);
+  }
+
+  @media (max-width: 768px) {
+    .card-container {
+      height: 300px;
+    }
+    
+    .hover-reveal-card {
+      width: 90%;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      bottom: 2rem;
+      left: 2rem;
+    }
+
+    .side-text {
+      font-size: 1rem;
+    }
+  }
+</style>
