@@ -1,6 +1,5 @@
 ---
-import Heading from '../atoms/heading.astro'
-import TeamMemberCard from '../molecules/TeamMemberCard.astro'
+import TeamMemberCard from "../molecules/TeamMemberCard.astro";
 
 export const team = [
   {
@@ -8,8 +7,8 @@ export const team = [
     role: "Photographer",
     image: "/brayan.webp",
     socials: {
-      github: "https://github.com/johnlewis",
-      linkedin: "https://linkedin.com/in/johnlewis",
+      github: "https://github.com/Angarita-17",
+      linkedin: "https://www.linkedin.com/in/brayangarita/",
     },
   },
   {
@@ -17,8 +16,8 @@ export const team = [
     role: "Photographer",
     image: "/johan.webp",
     socials: {
-      github: "https://github.com/johnlewis",
-      linkedin: "https://linkedin.com/in/johnlewis",
+      github: "https://github.com/Tom21-xd",
+      linkedin: "https://www.linkedin.com/in/johan-steven-ramirez-murcia-95ab80295/",
     },
   },
   {
@@ -26,17 +25,17 @@ export const team = [
     role: "Photographer",
     image: "/sebastian.webp",
     socials: {
-      github: "https://github.com/johnlewis",
-      linkedin: "https://linkedin.com/in/johnlewis",
+      github: "https://github.com/SebastianSierra15",
+      linkedin: "https://www.linkedin.com/in/sebastian-sierra-417358263/",
     },
   },
   {
     name: "Brayan Gómez",
     role: "Photographer",
-    image: "/brayan.webp",
+    image: "/seito.webp",
     socials: {
-      github: "https://github.com/johnlewis",
-      linkedin: "https://linkedin.com/in/johnlewis",
+      github: "https://github.com/SeitoUwU",
+      linkedin: "https://www.linkedin.com/in/brayan-gomez-ing/",
     },
   },
   {
@@ -44,8 +43,8 @@ export const team = [
     role: "Photographer",
     image: "/michael.webp",
     socials: {
-      github: "https://github.com/johnlewis",
-      linkedin: "https://linkedin.com/in/johnlewis",
+      github: "https://github.com/Micha852",
+      linkedin: "https://www.linkedin.com/in/mamg0852/",
     },
   },
   {
@@ -53,18 +52,17 @@ export const team = [
     role: "Photographer",
     image: "/danna.webp",
     socials: {
-      github: "https://github.com/johnlewis",
-      linkedin: "https://linkedin.com/in/johnlewis",
+      github: "https://github.com/Dannanavia",
+      linkedin: "http://www.linkedin.com/in/danna-vanessa-navia-01b24b315",
     },
   },
 ];
 ---
 
-<section class="py-12 px-4 bg-black text-white">
-  <Heading level="2" text="Meet the Entire Team" />
-  <div class="grid md:grid-cols-3 gap-6 mt-6">
-    {team.map((member) => (
-      <TeamMemberCard {...member} />
-    ))}
+<section class="py-12 text-white">
+  <div class="max-w-[1200px] mx-auto px-4">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {team.map((member) => <TeamMemberCard {...member} />)}
+    </div>
   </div>
 </section>
