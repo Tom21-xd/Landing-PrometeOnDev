@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.7",
     "@fontsource-variable/onest": "^5.2.7",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.1.6",
