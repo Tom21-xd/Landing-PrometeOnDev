@@ -1,0 +1,13 @@
+---
+const { href, label } = Astro.props;
+const isActive = Astro.url.pathname === href;
+---
+
+<a
+  href={href}
+  class={`text-md  transition-all duration-300 hover:text-black ${
+    isActive ? "text-black font-semibold" : "text-dark-dark-light"
+  }`}
+>
+  {label}
+</a>

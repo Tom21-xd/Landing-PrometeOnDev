@@ -1,0 +1,55 @@
+---
+import LogoButton from "../atoms/logoButton.astro";
+import NavLinkMobile from "../atoms/navLinkMobile.astro";
+import CloseMenuButton from "../atoms/closeMenuButton.astro";
+import SocialIcon from "../atoms/socialIcon.astro";
+import ContactButtonMobile from "../atoms/contactButtonMobile.astro";
+
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/services", label: "Servicios" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/contact", label: "Contacto" },
+];
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/company/prometeondev/",
+    icon: "fa-brands fa-linkedin",
+  },
+  { href: "https://github.com", icon: "fa-brands fa-github" },
+  {
+    href: "https://www.facebook.com/profile.php?id=61575255925454",
+    icon: "fa-brands fa-facebook",
+  },
+  {
+    href: "https://wa.me/573204054497",
+    icon: "fa-brands fa-whatsapp",
+  },
+];
+---
+
+<div
+  id="mobile-menu-content"
+  class="fixed inset-0 bg-gray-200/50 transition backdrop-blur-md z-50 flex flex-col px-6 pt-8 pb-2"
+>
+  <div class="w-full flex items-center justify-between mb-8">
+    <LogoButton />
+
+    <CloseMenuButton />
+  </div>
+
+  <div class="flex flex-col space-y-6 pl-4 text-xl font-semibold flex-1">
+    {links.map((link) => <NavLinkMobile {...link} />)}
+  </div>
+
+  <hr class="my-10 border-gray-300" />
+
+  <div class="flex justify-center space-x-6 mb-8">
+    {socialLinks.map((link) => <SocialIcon {...link} />)}
+  </div>
+
+  <div class="mt-12 w-full flex justify-center">
+    <ContactButtonMobile />
+  </div>
+</div>
