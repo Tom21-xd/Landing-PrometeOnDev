@@ -2,16 +2,16 @@
 import HeroSection from "../components/index/organisms/heroSection.astro";
 import ProductGrid from "../components/index/organisms/productGrid.astro";
 import TechCarousel from "../components/index/organisms/techCarousel.astro";
+import CTAButton from "../components/index/atoms/CTAButton.astro";
 import Layout from "../layouts/Layout.astro";
 
 ---
 
 <Layout>
-  <HeroSection 
-    title="Donde las ideas encuentran propósito" 
-    imageUrl="/home/5.webp" 
-  />
+   <HeroSection />
    <ProductGrid />
    <TechCarousel />
+   <section class="py-16 bg-gray-100 text-center">
+      <CTAButton text="Contáctanos" link="/contact" bgColor="var(--color-primary)" textColor="#ffffff" />
+   </section>
 </Layout>
-  

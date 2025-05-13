@@ -1,0 +1,61 @@
+---
+interface Props {
+  text: string;
+  typingSpeed?: number;
+  delay?: number;
+}
+
+const { text, typingSpeed = 100, delay = 500 } = Astro.props;
+---
+
+<div class="typing-container">
+  {text.split("\\n").map((line, lineIndex) => (
+    <div class="typing-line">
+      {line.split("").map((char, index) => (
+        <span
+          class="typing-letter"
+          style={`animation-delay: ${(index * typingSpeed + delay) / 1000}s`}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </div>
+  ))}
+</div>
+
+<style>
+.typing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.typing-line {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.typing-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: typing 0.1s forwards;
+}
+
+@keyframes typing {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
