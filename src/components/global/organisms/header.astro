@@ -1,0 +1,81 @@
+---
+import Logo from "../atoms/logo.astro";
+import Navbar from "../molecules/navbar.astro";
+import SocialIcon from "../atoms/socialIcon.astro";
+---
+
+<header
+  class="top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md bg-background dark:bg-dark-background px-8 py-4 transition-all"
+>
+  <div class="container mx-auto flex justify-between items-center">
+    <Logo title="Prometeon" subtitle="Software Development" />
+
+    <Navbar class="hidden md:flex" />
+
+    <div class="hidden md:flex items-center gap-4">
+      <SocialIcon href="https://linkedin.com" icon="fa-brands fa-linkedin-in" />
+      <SocialIcon href="https://github.com" icon="fa-brands fa-github" />
+      <SocialIcon href="https://facebook.com" icon="fa-brands fa-facebook-f" />
+      <SocialIcon href="https://wa.me" icon="fa-brands fa-whatsapp" />
+    </div>
+
+    <button
+      id="menu-toggle"
+      class="md:hidden text-3xl text-dark dark:text-light"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="inset-0 bg-background dark:bg-dark-background p-8 transform -translate-x-full transition-transform md:hidden z-40"
+  >
+    <button id="menu-close" class="text-3xl text-dark dark:text-light mb-8">
+      <i class="fa-solid fa-times"></i>
+    </button>
+
+    <Navbar />
+
+    <div class="flex flex-col items-start gap-4 mt-8">
+      <SocialIcon href="https://linkedin.com" icon="fa-brands fa-linkedin-in" />
+      <SocialIcon href="https://github.com" icon="fa-brands fa-github" />
+      <SocialIcon href="https://facebook.com" icon="fa-brands fa-facebook-f" />
+      <SocialIcon href="https://wa.me" icon="fa-brands fa-whatsapp" />
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById(
+      "menu-toggle"
+    ) as HTMLButtonElement | null;
+    const closeButton = document.getElementById(
+      "menu-close"
+    ) as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById(
+      "mobile-menu"
+    ) as HTMLDivElement | null;
+
+    if (toggleButton && closeButton && mobileMenu) {
+      toggleButton.addEventListener("click", () => {
+        mobileMenu.style.transform = "translateX(0)";
+        document.body.style.overflow = "hidden";
+      });
+
+      closeButton.addEventListener("click", () => {
+        mobileMenu.style.transform = "translateX(-100%)";
+        document.body.style.overflow = "";
+      });
+
+      window.addEventListener("click", (event) => {
+        const target = event.target as Node;
+        if (!mobileMenu.contains(target) && target !== toggleButton) {
+          mobileMenu.style.transform = "translateX(-100%)";
+          document.body.style.overflow = "";
+        }
+      });
+    }
+  });
+</script>

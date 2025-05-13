@@ -1,0 +1,17 @@
+---
+import InputField from "../atoms/inputField.astro";
+---
+
+<form class="space-y-6 relative p-8 rounded-lg border-1 backdrop-blur-sm border-primary-light shadow-lg overflow-hidden group transition-all duration-300 hover:scale-105 ">
+  <InputField type="text" placeholder="Nombre" />
+  <InputField type="email" placeholder="Correo Electrónico" />
+  <InputField type="tel" placeholder="Teléfono" />
+  <textarea placeholder="Mensaje" 
+    class="w-full border border-dark-light dark:border-dark-dark-light py-3 px-4 rounded-lg outline-none focus:border-primary dark:focus:border-dark-primary transition-colors placeholder:text-dark-light dark:placeholder:text-dark-dark-light shadow-sm hover:shadow-md resize-none" 
+  ></textarea>
+  <div class="flex justify-center">
+    <button type="submit" class="bg-gradient-to-r from-primary to-secondary dark:from-dark-primary dark:to-dark-secondary text-white py-3 px-6 rounded-full font-semibold shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+      Enviar
+    </button>
+  </div>
+</form>

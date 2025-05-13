@@ -1,0 +1,28 @@
+---
+import StatCard from "../molecules/statCard.astro";
+
+const stats = [
+  { value: "26", label: "Proyectos" },
+  { value: "2", label: "Años" },
+  { value: "6", label: "Clientes" },
+  { value: "6", label: "?????" },
+  //Añadir animación de conteo en los números cuando se hace scroll
+];
+---
+
+<section class="text-white py-16">
+  <div class="max-w-[1200px] mx-auto w-full px-6 flex items-center justify-between gap-4 text-center">
+    {
+      stats.map((stat, index) => (
+        <>
+          <StatCard value={stat.value} label={stat.label} />
+          
+          {index < stats.length - 1 && (
+            <div class="hidden md:block h-16 w-px bg-white"></div>
+          )}
+        </>
+      ))
+    }
+  </div>
+</section>
+

@@ -1,22 +1,47 @@
 @import "tailwindcss";
 
-
 @theme {
+  /* Ligth Mode */
   --color-primary: #1b7be7;
   --color-secondary: #429da4;
   --color-accent: #69bf62;
   --color-highlight: #91e220;
   --color-dark: #292735;
+  --color-background: #ffffff;
 
   --color-primary-light: #63a8f2;
   --color-secondary-light: #6ebfb7;
   --color-accent-light: #8eea81;
   --color-highlight-light: #b6f254;
   --color-dark-light: #3b3b3b;
+  --color-background-light: #f8f8f8;
 
   --color-primary-dark: #145bb6;
   --color-secondary-dark: #327a79;
   --color-accent-dark: #4b9139;
   --color-highlight-dark: #6eac1a;
   --color-dark-darker: #1b1b1b;
+  --color-background-dark: #e0e0e0;
+
+  /* Dark Mode */
+  --color-dark-primary: #145bb6;
+  --color-dark-secondary: #327a79;
+  --color-dark-accent: #4b9139;
+  --color-dark-highlight: #6eac1a;
+  --color-dark-dark: #1b1b1b;
+  --color-dark-background: #121212;
+
+  --color-dark-primary-light: #63a8f2;
+  --color-dark-secondary-light: #6ebfb7;
+  --color-dark-accent-light: #8eea81;
+  --color-dark-highlight-light: #b6f254;
+  --color-dark-dark-light: #3b3b3b;
+  --color-dark-background-light: #1e1e1e;
+
+  --color-dark-primary-dark: #1b7be7;
+  --color-dark-secondary-dark: #429da4;
+  --color-dark-accent-dark: #69bf62;
+  --color-dark-highlight-dark: #91e220;
+  --color-dark-dark-darker: #292735;
+  --color-dark-background-dark: #333333;
 }

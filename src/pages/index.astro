@@ -1,11 +1,17 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import HeroSection from "../components/index/organisms/heroSection.astro";
+import ProductGrid from "../components/index/organisms/productGrid.astro";
+import TechCarousel from "../components/index/organisms/techCarousel.astro";
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <HeroSection 
+    title="Donde las ideas encuentran propósito" 
+    imageUrl="/home/5.webp" 
+  />
+   <ProductGrid />
+   <TechCarousel />
 </Layout>
+  
