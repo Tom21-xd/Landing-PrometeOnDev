@@ -1,6 +1,6 @@
 ---
-import Heading from '../atoms/heading.astro'
-import TeamMemberCard from '../molecules/TeamMemberCard.astro'
+import Heading from "../atoms/heading.astro";
+import TeamMemberCard from "../molecules/teamMemberCard.astro";
 
 export const team = [
   {
@@ -63,8 +63,6 @@ export const team = [
 <section class="py-12 px-4 bg-black text-white">
   <Heading level="2" text="Meet the Entire Team" />
   <div class="grid md:grid-cols-3 gap-6 mt-6">
-    {team.map((member) => (
-      <TeamMemberCard {...member} />
-    ))}
+    {team.map((member) => <TeamMemberCard {...member} />)}
   </div>
 </section>

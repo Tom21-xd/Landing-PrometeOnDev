@@ -1,0 +1,21 @@
+---
+import ContactButton from "../atoms/contactButton.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props as Props;
+---
+
+<div
+  class="flex items-center space-x-3 py-1.5 pl-1 pr-2 rounded-xl bg-gray-200/50 transition backdrop-blur-sm border border-gray-300"
+>
+  <ContactButton />
+
+  <button id={id} class="text-2xl cursor-pointer">
+    <i
+      class="fa-solid fa-bars transition-transform duration-300 ease-in-out transform hover:scale-90"
+    ></i>
+  </button>
+</div>

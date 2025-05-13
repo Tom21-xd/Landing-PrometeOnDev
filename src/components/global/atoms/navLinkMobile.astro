@@ -1,0 +1,19 @@
+---
+const { href, label } = Astro.props;
+const isActive = Astro.url.pathname === href;
+---
+
+<a
+  href={href}
+  class={`relative text-black inline-flex items-center text-4xl transition-all group duration-300 hover:text-black ${
+    isActive ? " font-semibold" : ""
+  }`}
+>
+  <span class="relative inline-flex items-center">
+    {isActive && <span class="w-2 h-2 bg-black rounded-full mr-3" />}
+    <span>{label}</span>
+    <span
+      class="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 ease-out group-hover:w-full"
+    ></span>
+  </span>
+</a>
