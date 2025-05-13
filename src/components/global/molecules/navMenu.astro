@@ -1,0 +1,17 @@
+---
+import NavLink from "../atoms/navLink.astro";
+import ContactButton from "../atoms/contactButton.astro";
+
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/services", label: "Servicios" },
+  { href: "/portfolio", label: "Portfolio" },
+];
+---
+
+<nav
+  class="hidden md:flex items-center space-x-4 py-1.5 pl-5 pr-2 rounded-xl bg-gray-200/50 transition backdrop-blur-sm border border-gray-300"
+>
+  {links.map((link) => <NavLink {...link} />)}
+  <ContactButton />
+</nav>
