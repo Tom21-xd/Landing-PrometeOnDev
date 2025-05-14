@@ -33,28 +33,24 @@ import ServiceCard from "../molecules/serviceCard.astro";
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Seleccionar todas las tarjetas dentro de la sección
             const cards = document.querySelectorAll('#services-section .service-card');
             
-            // Animar cada tarjeta con un retraso diferente
             cards.forEach((card, index) => {
               setTimeout(() => {
                 card.classList.add('animate');
-              }, index * 200); // 200ms de retraso entre cada tarjeta
+              }, index * 200); 
             });
             
-            // Desconectar el observer una vez que se han aplicado las animaciones
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.2, // Activar cuando al menos el 20% de la sección sea visible
-        rootMargin: '0px 0px -100px 0px' // Margen negativo para activar un poco antes
+        threshold: 0.2, 
+        rootMargin: '0px 0px -100px 0px' 
       }
     );
 
-    // Observar la sección de servicios
     const servicesSection = document.getElementById('services-section');
     if (servicesSection) {
       observer.observe(servicesSection);
