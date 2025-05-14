@@ -15,7 +15,7 @@ const { title } = Astro.props;
     loop
     playsinline
     class="absolute inset-0 w-full h-full object-cover"></video>
-  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="absolute inset-0 overlay-bg"></div>
 
   <div
     class="relative z-10 flex flex-col items-center justify-center h-full px-4"
@@ -23,8 +23,8 @@ const { title } = Astro.props;
     <div class="text-container">
       <h2
         id="typewriter-title"
-        class="typewriter-title text-accent dark:text-accent-dark text-9xl font-bold pb-2
-             border-b-8 border-accent dark:border-accent-dark"
+        class="typewriter-title 
+             border-b-8"
         data-text={title}
       >
         {title}
@@ -32,7 +32,7 @@ const { title } = Astro.props;
     </div>
     
     <!-- "Ver más" con icono de flecha -->
-    <div id="ver-mas-container" class="mt-16 text-accent dark:text-accent-dark text-2xl font-medium flex flex-col items-center opacity-0">
+    <div id="ver-mas-container" class="mt-16 ver-mas-text flex flex-col items-center opacity-0">
       <span>Ver más</span>
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
@@ -51,20 +51,65 @@ const { title } = Astro.props;
     </div>
   </div>
 
-  <!-- Capa de degradado fija -->
+  <!-- Capa de degradado sincronizada con el color de fondo -->
   <div
     class="absolute bottom-0 left-0 w-full h-32
-           bg-gradient-to-b from-transparent to-gray-200
-           pointer-events-none fade-gradient"
+           fade-gradient pointer-events-none"
   >
   </div>
 </section>
 
 <style>
+  /* Overlay background with theme colors */
+  .overlay-bg {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Theme colors for title and button */
+  .typewriter-title {
+    color: var(--color-accent);
+    font-size: 6rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    border-color: var(--color-accent);
+    position: relative;
+    white-space: nowrap;
+    overflow: visible;
+    width: auto;
+    opacity: 1;
+  }
+  
+  .ver-mas-text {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  /* Dark mode theme adjustments */
+  :global(.dark) .typewriter-title {
+    color: var(--color-dark-accent);
+    border-color: var(--color-dark-accent);
+  }
+  
+  :global(.dark) .ver-mas-text {
+    color: var(--color-dark-accent);
+  }
+  
+  /* Fade gradient sincronizado con los colores de fondo de services.astro */
+  .fade-gradient {
+    background: linear-gradient(to bottom, transparent, var(--color-background-light));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  :global(.dark) .fade-gradient {
+    background: linear-gradient(to bottom, transparent, var(--color-dark-background-light));
+  }
+  
   /* Contenedor para mantener el ancho */
   .text-container {
     display: inline-block;
-    min-width: 20ch; /* Ajusta este valor según la longitud de tu texto */
+    min-width: 20ch;
   }
 
   /* Estilo base para el gradiente de desvanecimiento */
@@ -78,25 +123,23 @@ const { title } = Astro.props;
     opacity: 1;
   }
   
-  /* Estilos para el efecto de escribir letra por letra */
-  .typewriter-title {
-    position: relative;
-    white-space: nowrap;
-    overflow: visible;
-    width: auto;
-    opacity: 1;
-  }
-  
   /* Cursor parpadeante */
   .cursor-blink {
     border-right: 0.15em solid;
     animation: blink-caret 0.75s step-end infinite;
+    border-color: var(--color-accent);
+  }
+  
+  :global(.dark) .cursor-blink {
+    border-color: var(--color-dark-accent);
   }
   
   /* La animación del cursor */
   @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: #4CAF50 }
+    50% { 
+      border-color: var(--color-accent);
+    }
   }
   
   /* Animación de rebote para la flecha */
@@ -127,7 +170,7 @@ const { title } = Astro.props;
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     try {
-      // Obtenemos elementos por ID para mayor confiabilidad
+      // Obtenemos elementos por ID
       const titleElement = document.getElementById('typewriter-title');
       const verMasContainer = document.getElementById('ver-mas-container');
       
