@@ -1,11 +1,20 @@
 ---
 import TypingEffect from "../atoms/TypingEffect.astro";
 import ScrollButton from "../atoms/ScrollButton.astro";
-const { title = "Donde las ideas encuentran\n propósito", imageUrl = "/home/5.webp" } = Astro.props;
+const {
+  title = "Donde las ideas encuentran\n propósito",
+  imageUrl = "/images/home/hero-section.webp",
+} = Astro.props;
 ---
 
-<section class="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden">
-  <img src={imageUrl} alt={title} class="absolute inset-0 w-full h-full object-cover" />
+<section
+  class="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden"
+>
+  <img
+    src={imageUrl}
+    alt={title}
+    class="absolute inset-0 w-full h-full object-cover"
+  />
   <h1 class="relative z-10 text-center mb-40">
     <TypingEffect text={title} typingSpeed={80} delay={500} />
   </h1>

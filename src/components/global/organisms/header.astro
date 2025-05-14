@@ -5,7 +5,7 @@ import MobileMenu from "../molecules/mobileMenu.astro";
 import ContactBurgerButton from "../molecules/contactBurgerButton.astro";
 ---
 
-<header class="w-full bg-transparent z-50">
+<header class="fixed left-0 top-0 w-full bg-transparent z-50">
   <div
     class="max-w-screen-xl mx-auto px-4 pt-6 flex justify-between items-center"
   >
@@ -17,12 +17,7 @@ import ContactBurgerButton from "../molecules/contactBurgerButton.astro";
     </div>
   </div>
 
-  <div
-    id="mobile-menu"
-    class="inset-0 z-50 bg-white bg-opacity-95 backdrop-blur-lg transform translate-x-full transition-transform duration-300"
-  >
-    <MobileMenu />
-  </div>
+  <MobileMenu />
 
   <script>
     function setupToggleMenu(
@@ -37,6 +32,7 @@ import ContactBurgerButton from "../molecules/contactBurgerButton.astro";
       const closeButton = document.getElementById(
         closeButtonId
       ) as HTMLButtonElement | null;
+      const body = document.body;
 
       if (!burgerButton || !mobileMenu || !closeButton) {
         return;
@@ -45,11 +41,15 @@ import ContactBurgerButton from "../molecules/contactBurgerButton.astro";
       burgerButton.addEventListener("click", () => {
         mobileMenu.classList.toggle("translate-x-full");
         mobileMenu.classList.toggle("translate-x-0");
+
+        body.classList.add("overflow-hidden");
       });
 
       closeButton.addEventListener("click", () => {
         mobileMenu.classList.add("translate-x-full");
         mobileMenu.classList.remove("translate-x-0");
+
+        body.classList.remove("overflow-hidden");
       });
     }
 

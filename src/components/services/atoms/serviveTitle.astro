@@ -9,7 +9,7 @@ const { title } = Astro.props;
 <section class="relative w-full h-screen overflow-hidden">
   <!-- Vídeo de fondo -->
   <video
-    src="/bgOurServices.mp4"
+    src="/videos/services/bgOurServices.mp4"
     autoplay
     muted
     loop
@@ -30,23 +30,25 @@ const { title } = Astro.props;
         {title}
       </h2>
     </div>
-    
+
     <!-- "Ver más" con icono de flecha -->
-    <div id="ver-mas-container" class="mt-16 text-accent dark:text-accent-dark text-2xl font-medium flex flex-col items-center opacity-0">
+    <div
+      id="ver-mas-container"
+      class="mt-16 text-accent dark:text-accent-dark text-2xl font-medium flex flex-col items-center opacity-0"
+    >
       <span>Ver más</span>
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        class="h-8 w-8 mt-2 animate-bounce" 
-        fill="none" 
-        viewBox="0 0 24 24" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8 mt-2 animate-bounce"
+        fill="none"
+        viewBox="0 0 24 24"
         stroke="currentColor"
       >
-        <path 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2" 
-          d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-        />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>
     </div>
   </div>
@@ -72,12 +74,12 @@ const { title } = Astro.props;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
-  
+
   /* Esta clase será añadida por JavaScript cuando se haga scroll */
   .fade-visible {
     opacity: 1;
   }
-  
+
   /* Estilos para el efecto de escribir letra por letra */
   .typewriter-title {
     position: relative;
@@ -86,38 +88,44 @@ const { title } = Astro.props;
     width: auto;
     opacity: 1;
   }
-  
+
   /* Cursor parpadeante */
   .cursor-blink {
     border-right: 0.15em solid;
     animation: blink-caret 0.75s step-end infinite;
   }
-  
+
   /* La animación del cursor */
   @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #4CAF50 }
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #4caf50;
+    }
   }
-  
+
   /* Animación de rebote para la flecha */
   .animate-bounce {
     animation: bounce 1.5s infinite;
   }
-  
+
   @keyframes bounce {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
       transform: translateY(10px);
     }
   }
-  
+
   /* Transición para "Ver más" */
   #ver-mas-container {
     transition: opacity 1s ease;
   }
-  
+
   /* Clase para mostrar "Ver más" */
   .ver-mas-visible {
     opacity: 1 !important;
@@ -125,34 +133,34 @@ const { title } = Astro.props;
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     try {
       // Obtenemos elementos por ID para mayor confiabilidad
-      const titleElement = document.getElementById('typewriter-title');
-      const verMasContainer = document.getElementById('ver-mas-container');
-      
+      const titleElement = document.getElementById("typewriter-title");
+      const verMasContainer = document.getElementById("ver-mas-container");
+
       // Verificamos la existencia del elemento del título
       if (!titleElement) return;
-      
+
       // Obtenemos el texto con una opción de fallback
-      const textContent = titleElement.getAttribute('data-text');
+      const textContent = titleElement.getAttribute("data-text");
       if (!textContent || textContent.length === 0) return;
-      
+
       // Inicialmente mostramos el título completo, luego lo ocultamos para la animación
-      const originalText = titleElement.textContent || '';
-      titleElement.textContent = '';
-      
+      const originalText = titleElement.textContent || "";
+      titleElement.textContent = "";
+
       // Añadimos el cursor parpadeante
-      titleElement.classList.add('cursor-blink');
-      
+      titleElement.classList.add("cursor-blink");
+
       // Variable para seguir la posición actual en el texto
       let currentPosition = 0;
-      
+
       // Función para escribir el texto caracter por caracter
       const typeNextCharacter = () => {
         try {
           if (!titleElement) return; // Verificación adicional por seguridad
-          
+
           if (currentPosition < textContent.length) {
             const currentChar = textContent.charAt(currentPosition);
             titleElement.textContent += currentChar;
@@ -163,72 +171,72 @@ const { title } = Astro.props;
             setTimeout(() => {
               try {
                 if (titleElement) {
-                  titleElement.classList.remove('cursor-blink');
+                  titleElement.classList.remove("cursor-blink");
                 }
-                
+
                 // Mostramos el botón "Ver más"
                 if (verMasContainer) {
-                  verMasContainer.classList.add('ver-mas-visible');
+                  verMasContainer.classList.add("ver-mas-visible");
                 }
               } catch (e) {
-                console.error('Error al finalizar la animación:', e);
+                console.error("Error al finalizar la animación:", e);
               }
             }, 500);
           }
         } catch (e) {
-          console.error('Error en la animación typewriter:', e);
-          
+          console.error("Error en la animación typewriter:", e);
+
           // Restauramos el texto original en caso de error
           if (titleElement) {
             titleElement.textContent = originalText;
           }
         }
       };
-      
+
       // Iniciamos la animación después de un breve retraso
       setTimeout(typeNextCharacter, 500);
-      
+
       // Funcionalidad de scroll suave para el botón "Ver más"
       if (verMasContainer) {
-        verMasContainer.addEventListener('click', () => {
+        verMasContainer.addEventListener("click", () => {
           try {
             const windowHeight = window.innerHeight;
             window.scrollTo({
               top: windowHeight,
-              behavior: 'smooth'
+              behavior: "smooth",
             });
           } catch (e) {
-            console.error('Error al realizar scroll:', e);
-            
+            console.error("Error al realizar scroll:", e);
+
             // Fallback para navegadores que no soportan scrollTo con opciones
             window.scrollTo(0, window.innerHeight);
           }
         });
       }
-      
+
       // Manejo del fade gradient al hacer scroll
-      const fadeGradient = document.querySelector('.fade-gradient');
+      const fadeGradient = document.querySelector(".fade-gradient");
       if (fadeGradient) {
         const handleScroll = () => {
           try {
             const scrollPosition = window.scrollY || window.pageYOffset;
             const windowHeight = window.innerHeight;
-            
+
             if (scrollPosition > windowHeight * 0.3) {
-              fadeGradient.classList.add('fade-visible');
+              fadeGradient.classList.add("fade-visible");
             } else {
-              fadeGradient.classList.remove('fade-visible');
+              fadeGradient.classList.remove("fade-visible");
             }
           } catch (e) {
-            console.error('Error al manejar el scroll:', e);
+            console.error("Error al manejar el scroll:", e);
           }
         };
-        
-        window.addEventListener('scroll', handleScroll);
+
+        window.addEventListener("scroll", handleScroll);
         handleScroll(); // Llamada inicial
       }
     } catch (e) {
-      console.error('Error general en el script:', e);
+      console.error("Error general en el script:", e);
     }
   });
 </script>

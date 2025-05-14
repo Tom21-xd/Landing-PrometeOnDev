@@ -11,7 +11,7 @@ import Header from "../components/global/organisms/header.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>PrometeOnDev - Desarrollo de Software, Web y Móvil</title>
+    <title>PrometeonDev - Desarrollo de Software, Web y Móvil</title>
     <meta
       name="description"
       content="PrometeOnDev es una empresa de desarrollo de software que ofrece soluciones innovadoras en desarrollo web, móvil, inteligencia artificial y dashboards. Simplificamos la tecnología para llevar tu negocio al siguiente nivel."
@@ -27,12 +27,14 @@ import Header from "../components/global/organisms/header.astro";
     />
   </head>
 
-  <body
-    class="bg-background-light dark:bg-dark-background text-dark dark:text-gray-400"
-  >
-    <Header />
-    <slot />
-    <Footer />
+  <body>
+    <div
+      class="bg-background dark:bg-dark-background text-dark dark:text-gray-400"
+    >
+      <Header />
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
 

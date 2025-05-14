@@ -1,30 +1,38 @@
 ---
-import TechLogo from '../atoms/techLogo.astro';
+import TechLogo from "../atoms/techLogo.astro";
 
 const logos = [
-  { name: 'TypeScript', image: '/logos/typescript.svg' },
-  { name: 'Node.js', image: '/logos/nodejs.svg' },
-  { name: 'MongoDB', image: '/logos/mongodb.svg' },
-  { name: 'PostgreSQL', image: '/logos/postgresql.svg' },
-  { name: 'Python', image: '/logos/python.svg' },
-  { name: 'Nodejs', image: '/logos/nodejs.svg' },
-  { name: 'html5', image: '/logos/html5.svg' },
-  { name: 'nestJs', image: '/logos/nestjs.svg' },
-  { name: 'mysql', image: '/logos/mysql.svg' },
-  { name: 'nextjs', image: '/logos/nextjs_icon_dark.svg' },
-  { name: 'Javascript', image: '/logos/javascript.svg' }
+  { name: "Node.js", icon: "fa-brands fa-node" },
+  { name: "Next.js", icon: "fa-brands fa-node" },
+  { name: "MongoDB", icon: "fa-brands fa-database" },
+  { name: "PostgreSQL", icon: "fa-brands fa-database" },
+  { name: "MySQL", icon: "fa-brands fa-database" },
+  { name: "Python", icon: "fa-brands fa-python" },
+  { name: "React", icon: "fa-brands fa-react" },
+  { name: "Java", icon: "fa-brands fa-java" },
+  { name: "Laravel", icon: "fa-brands fa-laravel" },
+  { name: "Postman", icon: "fa-brands fa-laravel" },
+  { name: "Wordpress", icon: "fa-brands fa-laravel" },
 ];
 ---
 
 <div class="logo-carousel-container bg-black py-8">
   <div class="logo-track">
-    {logos.map((logo) => (
-      <TechLogo name={logo.name} image={logo.image} />
-    ))}
-    {/* Duplicamos los logos para el efecto infinito */}
-    {logos.map((logo) => (
-      <TechLogo name={logo.name} image={logo.image} />
-    ))}
+    {
+      logos.map((logo) => (
+        <div class="logo-icon" title={logo.name}>
+          <i class={logo.icon} style="font-size: 2rem;" />
+        </div>
+      ))
+    }
+
+    {
+      logos.map((logo) => (
+        <div class="logo-icon" title={logo.name}>
+          <i class={logo.icon} style="font-size: 2rem;" />
+        </div>
+      ))
+    }
   </div>
 </div>
 
