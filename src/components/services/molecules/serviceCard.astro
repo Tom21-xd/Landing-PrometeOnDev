@@ -8,21 +8,18 @@ export interface Props {
 const { icon, title, description, url = "#" } = Astro.props;
 ---
 
-<div class="bg-white rounded-lg shadow-md hover:shadow-xl w-full service-card group flex flex-col items-center">
-  <!-- Imagen en la parte superior que ocupa todo el ancho -->
-  <div class="w-full bg-blue-100 flex justify-center items-center rounded-t-lg image-container">
+<div class="service-card-container group flex flex-col items-center">
+  <div class="w-full flex justify-center items-center rounded-t-lg image-container">
     <img src={icon} alt={title} class="w-full object-cover group-hover:animate-pulse transition-all duration-300" />
   </div>
   
-  <!-- Contenido de la tarjeta -->
   <div class="p-6 flex flex-col items-center w-full">
-    <h3 class="text-xl font-semibold mb-3 text-center text-gray-800">{title}</h3>
-    <p class="text-gray-600 text-center mb-6 text-sm">{description}</p>
+    <h3 class="text-xl font-semibold mb-3 text-center card-title">{title}</h3>
+    <p class="card-description text-center mb-6 text-sm">{description}</p>
     
-    <!-- Botón de Ver más -->
     <a 
       href={url}
-      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300"
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full card-button"
       aria-label="Ver más"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -33,7 +30,11 @@ const { icon, title, description, url = "#" } = Astro.props;
 </div>
 
 <style>
-  .service-card {
+  .service-card-container {
+    background-color: var(--color-background);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 100%;
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.5s ease-out, box-shadow 0.3s ease, transform 0.3s ease;
@@ -42,34 +43,50 @@ const { icon, title, description, url = "#" } = Astro.props;
     margin: 0 auto;
   }
   
-  .service-card.animate {
+  .service-card-container.animate {
     opacity: 1;
     transform: translateY(0);
   }
   
   .image-container {
-    height: 180px; /* Altura fija para la sección de la imagen */
+    height: 180px;
     overflow: hidden;
-    background-color: #E0E8FF; /* Un tono de azul claro similar al de la imagen de referencia */
+    background-color: var(--color-primary-light);
   }
   
   .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Para asegurar que la imagen se muestre completamente */
+    object-fit: contain;
   }
   
-  /* Efectos al hacer hover */
-  .service-card {
+  .card-title {
+    color: var(--color-dark);
+  }
+  
+  .card-description {
+    color: var(--color-dark-light);
+  }
+  
+  .card-button {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-button:hover {
+    background-color: var(--color-primary-dark);
+  }
+  
+  .service-card-container {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease-out;
   }
   
-  .service-card:hover {
+  .service-card-container:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
   
-  /* Animación de palpitación para el icono */
   @keyframes pulse {
     0%, 100% {
       transform: scale(1);
@@ -82,4 +99,52 @@ const { icon, title, description, url = "#" } = Astro.props;
   .group:hover img {
     animation: pulse 1.5s infinite;
   }
+  
+  :global(.dark) .service-card-container {
+    background-color: var(--color-dark-background-light);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.dark) .card-title {
+    color: var(--color-background);
+  }
+  
+  :global(.dark) .card-description {
+    color: var(--color-background-dark);
+  }
+  
+  :global(.dark) .image-container {
+    background-color: var(--color-dark-primary-light);
+  }
+  
+  :global(.dark) .card-button {
+    background-color: var(--color-dark-primary);
+  }
+  
+  :global(.dark) .card-button:hover {
+    background-color: var(--color-dark-primary-dark);
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    const serviceCards = document.querySelectorAll('.service-card-container');
+    serviceCards.forEach(card => {
+      observer.observe(card);
+    });
+  });
+</script>
