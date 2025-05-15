@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TeamPreviewSection from "@/components/about/organisms/teamPreviewSection.astro";
+import MissionSection from "@/components/about/organisms/missionSection.astro";
+import HistorySection from "@/components/about/organisms/historySection.astro";
+import StatsSection from "@/components/about/organisms/statsSection.astro";
+import WhoWeAreSection from "@/components/about/organisms/whoWeAreSection.astro";
+import ValuesCarousel from "@/components/about/organisms/valuesCarousel.astro";
+import SectionTitleUp from "@/components/about/organisms/sectionTitleUp.astro";
+---
+
+<Layout>
+  <SectionTitleUp text="Sobre nosotros" />
+  <WhoWeAreSection />
+  <StatsSection />
+  <HistorySection />
+  <ValuesCarousel />
+  <MissionSection />
+  <TeamPreviewSection />
+</Layout>
