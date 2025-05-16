@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PortfolioSection from "../components/portfolio/organisms/PortfolioSection.astro";
+
+const projects = [
+  {
+    id: "1",
+    image: "/images/portfolio/websen.webp",
+    image2: "/images/portfolio/logowebsen.webp",
+    title: "WebSen",
+    type: "Plataforma desarrollada en Next.js con Mongo para CRUD",
+    description: "Landing page administrable para la empresa Websen.",
+    link: "https://websen.co"
+  },
+  {
+    id: "2",
+    image: "/images/portfolio/edifik.webp",
+    image2: "/images/portfolio/edifiklogo.webp",
+    title: "EdifiK",
+    type: "Aplicativo web desarrollado en Next.js con Mysql + ASW cloud para CRUD",
+    description: "Plataforma web integral para la publicación, visualización y gestión de propiedades inmobiliarias.",
+    link: "https://edifik.com"
+  },
+  {
+    id: "3",
+    image: "/images/portfolio/HVHUAZ.webp",
+    image2: "/images/portfolio/logoher.webp",
+    title: "Herbario Virtual HUAZ",
+    type: "Proyecto creado con .NET core y combinando Mysql con MongoDB para su robusta base de datos botánica.",
+    description: "Sistema de información para la colección de muestras botánicas en el herbario de la Universidad de la Amazonía.",
+    link: "https://herbariohuaz.com"
+  },
+  {
+    id: "4",
+    image: "/images/portfolio/fundacion.webp",
+    image2: "/images/portfolio/logofundacion.webp",
+    title: "FundQnSabe",
+    type: "Proyecto creado con ???",
+    description: "Sistema para la gestión de una fundación",
+    link: ""
+  },
+  {
+    id: "5",
+    image: "/images/portfolio/gamanstore.webp",
+    image2: "/images/portfolio/gamanstorelogo.webp",
+    title: "Gamanstore",
+    type: "Página creada con Wordpress",
+    description: "E-commerce desarrollado para la visivilidad de la empresa gamanstore",
+    link: "https://gamanstore.shop/"
+  },
+  {
+    id: "6",
+    image: "/images/portfolio/maxbeautycosmetic.webp",
+    image2: "/images/portfolio/maxbeautycosmeticLOGO.webp",
+    title: "Max beauty cosmetic",
+    type: "Página creada con Wordpress",
+    description: "E-commerce desarrollado para la visivilidad de la empresa max beauty cosmetic",
+    link: "https://maxbeautycosmetic.shop/"
+  },
+  {
+    id: "7",
+    image: "/images/portfolio/dengue.webp",
+    image2: "/images/portfolio/denguelogo.webp",
+    title: "AppDengue",
+    type: "Aplicación movil desarrollado en Kotlin desde Android Studio",
+    description: "Aplicación móvil para la prevención y el manejo del dengue en alianza con la UCEVA y la UDLA",
+    link: ""
+  },
+  {
+    id: "8",
+    image: "/images/portfolio/filtrarev.webp",
+    image2: "/images/portfolio/filtrarevlogo.webp",
+    title: "FiltraRev",
+    type: "Dashboard desarrollado con las herramientras integradas de Power BI",
+    description: "Tablero dinamico para el control y búsqueda de revistas indexadas en Colombia desde Publindex",
+    link: ""
+  },
+];
+---
+
+<Layout>
+  <PortfolioSection title="Nuestro Portafolio" items={projects} />
+</Layout>
