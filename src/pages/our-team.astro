@@ -1,12 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import TeamFullSection from '../components/about us/organisms/TeamFullSection.astro'
-import ValuesCarousel from '../components/about us/organisms/valuesCarousel.astro'
-import SectionTitleUp from '../components/about us/organisms/sectionTitleUp.astro'
+import Layout from "../layouts/Layout.astro";
+import TeamFullSection from "@/components/about/organisms/teamFullSection.astro";
+import ValuesCarousel from "@/components/about/organisms/valuesCarousel.astro";
+import SectionTitleUp from "@/components/about/organisms/sectionTitleUp.astro";
 ---
 
 <Layout>
-  <SectionTitleUp text="Conoce a todo el equipo"/>
+  <SectionTitleUp text="Conoce a todo el equipo" />
+
   <TeamFullSection />
+
   <ValuesCarousel />
 </Layout>

@@ -5,74 +5,69 @@ import ServiceOverView from "../components/services/organims/serviceOverView.ast
 import DetailService from "../components/services/organims/detailService.astro";
 
 const servicioDiseno = {
-  imageSrc: "/design.png",
+  imageSrc: "/images/services/design.webp",
   title: "Diseño Web",
   alt: "Ilustración de diseño web",
   infoCards: [
     {
       title: "Diseño Responsivo",
-      description: "Creamos sitios web que se adaptan perfectamente a todos los dispositivos, desde móviles hasta pantallas de escritorio."
+      description:
+        "Creamos sitios web que se adaptan perfectamente a todos los dispositivos, desde móviles hasta pantallas de escritorio.",
     },
     {
       title: "UX/UI Avanzado",
-      description: "Implementamos las últimas tendencias en experiencia de usuario e interfaz para hacer que tu sitio no solo se vea bien, sino que también sea intuitivo."
+      description:
+        "Implementamos las últimas tendencias en experiencia de usuario e interfaz para hacer que tu sitio no solo se vea bien, sino que también sea intuitivo.",
     },
     {
       title: "Performance Optimizado",
-      description: "Optimizamos cada aspecto de tu sitio web para garantizar tiempos de carga rápidos, lo que mejora el SEO y reduce la tasa de rebote."
-    }
-  ]
+      description:
+        "Optimizamos cada aspecto de tu sitio web para garantizar tiempos de carga rápidos, lo que mejora el SEO y reduce la tasa de rebote.",
+    },
+  ],
 };
 
 const servicioDesarrollo = {
-  imageSrc: "/software.png",
+  imageSrc: "/images/services/software.webp",
   title: "Desarrollo de Aplicaciones",
   alt: "Ilustración de desarrollo de aplicaciones",
   infoCards: [
     {
       title: "Aplicaciones Web",
-      description: "Desarrollamos aplicaciones web modernas y escalables utilizando las últimas tecnologías y frameworks para maximizar el rendimiento."
+      description:
+        "Desarrollamos aplicaciones web modernas y escalables utilizando las últimas tecnologías y frameworks para maximizar el rendimiento.",
     },
     {
       title: "Soluciones a Medida",
-      description: "Creamos soluciones personalizadas que se adaptan perfectamente a tus necesidades específicas y a los requerimientos de tu negocio."
+      description:
+        "Creamos soluciones personalizadas que se adaptan perfectamente a tus necesidades específicas y a los requerimientos de tu negocio.",
     },
     {
       title: "Tecnología de Punta",
-      description: "Utilizamos las tecnologías más avanzadas para garantizar que tu aplicación sea rápida, segura y fácil de mantener a largo plazo."
-    }
-  ]
+      description:
+        "Utilizamos las tecnologías más avanzadas para garantizar que tu aplicación sea rápida, segura y fácil de mantener a largo plazo.",
+    },
+  ],
 };
 ---
 
 <Layout>
-  <div class="services-section">
-    <ServiveTitle title="Nuestros Servicios" />
-    <ServiceOverView />
-    
-    <DetailService 
-      imageSrc={servicioDiseno.imageSrc}
-      title={servicioDiseno.title}
-      alt={servicioDiseno.alt}
-      infoCards={servicioDiseno.infoCards}
-    />
-    
-    <DetailService 
-      imageSrc={servicioDesarrollo.imageSrc}
-      title={servicioDesarrollo.title}
-      alt={servicioDesarrollo.alt}
-      infoCards={servicioDesarrollo.infoCards}
-      reversed={true}
-    />
-  </div>
-</Layout>
+  <ServiveTitle title="Nuestros Servicios" />
 
-<style>
-  .services-section {
-    background-color: var(--color-background-light);
-  }
-  
-  :global(.dark) .services-section {
-    background-color: var(--color-dark-background-light);
-  }
-</style>
+  <ServiceOverView />
+
+  <DetailService
+    imageSrc={servicioDiseno.imageSrc}
+    title={servicioDiseno.title}
+    alt={servicioDiseno.alt}
+    infoCards={servicioDiseno.infoCards}
+  />
+
+  <DetailService
+    imageSrc={servicioDesarrollo.imageSrc}
+    title={servicioDesarrollo.title}
+    alt={servicioDesarrollo.alt}
+    infoCards={servicioDesarrollo.infoCards}
+    reversed={true}
+  />
+</Layout>
