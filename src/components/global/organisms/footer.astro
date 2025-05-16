@@ -1,87 +1,51 @@
 ---
+import NavItem from "../atoms/navItem.astro";
+import SocialIconFooter from "../atoms/socialIconFooter.astro";
 import LogoButton from "../atoms/logoButton.astro";
 
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Sobre nosotros", href: "/about" },
+  { label: "Servicios", href: "/services" },
+  { label: "Contacto", href: "/contact" },
+  { label: "Portfolio", href: "/portfolio" },
+];
 
+const socialLinks = [
+  {
+    href: "https://www.facebook.com/profile.php?id=61575255925454",
+    iconClass: "fa-brands fa-facebook",
+    ariaLabel: "Facebook",
+  },
+  {
+    href: "https://www.linkedin.com/company/prometeondev/",
+    iconClass: "fa-brands fa-linkedin",
+    ariaLabel: "LinkedIn",
+  },
+  { href: "#", iconClass: "fa-brands fa-instagram", ariaLabel: "Instagram" },
+  {
+    href: "https://wa.me/573204054497",
+    iconClass: "fa-brands fa-whatsapp",
+    ariaLabel: "WhatsApp",
+  },
+];
 ---
 
 <footer
   class="bg-background dark:bg-dark-background py-12 flex flex-col items-center gap-8 text-dark dark:text-white transition-colors"
 >
-      <LogoButton title="Prometeon" subtitle="Software Development" />
+  <LogoButton title="Prometeon" subtitle="Software Development" />
 
   <nav>
-    <ul class="flex gap-8 text-lg font-semibold">
-      <li>
-        <a
-          href="#"
-          class="relative group text-dark dark:text-white transition-colors"
-          >Inicio
-          <span
-            class="absolute left-0 right-0 bottom-0 h-[2px] bg-accent dark:bg-dark-accent-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-          ></span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="relative group text-dark dark:text-white transition-colors"
-          >Sobre nosotros
-          <span
-            class="absolute left-0 right-0 bottom-0 h-[2px] bg-accent dark:bg-dark-accent-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-          ></span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="relative group text-dark dark:text-white transition-colors"
-          >Servicios
-          <span
-            class="absolute left-0 right-0 bottom-0 h-[2px] bg-accent dark:bg-dark-accent-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-          ></span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="relative group text-dark dark:text-white transition-colors"
-          >Contacto
-          <span
-            class="absolute left-0 right-0 bottom-0 h-[2px] bg-accent dark:bg-dark-accent-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-          ></span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="relative group text-dark dark:text-white transition-colors"
-          >Porfolio
-          <span
-            class="absolute left-0 right-0 bottom-0 h-[2px] bg-accent dark:bg-dark-accent-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-          ></span>
-        </a>
-      </li>
+    <ul
+      class="flex flex-wrap justify-center gap-4 md:gap-8 text-lg font-semibold"
+    >
+      {navItems.map((item) => <NavItem {...item} />)}
     </ul>
   </nav>
 
-  <div class="flex gap-6">
-    <a href="#" class="text-2xl hover:text-accent dark:hover:text-accent-light"
-      ><i class="fa-brands fa-facebook"></i></a
-    >
-    <a href="#" class="text-2xl hover:text-accent dark:hover:text-accent-light"
-      ><i class="fa-brands fa-x"></i></a
-    >
-    <a
-      href="https://www.linkedin.com/company/prometeondev/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-2xl hover:text-accent dark:hover:text-accent-light"
-    >
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-    <a href="#" class="text-2xl hover:text-accent dark:hover:text-accent-light"
-      ><i class="fa-brands fa-instagram"></i></a
-    >
+  <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+    {socialLinks.map((link) => <SocialIconFooter {...link} />)}
   </div>
 
   <hr

@@ -1,0 +1,22 @@
+---
+import ImageCard from "../atoms/imageCard.astro";
+import CardTitle from "../atoms/cardTitle.astro";
+import HoverLine from "../atoms/hoverLine.astro";
+import ArrowButton from "../atoms/arrowButton.astro";
+
+const { imageSrc, title, index } = Astro.props;
+---
+
+<div class="group relative flex flex-col gap-2">
+  <ImageCard imageSrc={imageSrc} title={title} />
+
+  <div class="flex items-center justify-between pt-2">
+    <CardTitle title={title} index={index} />
+
+    <ArrowButton href="/services" />
+  </div>
+
+  <div class="pt-2">
+    <HoverLine />
+  </div>
+</div>

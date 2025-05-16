@@ -1,0 +1,70 @@
+---
+import TechLogo from "../atoms/techLogo.astro";
+
+const logos = [
+  {
+    name: "Node.js",
+    icon: "fa-brands fa-node-js",
+    color: "hover:text-[#83CD29]",
+  },
+  // { name: "Next.js", icon: "fa-brands fa-node", color: "hover:text-[#000000]" },
+  // {
+  //   name: "MongoDB",
+  //   icon: "fa-brands fa-database",
+  //   color: "hover:text-[#47A248]",
+  // },
+  // {
+  //   name: "PostgreSQL",
+  //   icon: "fa-brands fa-database",
+  //   color: "hover:text-[#336791]",
+  // },
+  // {
+  //   name: "MySQL",
+  //   icon: "fa-brands fa-database",
+  //   color: "hover:text-[#00758F]",
+  // },
+  {
+    name: "Python",
+    icon: "fa-brands fa-python",
+    color: "hover:text-[#FFE873]",
+  },
+  {
+    name: "Docker",
+    icon: "fa-brands fa-docker",
+    color: "hover:text-[#0db7ed]",
+  },
+  { name: "Java", icon: "fa-brands fa-java", color: "hover:text-[#ED8B00]" },
+  { name: "PHP", icon: "fa-brands fa-php", color: "hover:text-[#787CB5]" },
+  { name: "React", icon: "fa-brands fa-react", color: "hover:text-[#61DBFB]" },
+  {
+    name: "Laravel",
+    icon: "fa-brands fa-laravel",
+    color: "hover:text-[#FF2D20]",
+  },
+  // {
+  //   name: "Postman",
+  //   icon: "fa-brands fa-laravel",
+  //   color: "hover:text-[#FF6C37]",
+  // },
+  {
+    name: "Wordpress",
+    icon: "fa-brands fa-wordpress-simple",
+    color: "hover:text-[#444140]",
+  },
+];
+---
+
+<div class="relative w-full overflow-hidden py-8">
+  <div class="flex animate-[scroll_10s_linear_infinite] paused w-fit">
+    {
+      logos.map((logo) => (
+        <TechLogo name={logo.name} icon={logo.icon} color={logo.color} />
+      ))
+    }
+    {
+      logos.map((logo) => (
+        <TechLogo name={logo.name} icon={logo.icon} color={logo.color} />
+      ))
+    }
+  </div>
+</div>

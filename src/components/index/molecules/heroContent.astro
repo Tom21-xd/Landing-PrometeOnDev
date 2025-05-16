@@ -1,0 +1,41 @@
+---
+import CTAButton from "../atoms/ctaButton.astro";
+import VideoButton from "./videoButton.astro";
+
+const title = "PrometeonDev";
+const subtitle = "Impulsamos tu negocio con soluciones digitales.";
+const src = "https://img.youtube.com/vi/oM9fUlGET-w/maxresdefault.jpg";
+const backgroundVideo = "/videos/home/hero-section.webm";
+---
+
+<div
+  class="relative flex flex-col w-full min-h-full p-8 sm:p-8 rounded-2xl border-2 overflow-hidden border-none shadow-md dark:shadow-gray-400 shadow-gray-700"
+>
+  <video
+    src={backgroundVideo}
+    autoplay
+    loop
+    muted
+    playsinline
+    class="absolute top-0 left-0 w-full h-full object-cover z-10"></video>
+
+  <div class="relative z-10 flex flex-col items-start gap-4 my-16">
+    <h1
+      class="text-3xl font-semibold tracking-tight leading-tight lg:text-5xl text-white"
+    >
+      {title}
+    </h1>
+
+    <p class="text-lg lg:text-2xl text-white">
+      {subtitle}
+    </p>
+  </div>
+
+  <div
+    class="absolute bottom-4 left-4 right-4 sm:bottom-6 md:left-10 md:right-10 z-20 flex flex-col items-center sm:items-end gap-10 sm:flex-row sm:justify-between"
+  >
+    <VideoButton src={src} />
+
+    <CTAButton />
+  </div>
+</div>
