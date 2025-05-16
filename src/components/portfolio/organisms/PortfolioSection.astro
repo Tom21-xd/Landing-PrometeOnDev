@@ -1,10 +1,12 @@
 ---
 import PortfolioGrid from "../molecules/PortfolioGrid.astro";
 import PortfolioTittle from "../atoms/PortfolioTittle.astro";
+
+const { title } = Astro.props;
 ---
 
 <section class="container mx-auto py-20 px-10">
-  <PortfolioTittle title={Astro.props.title} />
+  <PortfolioTittle title={title} />
 
-  <PortfolioGrid items={Astro.props.items} />
+  <PortfolioGrid />
 </section>
