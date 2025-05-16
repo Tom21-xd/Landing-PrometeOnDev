@@ -1,0 +1,51 @@
+---
+import ProjectCard from "../molecules/projectCard.astro";
+import ServicesTextGroup from "../molecules/servicesTextGroup.astro";
+
+const projects = [
+  {
+    title: "EdifiK",
+    imageSrc: "/images/services/desarrollo.jpg",
+    shortDescription: "Gestión eficiente de propiedades en línea",
+  },
+  {
+    title: "WebSen",
+    imageSrc: "/images/services/disenio.png",
+    shortDescription: "Diseño web moderno y adaptable",
+  },
+  {
+    title: "HUAZ",
+    imageSrc: "/images/services/inteligencia.png",
+    shortDescription: "Plataforma para catalogar especies vegetales",
+  },
+];
+
+const sectionTitle = "Nuestros Desarrollos";
+const sectionDescription =
+  "Conocé algunos de nuestros desarrollos más destacados. Cada uno de ellos refleja nuestro compromiso con la calidad y la innovación.";
+const url = "/portfolio";
+---
+
+<section class="py-14 px-6 md:px-20">
+  <div class="flex flex-col gap-12 items-start">
+    <ServicesTextGroup
+      name={sectionTitle}
+      description={sectionDescription}
+      url={url}
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 flex-1">
+      {
+        projects.map((project, index) => (
+          <ProjectCard
+            key={index}
+            id={index}
+            title={project.title}
+            imageSrc={project.imageSrc}
+            shortDescription={project.shortDescription}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

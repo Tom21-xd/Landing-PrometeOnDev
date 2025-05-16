@@ -1,0 +1,12 @@
+---
+import VideoThumbnail from "../atoms/VideoThumbnail.astro";
+import PlayIcon from "../atoms/playIcon.astro";
+
+const { src } = Astro.props;
+---
+
+<div id="video-play" class="relative group cursor-pointer">
+  <VideoThumbnail src={src} />
+
+  <PlayIcon />
+</div>

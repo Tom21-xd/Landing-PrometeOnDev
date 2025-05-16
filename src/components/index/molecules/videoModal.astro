@@ -1,0 +1,62 @@
+---
+import CloseModal from "../atoms/closeModal.astro";
+
+const { videoSrc } = Astro.props;
+---
+
+<div
+  id="video-modal"
+  class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300 min-h-full"
+>
+  <div
+    class="relative w-full h-full bg-black bg-opacity-90 rounded-none md:rounded-2xl flex items-center justify-center p-6"
+  >
+    <div class="absolute top-8 right-8 z-50">
+      <CloseModal id="close-modal" />
+    </div>
+
+    <iframe
+      src={videoSrc}
+      allow="autoplay; encrypted-media"
+      class="w-full h-full min-w-full rounded-none md:rounded-2xl"></iframe>
+  </div>
+</div>
+
+<script>
+  function openVideoModal() {
+    const modal = document.getElementById("video-modal");
+    if (modal) {
+      modal.classList.remove("opacity-0", "pointer-events-none");
+    }
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById("video-modal") as HTMLElement | null;
+    const iframe = modal?.querySelector("iframe") as HTMLIFrameElement | null;
+
+    if (modal) {
+      modal.classList.add("opacity-0", "pointer-events-none");
+    }
+
+    if (iframe) {
+      const currentSrc = iframe.src;
+      iframe.src = "";
+      setTimeout(() => {
+        iframe.src = currentSrc;
+      }, 100);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const videoContainer = document.getElementById("video-play");
+    const closeModal = document.getElementById("close-modal");
+
+    if (videoContainer) {
+      videoContainer.addEventListener("click", openVideoModal);
+    }
+
+    if (closeModal) {
+      closeModal.addEventListener("click", closeVideoModal);
+    }
+  });
+</script>

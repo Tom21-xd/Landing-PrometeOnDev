@@ -45,3 +45,16 @@
   --color-dark-dark-darker: #292735;
   --color-dark-background-dark: #0d0d0d;
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.paused:hover {
+  animation-play-state: paused !important;
+}
