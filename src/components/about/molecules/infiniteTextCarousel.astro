@@ -1,0 +1,68 @@
+---
+import CarouselText from "../atoms/carouselText.astro";
+
+const { items = [], speed = 100 } = Astro.props;
+const duplicatedItems = [...items, ...items];
+---
+
+<div class="carousel-container">
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track" style={`--speed: ${speed}s`}>
+      {
+        duplicatedItems.map((item, index) => (
+          <>
+            <CarouselText text={item.text} />
+            {index !== duplicatedItems.length - 1 && <span class="dot">|</span>}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .carousel-track-wrapper {
+    display: flex;
+    width: fit-content;
+  }
+
+  .carousel-track {
+    display: flex;
+    animation: scroll var(--speed) linear infinite;
+    align-items: center;
+    will-change: transform;
+    width: max-content;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    } /* porque son 2 bloques */
+  }
+
+  .dot {
+    font-size: clamp(3rem, 10vw, 4rem);
+    color: black;
+    padding: 0 1rem;
+    font-weight: bold;
+    line-height: 0.9;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .dot {
+      color: white !important;
+    }
+  }
+</style>

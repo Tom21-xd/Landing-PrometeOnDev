@@ -1,11 +1,7 @@
 ---
 import ContactButton from "../atoms/contactButton.astro";
 
-interface Props {
-  id: string;
-}
-
-const { id } = Astro.props as Props;
+const { id } = Astro.props;
 ---
 
 <div
@@ -15,7 +11,7 @@ const { id } = Astro.props as Props;
 
   <button id={id} class="text-2xl cursor-pointer">
     <i
-      class="fa-solid fa-bars transition-transform duration-300 ease-in-out transform hover:scale-90"
+      class="fa-solid fa-bars text-gray-900 transition-transform duration-300 ease-in-out transform hover:scale-90"
     ></i>
   </button>
 </div>

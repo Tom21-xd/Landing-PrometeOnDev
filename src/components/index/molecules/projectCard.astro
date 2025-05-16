@@ -1,0 +1,25 @@
+---
+import ImageCard from "../atoms/imageCard.astro";
+import ProjectTitle from "../atoms/projectTitle.astro";
+
+const { id, imageSrc, title, shortDescription } = Astro.props;
+---
+
+<a
+  href={`/portfolio/${id}`}
+  class="group relative flex flex-col gap-2 cursor-pointer"
+>
+  <div class="transition-all duration-300 hover:scale-105">
+    <ImageCard imageSrc={imageSrc} title={title} />
+  </div>
+
+  <div class="flex items-start justify-between pt-2 gap-16">
+    <ProjectTitle title={title} />
+
+    <p
+      class="text-gray-900 dark:text-gray-500 text-right flex-1 leading-snug max-w-xs line-clamp-2"
+    >
+      {shortDescription}
+    </p>
+  </div>
+</a>

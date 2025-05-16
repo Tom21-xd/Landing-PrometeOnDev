@@ -1,0 +1,19 @@
+---
+import ViewMoreButton from "../atoms/viewMoreButton.astro";
+
+const { name, description, url } = Astro.props;
+---
+
+<div
+  class="flex flex-col md:flex-row gap-4 items-center justify-between w-full text-left"
+>
+  <h2 class="text-3xl font-semibold text-black dark:text-white">{name}</h2>
+
+  <p
+    class="text-gray-900 dark:text-gray-400 md:max-w-2/5 text-justify md:text-left"
+  >
+    {description}
+  </p>
+
+  <ViewMoreButton text="Ver más" url={url} />
+</div>

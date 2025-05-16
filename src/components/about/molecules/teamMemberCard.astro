@@ -1,0 +1,51 @@
+---
+const { name, role, image, socials = {} } = Astro.props;
+---
+
+<div
+  class="bg-white dark:bg-black text-black dark:text-white group relative overflow-hidden rounded-md shadow-md w-[300px] mx-auto"
+>
+  <div class="relative h-[400px] overflow-hidden">
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+
+    <div
+      class="absolute inset-0 bg-white/40 dark:bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+    >
+      <div class="flex space-x-6">
+        {
+          socials.github && (
+            <a
+              href={socials.github}
+              target="_blank"
+              class="text-black dark:text-white text-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100"
+            >
+              <i class="fab fa-github" />
+            </a>
+          )
+        }
+
+        {
+          socials.linkedin && (
+            <a
+              href={socials.linkedin}
+              target="_blank"
+              class="text-black dark:text-white text-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-300"
+            >
+              <i class="fab fa-linkedin-in" />
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4">
+    <h3 class="text-lg font-semibold">{name}</h3>
+
+    <p class="text-sm text-gray-900 dark:text-gray-400">{role}</p>
+  </div>
+</div>

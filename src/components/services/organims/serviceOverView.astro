@@ -6,19 +6,19 @@ import ServiceCard from "../molecules/serviceCard.astro";
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       <ServiceCard
-        icon="/diseno.png"
+        icon="/images/services/disenio.webp"
         title="Diseño Web"
         description="Creamos experiencias unicas para el usuario"
-        url="/servicios/diseno-web"
+        url="/servicios/disenio-web"
       />
       <ServiceCard
-        icon="/desarrollo.jpg"
+        icon="/images/services/desarrollo.webp"
         title="Desarrollo"
         description="Desarrollamos aplicaciones web y moviles"
         url="/servicios/desarrollo"
       />
       <ServiceCard
-        icon="/inteligencia.png"
+        icon="/images/services/inteligencia.webp"
         title="Inteligencia de negocio"
         description="Se desarrollan dashboards interactivos"
         url="/servicios/inteligencia-negocio"
@@ -28,34 +28,35 @@ import ServiceCard from "../molecules/serviceCard.astro";
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Seleccionar todas las tarjetas dentro de la sección
-            const cards = document.querySelectorAll('#services-section .service-card');
-            
+            const cards = document.querySelectorAll(
+              "#services-section .service-card"
+            );
+
             // Animar cada tarjeta con un retraso diferente
             cards.forEach((card, index) => {
               setTimeout(() => {
-                card.classList.add('animate');
+                card.classList.add("animate");
               }, index * 200); // 200ms de retraso entre cada tarjeta
             });
-            
-            // Desconectar el observer una vez que se han aplicado las animaciones
             observer.unobserve(entry.target);
           }
         });
       },
       {
         threshold: 0.2, // Activar cuando al menos el 20% de la sección sea visible
-        rootMargin: '0px 0px -100px 0px' // Margen negativo para activar un poco antes
+        rootMargin: "0px 0px -100px 0px", // Margen negativo para activar un poco antes
       }
     );
 
     // Observar la sección de servicios
-    const servicesSection = document.getElementById('services-section');
+    const servicesSection = document.getElementById("services-section");
+
     if (servicesSection) {
       observer.observe(servicesSection);
     }

@@ -1,0 +1,81 @@
+---
+import Heading from "../atoms/heading.astro";
+import ViewMoreButton from "@/components/index/atoms/viewMoreButton.astro";
+import TeamMemberCard from "../molecules/teamMemberCard.astro";
+
+export const team = [
+  {
+    name: "Brayan Estupiñán",
+    role: "Photographer",
+    image: "/images/about/brayan-esupinian.webp",
+    socials: {
+      github: "https://github.com/Angarita-17",
+      linkedin: "https://www.linkedin.com/in/brayangarita/",
+    },
+  },
+  {
+    name: "Johan Ramirez",
+    role: "Photographer",
+    image: "/images/about/johan-ramirez.webp",
+    socials: {
+      github: "https://github.com/Tom21-xd",
+      linkedin:
+        "https://www.linkedin.com/in/johan-steven-ramirez-murcia-95ab80295/",
+    },
+  },
+  {
+    name: "Sebastián Sierra",
+    role: "Photographer",
+    image: "/images/about/sebastian-sierra.webp",
+    socials: {
+      github: "https://github.com/SebastianSierra15",
+      linkedin: "https://www.linkedin.com/in/sebastian-sierra-417358263/",
+    },
+  },
+  {
+    name: "Brayan Gómez",
+    role: "Photographer",
+    image: "/images/about/brayan-gomez.webp",
+    socials: {
+      github: "https://github.com/SeitoUwU",
+      linkedin: "https://www.linkedin.com/in/brayan-gomez-ing/",
+    },
+  },
+  {
+    name: "Michael Martinez",
+    role: "Photographer",
+    image: "/images/about/michael-martinez.webp",
+    socials: {
+      github: "https://github.com/Micha852",
+      linkedin: "https://www.linkedin.com/in/mamg0852/",
+    },
+  },
+  {
+    name: "Danna Navia",
+    role: "Photographer",
+    image: "/images/about/danna-navia.webp",
+    socials: {
+      github: "https://github.com/Dannanavia",
+      linkedin: "http://www.linkedin.com/in/danna-vanessa-navia-01b24b315",
+    },
+  },
+];
+
+const selected = team.sort(() => 0.5 - Math.random()).slice(0, 3);
+---
+
+<section class="py-12 text-white">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div
+      class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 px-8"
+    >
+      <Heading level="2" text="Nuestro equipo" />
+
+      <ViewMoreButton text="Ver todos" url="/our-team" />
+    </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {selected.map((member) => <TeamMemberCard {...member} />)}
+    </div>
+  </div>
+</section>

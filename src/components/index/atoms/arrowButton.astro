@@ -1,0 +1,14 @@
+---
+const { href, label } = Astro.props;
+---
+
+<a
+  href={href}
+  class="flex items-center gap-2 group justify-center w-10 h-10 rounded-full border-2 border-gray-900 dark:border-gray-500 group-hover:border-primary transition-all duration-300"
+>
+  {label && <span class="text-lg font-semibold">{label}</span>}
+
+  <i
+    class="fa-solid fa-arrow-right text-gray-900 dark:text-gray-500 group-hover:text-primary transition-colors duration-300"
+  ></i>
+</a>

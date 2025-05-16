@@ -1,0 +1,50 @@
+---
+import ServicesCard from "../molecules/servicesCard.astro";
+import ServicesTextGroup from "../molecules/servicesTextGroup.astro";
+
+const services = [
+  {
+    title: "Diseño Web",
+    imageSrc: "/images/services/desarrollo.webp",
+    index: 1,
+  },
+  {
+    title: "Desarrollo de Software",
+    imageSrc: "/images/services/disenio.webp",
+    index: 2,
+  },
+  {
+    title: "Inteligencia Artificial",
+    imageSrc: "/images/services/inteligencia.webp",
+    index: 3,
+  },
+];
+
+const sectionTitle = "Nuestros servicios";
+const sectionDescription =
+  "Ofrecemos una amplia gama de servicios para satisfacer tus necesidades. Desde diseño web hasta desarrollo de software y soluciones de inteligencia artificial.";
+const url = "/services";
+---
+
+<section class="py-14 px-6 md:px-20">
+  <div class="flex flex-col gap-12 items-start">
+    <ServicesTextGroup
+      name={sectionTitle}
+      description={sectionDescription}
+      url={url}
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 flex-1">
+      {
+        services.map((service) => (
+          <ServicesCard
+            key={service.index}
+            title={service.title}
+            imageSrc={service.imageSrc}
+            index={service.index}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
