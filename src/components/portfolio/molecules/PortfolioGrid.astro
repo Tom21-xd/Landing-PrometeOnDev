@@ -1,25 +1,39 @@
 ---
 import PortfolioCard from "./PortfolioCard.astro";
 
-interface PortfolioItem {
+interface Project {
   id: string;
+  title: string;
   image: string;
   image2: string;
-  title: string;
   type: string;
   description: string;
-  link: string;
+  link?: string;
 }
 
-interface Props {
-  items: PortfolioItem[];
-}
+const projects: Project[] = Object.values(
+  import.meta.glob<{ frontmatter: Project }>("/src/content/projects/*.md", {
+    eager: true,
+  })
+)
+  .map((module) => module.frontmatter)
+  .sort((a, b) => parseInt(a.id) - parseInt(b.id));
 
-const { items } = Astro.props as Props;
+const { items = projects } = Astro.props;
 ---
 
 <div class="flex flex-col gap-8 mt-10">
-    {Astro.props.items.map(item => (
-      <PortfolioCard key={item.id} image={item.image} image2={item.image2} title={item.title} type={item.type} description={item.description} link={item.link} />
-    ))}
-  </div>
+  {
+    items.map((item: Project) => (
+      <PortfolioCard
+        key={item.id}
+        title={item.title}
+        image={item.image}
+        image2={item.image2}
+        type={item.type}
+        description={item.description}
+        link={item.link}
+      />
+    ))
+  }
+</div>
