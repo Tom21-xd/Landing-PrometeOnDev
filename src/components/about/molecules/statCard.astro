@@ -7,21 +7,23 @@ const { value, label } = Astro.props;
 
 <div class="relative flex flex-col items-center">
   <StatValue value={value} />
+
   <StatLabel label={label} />
 
   <script>
     if (typeof window !== "undefined") {
       const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const el = entry.target;
-            const target = parseInt(el.dataset.target, 10);
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.target || "0", 10);
             let current = 0;
-            const step = Math.ceil(target / 60);
+            const step = Math.ceil(target / 10000);
 
             const update = () => {
               current += step;
-              el.textContent = current >= target ? target : current;
+              el.textContent =
+                current >= target ? target.toString() : current.toString();
               if (current < target) requestAnimationFrame(update);
             };
 
@@ -32,7 +34,9 @@ const { value, label } = Astro.props;
       });
 
       window.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".stat-value").forEach(el => observer.observe(el));
+        document
+          .querySelectorAll(".stat-value")
+          .forEach((el) => observer.observe(el));
       });
     }
   </script>

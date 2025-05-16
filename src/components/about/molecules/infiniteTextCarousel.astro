@@ -52,11 +52,17 @@ const duplicatedItems = [...items, ...items];
 
   .dot {
     font-size: clamp(3rem, 10vw, 4rem);
-    color: white;
+    color: black;
     padding: 0 1rem;
     font-weight: bold;
     line-height: 0.9;
     user-select: none;
     flex-shrink: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .dot {
+      color: white !important;
+    }
   }
 </style>
