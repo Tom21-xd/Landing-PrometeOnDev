@@ -1,0 +1,25 @@
+---
+import PortfolioCard from "./PortfolioCard.astro";
+
+interface PortfolioItem {
+  id: string;
+  image: string;
+  image2: string;
+  title: string;
+  type: string;
+  description: string;
+  link: string;
+}
+
+interface Props {
+  items: PortfolioItem[];
+}
+
+const { items } = Astro.props as Props;
+---
+
+<div class="flex flex-col gap-8 mt-10">
+    {Astro.props.items.map(item => (
+      <PortfolioCard key={item.id} image={item.image} image2={item.image2} title={item.title} type={item.type} description={item.description} link={item.link} />
+    ))}
+  </div>
