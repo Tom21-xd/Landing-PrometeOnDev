@@ -1,49 +1,110 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Hero New";
+  src: url("/src/assets/fonts/Hero New Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hero New";
+  src: url("/src/assets/fonts/Hero New Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hero New";
+  src: url("/src/assets/fonts/Hero New SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hero New";
+  src: url("/src/assets/fonts/Hero New Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vonca";
+  src: url("/src/assets/fonts/Vonca-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vonca";
+  src: url("/src/assets/fonts/Vonca-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vonca";
+  src: url("/src/assets/fonts/Vonca-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vonca";
+  src: url("/src/assets/fonts/Vonca-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
-  /* Ligth Mode */
-  --color-primary: #1b7be7;
-  --color-secondary: #429da4;
-  --color-accent: #69bf62;
-  --color-highlight: #91e220;
-  --color-dark: #292735;
-  --color-background: #f0ece3;
+  /* Colors */
+  --color-primary: #0376ff;
+  --color-primary-light: #5aa9ff;
+  --color-primary-dark: #025ac2;
 
-  --color-primary-light: #63a8f2;
-  --color-secondary-light: #6ebfb7;
-  --color-accent-light: #8eea81;
-  --color-highlight-light: #b6f254;
-  --color-dark-light: #3b3b3b;
-  --color-background-light: #fbf9f3;
+  --color-background: #ffffff;
+  --color-background-light: #ffffff;
+  --color-background-dark: #e6e6e6;
 
-  --color-primary-dark: #145bb6;
-  --color-secondary-dark: #327a79;
-  --color-accent-dark: #4b9139;
-  --color-highlight-dark: #6eac1a;
-  --color-dark-darker: #1b1b1b;
-  --color-background-dark: #c8c1b3;
+  --color-dark: #000a30;
+  --color-dark-light: #1c2d5c;
+  --color-dark-darker: #00061f;
 
-  /* Dark Mode */
-  --color-dark-primary: #145bb6;
-  --color-dark-secondary: #327a79;
-  --color-dark-accent: #4b9139;
-  --color-dark-highlight: #6eac1a;
-  --color-dark-dark: #1b1b1b;
-  --color-dark-background: #1a1a1a;
+  --color-dark-primary: #0376ff;
+  --color-dark-primary-light: #5aa9ff;
+  --color-dark-primary-dark: #025ac2;
 
-  --color-dark-primary-light: #63a8f2;
-  --color-dark-secondary-light: #6ebfb7;
-  --color-dark-accent-light: #8eea81;
-  --color-dark-highlight-light: #b6f254;
-  --color-dark-dark-light: #3b3b3b;
-  --color-dark-background-light: #3c3c3c;
+  --color-dark-background: #000a30;
+  --color-dark-background-light: #1c2d5c;
+  --color-dark-background-dark: #00061f;
 
-  --color-dark-primary-dark: #1b7be7;
-  --color-dark-secondary-dark: #429da4;
-  --color-dark-accent-dark: #69bf62;
-  --color-dark-highlight-dark: #91e220;
-  --color-dark-dark-darker: #292735;
-  --color-dark-background-dark: #0d0d0d;
+  --color-dark-dark: #ffffff;
+  --color-dark-dark-light: #ffffff;
+  --color-dark-dark-darker: #e6e6e6;
+
+  /* Fonts */
+  --font-primary: "Vonca", system-ui, sans-serif;
+  --font-secondary: "Hero New", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-primary);
+  }
 }
 
 @keyframes scroll {

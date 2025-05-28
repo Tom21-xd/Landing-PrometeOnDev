@@ -1,21 +1,15 @@
 ---
-import InfiniteTextCarousel from '../molecules/infiniteTextCarousel.astro';
+import InfiniteTextCarousel from "../molecules/infiniteTextCarousel.astro";
 
 const values = [
-  { text: 'INNOVACIÓN' },
-  { text: 'EFICIENCIA' },
-  { text: 'PASIÓN' },
-  { text: 'CRECIMIENTO' },
-  { text: 'IMPACTO' }
+  { text: "INNOVACIÓN" },
+  { text: "EFICIENCIA" },
+  { text: "PASIÓN" },
+  { text: "CRECIMIENTO" },
+  { text: "IMPACTO" },
 ];
 ---
 
-<section class="values-carousel">
+<section class="relative w-full overflow-hidden m-4">
   <InfiniteTextCarousel items={values} speed={20} />
 </section>
-
-<style>
-  .values-carousel {
-    padding: 0.002rem 0;
-  }
-</style>

@@ -1,8 +1,13 @@
 ---
-const { level = "2", text = "" } = Astro.props;
-const Tag = `h${level}` as keyof HTMLElementTagNameMap;
+interface Props {
+  text: string;
+}
+
+const { text = "" } = Astro.props as Props;
 ---
 
-<Tag class="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4"
-  >{text}</Tag
+<h2
+  class="text-3xl md:text-4xl font-bold text-primary dark:text-dark-dark mb-4"
 >
+  {text}
+</h2>

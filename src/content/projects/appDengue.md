@@ -1,11 +1,14 @@
 ---
-id: "7"
 title: "AppDengue"
-image: "/images/portfolio/dengue.webp"
-image2: "/images/portfolio/denguelogo.webp"
-type: "Aplicación móvil desarrollada en Kotlin desde Android Studio"
-description: "Aplicación móvil para la prevención y el manejo del dengue en alianza con la UCEVA y la UDLA. Actualmente en desarrollo."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/dengue.webp"
+  - "/images/portfolio/denguelogo.webp"
 link: ""
+socials: []
+type: "Aplicación móvil desarrollada en Kotlin desde Android Studio"
 ---
 
 # AppDengue

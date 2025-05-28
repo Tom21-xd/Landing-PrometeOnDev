@@ -1,11 +1,14 @@
 ---
-id: "5"
 title: "Gamanstore"
-image: "/images/portfolio/gamanstore.webp"
-image2: "/images/portfolio/gamanstorelogo.webp"
-type: "Página creada con WordPress"
-description: "E-commerce desarrollado para la visibilidad de la empresa Gamanstore."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/gamanstore.webp"
+  - "/images/portfolio/gamanstorelogo.webp"
 link: "https://gamanstore.shop/"
+socials: []
+type: "Página creada con WordPress"
 ---
 
 # Gamanstore

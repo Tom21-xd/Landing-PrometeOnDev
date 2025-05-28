@@ -1,31 +1,35 @@
 ---
-import ContactTittle from "../atoms/contactTittle.astro";
+import LogoTextImage from "../atoms/logoTextImage.astro";
 import ContactText from "../atoms/contactText.astro";
-import CTAButton from "@/components/index/atoms/CTAButton.astro";
+import CtaButton from "../atoms/ctaButton.astro";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 const backgroundVideo = "/videos/home/contact-section.webm";
+const logoTextUrl = "/global/LOGO-BLANCO-TEXTO.webp";
+const message =
+  "Se parte de nuestro equipo y construyamos juntos el futuro digital.";
+
+const textCtaButton = "Cotiza tu proyecto";
+const hrefCtaButton = getWhatsAppLink();
 ---
 
-<section
-  class="relative w-full min-h-screen overflow-hidden bg-gradient-to-b from-[var(--color-dark-dark)] to-dark-background"
->
+<section class="relative w-full min-h-screen overflow-hidden">
   <video
     src={backgroundVideo}
     autoplay
     loop
     muted
     playsinline
+    preload="none"
     class="absolute top-0 left-0 w-full h-full object-cover z-10"></video>
 
   <div
     class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center gap-8"
   >
-    <ContactTittle tittle="PrometeonDev" />
+    <LogoTextImage src={logoTextUrl} />
 
-    <CTAButton />
+    <CtaButton text={textCtaButton} href={hrefCtaButton} />
 
-    <ContactText
-      text="Se parte de nuestro equipo y construyamos juntos el futuro digital."
-    />
+    <ContactText text={message} />
   </div>
 </section>

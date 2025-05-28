@@ -1,10 +1,15 @@
 ---
-const { text, url } = Astro.props;
+interface Props {
+  text: string;
+  url: string;
+}
+
+const { text, url } = Astro.props as Props;
 ---
 
 <a
   href={url}
-  class="flex items-center gap-2 group text-black dark:text-white transition-all duration-300"
+  class="flex items-center gap-2 group text-primary dark:text-white transition-all duration-300"
 >
   <span class="text-lg font-semibold">{text}</span>
 

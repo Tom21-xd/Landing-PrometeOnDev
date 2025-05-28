@@ -1,13 +1,14 @@
 ---
 import ImageTextBlock from "../molecules/imageTextBlock.astro";
+
+const title = "Nuestra misión";
+const image = "/images/about/mision.webp";
+const text =
+  "En PrometeOnDev tenemos como misión diseñar y desarrollar soluciones tecnológicas innovadoras y personalizadas que impulsen la transformación digital de empresas, startups y emprendedores. Nos comprometemos a ofrecer productos funcionales, escalables y alineados con los objetivos de nuestros clientes, combinando creatividad, eficiencia y un acompañamiento cercano en cada etapa del proceso.";
 ---
 
 <section>
-  <div class="max-w-6xl mx-auto px-4">
-    <ImageTextBlock
-      title="Nuestra misión"
-      image="/images/about/mision.webp"
-      text="En PrometeOnDev tenemos como misión diseñar y desarrollar soluciones tecnológicas innovadoras y personalizadas que impulsen la transformación digital de empresas, startups y emprendedores. Nos comprometemos a ofrecer productos funcionales, escalables y alineados con los objetivos de nuestros clientes, combinando creatividad, eficiencia y un acompañamiento cercano en cada etapa del proceso."
-    />
+  <div class="max-w-6xl flex mx-auto px-6 md:px-12">
+    <ImageTextBlock title={title} image={image} text={text} />
   </div>
 </section>

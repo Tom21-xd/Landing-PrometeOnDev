@@ -1,9 +1,21 @@
 ---
-const { name, role, image, socials = {} } = Astro.props;
+import SocialIcon from "@/components/about/atoms/socialIcon.astro";
+
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+  socials?: {
+    github?: string;
+    linkedin?: string;
+  };
+}
+
+const { name, role, image, socials = {} } = Astro.props as Props;
 ---
 
 <div
-  class="bg-white dark:bg-black text-black dark:text-white group relative overflow-hidden rounded-md shadow-md w-[300px] mx-auto"
+  class="bg-background-dark dark:bg-dark-background-dark text-dark dark:text-dark-dark group relative overflow-hidden rounded-md shadow-sm shadow-dark dark:shadow-dark-dark w-full max-w-80 mx-auto"
 >
   <div class="relative h-[400px] overflow-hidden">
     <img
@@ -13,30 +25,18 @@ const { name, role, image, socials = {} } = Astro.props;
     />
 
     <div
-      class="absolute inset-0 bg-white/40 dark:bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+      class="absolute inset-0 bg-black/40 dark:bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
     >
       <div class="flex space-x-6">
         {
           socials.github && (
-            <a
-              href={socials.github}
-              target="_blank"
-              class="text-black dark:text-white text-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100"
-            >
-              <i class="fab fa-github" />
-            </a>
+            <SocialIcon icon="fab fa-github" href={socials.github} />
           )
         }
 
         {
           socials.linkedin && (
-            <a
-              href={socials.linkedin}
-              target="_blank"
-              class="text-black dark:text-white text-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-300"
-            >
-              <i class="fab fa-linkedin-in" />
-            </a>
+            <SocialIcon icon="fab fa-linkedin-in" href={socials.linkedin} />
           )
         }
       </div>
@@ -46,6 +46,6 @@ const { name, role, image, socials = {} } = Astro.props;
   <div class="p-4">
     <h3 class="text-lg font-semibold">{name}</h3>
 
-    <p class="text-sm text-gray-900 dark:text-gray-400">{role}</p>
+    <p class="text-sm">{role}</p>
   </div>
 </div>

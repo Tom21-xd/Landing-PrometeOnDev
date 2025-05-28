@@ -1,0 +1,34 @@
+---
+import ProjectInfoBlock from "../molecules/projectInfoBlock.astro";
+import ProjectGalleryGrid from "../molecules/projectGalleryGrid.astro";
+
+const { entry } = Astro.props;
+const { slug, title, gallery } = entry.data;
+---
+
+<section
+  class="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 md:gap-x-10 px-6 md:px-12 lg:px-20 py-12 bg-background dark:bg-dark-background"
+>
+  <div class="order-1 md:order-2 md:sticky md:top-2/7 self-start">
+    <ProjectInfoBlock entry={entry} />
+  </div>
+
+  <div class="order-2 md:order-1 space-y-6 col-span-2">
+    <img
+      id={`img-${title}`}
+      src={gallery[0]}
+      alt="Vista principal"
+      class="w-full rounded-xl shadow-lg"
+    />
+
+    <h2 class="text-4xl font-bold text-primary dark:text-dark-dark mb-4">
+      {title}
+    </h2>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <slot />
+    </div>
+
+    <ProjectGalleryGrid gallery={gallery} />
+  </div>
+</section>

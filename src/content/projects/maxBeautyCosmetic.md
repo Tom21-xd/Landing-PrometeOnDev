@@ -1,11 +1,14 @@
 ---
-id: "6"
 title: "Max Beauty Cosmetic"
-image: "/images/portfolio/maxbeautycosmetic.webp"
-image2: "/images/portfolio/maxbeautycosmeticLOGO.webp"
-type: "Página creada con WordPress"
-description: "E-commerce desarrollado para la visibilidad de la empresa Max Beauty Cosmetic."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/maxbeautycosmetic.webp"
+  - "/images/portfolio/maxbeautycosmeticLOGO.webp"
 link: "https://maxbeautycosmetic.shop/"
+socials: []
+type: "Página creada con WordPress"
 ---
 
 # Max Beauty Cosmetic

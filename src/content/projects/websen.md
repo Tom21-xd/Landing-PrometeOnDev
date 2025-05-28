@@ -1,11 +1,14 @@
 ---
-id: "1"
 title: "WebSen"
-image: "/images/portfolio/websen.webp"
-image2: "/images/portfolio/logowebsen.webp"
-type: "Plataforma desarrollada en Next.js con Mongo para CRUD"
-description: "Landing page administrable para la empresa Websen."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/websen.webp"
+  - "/images/portfolio/logowebsen.webp"
 link: "https://websen.co"
+socials: []
+type: "Plataforma desarrollada en Next.js con Mongo para CRUD"
 ---
 
 # WebSen

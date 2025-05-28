@@ -1,8 +1,12 @@
 ---
-const { label } = Astro.props;
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props as Props;
 ---
 
 <span
-  class="text-black dark:text-white text-xl md:text-2xl font-semibold absolute top-1/2 -translate-y-1/2"
+  class="text-dark dark:text-dark-dark text-xl md:text-2xl font-semibold absolute top-1/2 -translate-y-1/2"
   >{label}</span
 >
