@@ -2,8 +2,7 @@
 import VideoButton from "./videoButton.astro";
 import LogoTextImage from "../atoms/logoTextImage.astro";
 import { getWhatsAppLink } from "@/lib/whatsapp";
-import CTAButton from "../atoms/CTAButton.astro";
-
+import CtaButton from "../atoms/CTAButton.astro";
 const subtitle = "Impulsamos tu negocio con soluciones digitales.";
 const src = "https://img.youtube.com/vi/X5200TdGRxg/maxresdefault.jpg";
 const backgroundVideo = "/videos/home/contact-section.webm";
@@ -37,6 +36,6 @@ const hrefCtaButton = getWhatsAppLink();
   >
     <VideoButton src={src} />
 
-    <CTAButton text={textCtaButton} href={hrefCtaButton} />
+    <CtaButton text={textCtaButton} href={hrefCtaButton} />
   </div>
 </div>
