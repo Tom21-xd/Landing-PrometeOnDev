@@ -1,5 +1,5 @@
 export function getWhatsAppLink(): string {
-  const rawPhone = import.meta.env.PUBLIC_COMPANY_PHONE;
+  const rawPhone = "+57 3112652944";
   const phone = rawPhone.replace(/\D/g, "");
 
   const message =
