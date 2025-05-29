@@ -1,6 +1,8 @@
 ---
-interface PortfolioCardProps {
-  id: string;
+import ViewMoreButton from "@/components/index/atoms/viewMoreButton.astro";
+
+interface Props {
+  slug: string;
   title: string;
   image: string;
   image2: string;
@@ -9,64 +11,67 @@ interface PortfolioCardProps {
   link?: string;
 }
 
-const { id, title, image, image2, type, description, link } =
-  Astro.props as PortfolioCardProps;
+const { slug, title, image, type, description, link } = Astro.props as Props;
 ---
 
 <div
   class="group flex flex-col md:flex-row gap-8 mb-8 hover:scale-105 transition-transform duration-200 ease-in-out"
 >
-  <div
-    class="relative overflow-hidden hover:bg-dark-background dark:hover:bg-background rounded-lg shadow-lg md:w-2/3"
+  {
+    /* 
+      <a
+          href=`/portfolio/${title.toLowerCase().replace(/\s+/g, '-')}`
+          class="relative overflow-hidden hover:bg-dark-background dark:hover:bg-background rounded-lg shadow-lg md:w-2/3 transition duration-300 ease-in-out"
+        >
+          <!-- Imagen principal oculta al Hover -->
+          <img
+            src={image}
+            alt={title}
+            class="w-full h-auto transition-opacity duration-300 group-hover:opacity-0"
+          />
+
+          <!-- Imagen que se acerca al hacer hover -->
+          <img
+            src={image2}
+            alt={title}
+            class="absolute inset-0 w-full h-full object-contain scale-80 opacity-0 group-hover:opacity-100 group-hover:scale-90 transition-all duration-500 ease-in-out"
+            style="object-fit: contain;"
+          />
+        </a>
+      */
+  }
+
+  <a
+    href={`/portfolio/${slug}`}
+    class="relative overflow-hidden hover:bg-dark-background dark:hover:bg-background rounded-lg shadow-lg md:w-2/3 transition duration-300 ease-in-out object-contain items-center justify-center"
   >
-    <!-- Imagen Principal Oculta al Hover -->
     <img
+      id={`img-${title}`}
       src={image}
       alt={title}
-      class="w-full h-auto transition-opacity duration-300 group-hover:opacity-0"
+      class="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-[1.02]"
     />
-
-    <!-- Imagen que se acerca al hacer hover -->
-    <img
-      src={image2}
-      alt={title}
-      class="absolute inset-0 w-full h-full object-contain scale-80 opacity-0 group-hover:opacity-100 group-hover:scale-90 transition-all duration-500 ease-in-out"
-      style="object-fit: contain;"
-    />
-  </div>
+  </a>
 
   <div
-    class="flex flex-col justify-center bg-color-background-light p-8 md:w-1/3 relative group"
+    class="flex flex-col justify-center py-8 md:w-1/3 relative group text-dark-light dark:text-dark-dark-darker"
   >
     <h3
-      class="text-3xl font-bold text-color-dark mb-2 group-hover:text-color-primary transition-all duration-300"
+      class="text-3xl font-bold text-primary group-hover:text-dark dark:group-hover:text-dark-dark dark:text-dark-dark group-hover mb-2 transition-all duration-300"
     >
       {title}
     </h3>
 
-    <p
-      class="text-color-dark mb-4 group-hover:text-gray-900 dark:group-hover:text-gray-200"
-    >
+    <p class="text-color-dark mb-4">
       {type}
     </p>
 
-    <p
-      class="text-color-dark mb-4 group-hover:text-gray-900 dark:group-hover:text-gray-200"
-    >
+    <p class="">
       {description}
     </p>
 
-    {
-      Astro.props.link && (
-        <a
-          href={link}
-          class="text-color-primary font-semibold group-hover:text-black dark:group-hover:text-white underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Ir a conocer &rarr;
-        </a>
-      )
-    }
+    <div class="hover:underline">
+      <ViewMoreButton text="Ir a conocer" url={`/portfolio/${slug}`} />
+    </div>
   </div>
 </div>

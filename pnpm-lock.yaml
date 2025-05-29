@@ -8,15 +8,15 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/onest':
-        specifier: ^5.2.7
-        version: 5.2.7
       '@lottiefiles/lottie-player':
         specifier: ^2.0.12
         version: 2.0.12
       '@studio-freight/lenis':
         specifier: ^1.0.42
         version: 1.0.42
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@4.1.8)
       '@tailwindcss/vite':
         specifier: ^4.1.6
         version: 4.1.6(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2))
@@ -31,17 +31,14 @@ importers:
         version: 2.1.1
       landing-prometeondev:
         specifier: 'file:'
-        version: file:(jiti@2.4.2)(lightningcss@1.29.2)(react@19.1.0)(rollup@4.40.0)(typescript@5.8.3)(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2))
-      lucide-react:
-        specifier: ^0.509.0
-        version: 0.509.0(react@19.1.0)
+        version: file:(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(tailwindcss@4.1.8)(typescript@5.8.3)(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2))
       tailwind-merge:
         specifier: ^3.3.0
         version: 3.3.0
-      tailwindcss:
-        specifier: ^4.1.6
-        version: 4.1.6
     devDependencies:
+      tailwindcss:
+        specifier: ^4.1.7
+        version: 4.1.8
       tw-animate-css:
         specifier: ^1.2.9
         version: 1.2.9
@@ -244,9 +241,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@fontsource-variable/onest@5.2.7':
-    resolution: {integrity: sha512-iGsSGXwdqvaG5zJ6pmt7TKakYd5ADCzEZ4SPpaeueHrNiK3i6IbKrap4aK5vlak9E275BAHXv8Ac134r/PBREA==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -608,6 +602,11 @@ packages:
   '@tailwindcss/oxide@4.1.6':
     resolution: {integrity: sha512-0bpEBQiGx+227fW4G0fLQ8vuvyy5rsB1YIYNapTq3aRsJ9taF3f5cCaovDjN5pUGKKzcpMrZst/mhNaKAPOHOA==}
     engines: {node: '>= 10'}
+
+  '@tailwindcss/typography@0.5.16':
+    resolution: {integrity: sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
   '@tailwindcss/vite@4.1.6':
     resolution: {integrity: sha512-zjtqjDeY1w3g2beYQtrMAf51n5G7o+UwmyOjtsDMP7t6XyoRMOidcoKP32ps7AkNOHIXEOK0bhIC05dj8oJp4w==}
@@ -1088,6 +1087,15 @@ packages:
   lit@2.8.0:
     resolution: {integrity: sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==}
 
+  lodash.castarray@4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+
+  lodash.isplainobject@4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
+
+  lodash.merge@4.6.2:
+    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
@@ -1096,11 +1104,6 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-
-  lucide-react@0.509.0:
-    resolution: {integrity: sha512-xCJHn6Uh5qF6PGml25vveCTrHJZcqS1G1MVzWZK54ZQsOiCVJk4fwY3oyo5EXS2S+aqvTpWYIfJN+PesJ0quxg==}
-    peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
@@ -1338,6 +1341,10 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
 
+  postcss-selector-parser@6.0.10:
+    resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
+    engines: {node: '>=4'}
+
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -1358,10 +1365,6 @@ packages:
 
   radix3@1.1.2:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}
-
-  react@19.1.0:
-    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
-    engines: {node: '>=0.10.0'}
 
   readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
@@ -1480,6 +1483,9 @@ packages:
 
   tailwindcss@4.1.6:
     resolution: {integrity: sha512-j0cGLTreM6u4OWzBeLBpycK0WIh8w7kSwcUsQZoGLHZ7xDTdM69lN64AgoIEEwFi0tnhs4wSykUa5YWxAzgFYg==}
+
+  tailwindcss@4.1.8:
+    resolution: {integrity: sha512-kjeW8gjdxasbmFKpVGrGd5T4i40mV5J2Rasw48QARfYeQ8YS9x02ON9SFWax3Qf616rt4Cp3nVNIj6Hd1mP3og==}
 
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
@@ -1639,6 +1645,9 @@ packages:
         optional: true
       uploadthing:
         optional: true
+
+  util-deprecate@1.0.2:
+    resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
   vfile-location@5.0.3:
     resolution: {integrity: sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==}
@@ -1913,8 +1922,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.2':
     optional: true
-
-  '@fontsource-variable/onest@5.2.7': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -2198,6 +2205,14 @@ snapshots:
       '@tailwindcss/oxide-wasm32-wasi': 4.1.6
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.6
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.6
+
+  '@tailwindcss/typography@0.5.16(tailwindcss@4.1.8)':
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
+      tailwindcss: 4.1.8
 
   '@tailwindcss/vite@4.1.6(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2))':
     dependencies:
@@ -2712,18 +2727,16 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  landing-prometeondev@file:(jiti@2.4.2)(lightningcss@1.29.2)(react@19.1.0)(rollup@4.40.0)(typescript@5.8.3)(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2)):
+  landing-prometeondev@file:(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(tailwindcss@4.1.8)(typescript@5.8.3)(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2)):
     dependencies:
-      '@fontsource-variable/onest': 5.2.7
       '@lottiefiles/lottie-player': 2.0.12
       '@studio-freight/lenis': 1.0.42
+      '@tailwindcss/typography': 0.5.16(tailwindcss@4.1.8)
       '@tailwindcss/vite': 4.1.6(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2))
       astro: 5.7.0(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(typescript@5.8.3)
       class-variance-authority: 0.7.1
       clsx: 2.1.1
-      lucide-react: 0.509.0(react@19.1.0)
       tailwind-merge: 3.3.0
-      tailwindcss: 4.1.6
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -2747,13 +2760,13 @@ snapshots:
       - jiti
       - less
       - lightningcss
-      - react
       - rollup
       - sass
       - sass-embedded
       - stylus
       - sugarss
       - supports-color
+      - tailwindcss
       - terser
       - tsx
       - typescript
@@ -2822,15 +2835,17 @@ snapshots:
       lit-element: 3.3.3
       lit-html: 2.8.0
 
+  lodash.castarray@4.4.0: {}
+
+  lodash.isplainobject@4.0.6: {}
+
+  lodash.merge@4.6.2: {}
+
   longest-streak@3.1.0: {}
 
   lottie-web@5.12.2: {}
 
   lru-cache@10.4.3: {}
-
-  lucide-react@0.509.0(react@19.1.0):
-    dependencies:
-      react: 19.1.0
 
   magic-string@0.30.17:
     dependencies:
@@ -3240,6 +3255,11 @@ snapshots:
 
   picomatch@4.0.2: {}
 
+  postcss-selector-parser@6.0.10:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
   postcss@8.5.3:
     dependencies:
       nanoid: 3.3.11
@@ -3258,8 +3278,6 @@ snapshots:
   property-information@7.0.0: {}
 
   radix3@1.1.2: {}
-
-  react@19.1.0: {}
 
   readdirp@4.1.2: {}
 
@@ -3476,6 +3494,8 @@ snapshots:
 
   tailwindcss@4.1.6: {}
 
+  tailwindcss@4.1.8: {}
+
   tapable@2.2.1: {}
 
   tar@7.4.3:
@@ -3597,6 +3617,8 @@ snapshots:
       node-fetch-native: 1.6.6
       ofetch: 1.4.1
       ufo: 1.6.1
+
+  util-deprecate@1.0.2: {}
 
   vfile-location@5.0.3:
     dependencies:

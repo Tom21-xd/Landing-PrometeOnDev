@@ -1,9 +1,13 @@
 ---
-const { value } = Astro.props;
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props as Props;
 ---
 
 <span
-  class="stat-value text-[140px] md:text-[180px] font-bold text-black/25 dark:text-white/10 leading-none"
+  class="stat-value text-[140px] md:text-[180px] font-bold text-dark/25 dark:text-dark-dark/30 leading-none"
   data-target={value}
 >
   0

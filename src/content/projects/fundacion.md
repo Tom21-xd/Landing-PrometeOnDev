@@ -1,11 +1,14 @@
 ---
-id: "4"
 title: "Fundación"
-image: "/images/portfolio/fundacion.webp"
-image2: "/images/portfolio/logofundacion.webp"
-type: "Proyecto creado con .NET Core y combinando MySQL con MongoDB para su robusta base de datos."
-description: "Sistema para la gestión de una fundación."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/fundacion.webp"
+  - "/images/portfolio/logofundacion.webp"
 link: ""
+socials: []
+type: "Proyecto creado con .NET Core y combinando MySQL con MongoDB para su robusta base de datos."
 ---
 
 # Fundación

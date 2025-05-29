@@ -2,7 +2,13 @@
 import ImageCard from "../atoms/imageCard.astro";
 import ProjectTitle from "../atoms/projectTitle.astro";
 
-const { id, imageSrc, title, shortDescription } = Astro.props;
+interface Props {
+  imageSrc: string;
+  title: string;
+  shortDescription: string;
+}
+
+const { imageSrc, title, shortDescription } = Astro.props as Props;
 ---
 
 <a href="/portfolio" class="group relative flex flex-col gap-2 cursor-pointer">

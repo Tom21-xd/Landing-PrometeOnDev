@@ -1,11 +1,15 @@
 ---
 import VideoButton from "./videoButton.astro";
-import CTAButton from "@/components/index/atoms/CTAButton.astro";
-
-const title = "PrometeonDev";
+import LogoTextImage from "../atoms/logoTextImage.astro";
+import { getWhatsAppLink } from "@/lib/whatsapp";
+import CtaButton from "../atoms/CTAButton.astro";
 const subtitle = "Impulsamos tu negocio con soluciones digitales.";
 const src = "https://img.youtube.com/vi/X5200TdGRxg/maxresdefault.jpg";
-const backgroundVideo = "/videos/home/hero-section.webm";
+const backgroundVideo = "/videos/home/contact-section.webm";
+const logoTextUrl = "/global/LOGO-BLANCO-TEXTO.webp";
+
+const textCtaButton = "Cotiza tu proyecto";
+const hrefCtaButton = getWhatsAppLink();
 ---
 
 <div
@@ -20,13 +24,9 @@ const backgroundVideo = "/videos/home/hero-section.webm";
     class="absolute top-0 left-0 w-full h-full object-cover z-10"></video>
 
   <div class="relative z-10 flex flex-col items-start gap-4 my-16">
-    <h1
-      class="text-3xl font-semibold tracking-tight leading-tight lg:text-5xl text-white"
-    >
-      {title}
-    </h1>
+    <LogoTextImage src={logoTextUrl} />
 
-    <p class="text-lg lg:text-2xl text-white">
+    <p class="text-lg lg:text-2xl text-white w-1/2 text-center">
       {subtitle}
     </p>
   </div>
@@ -36,6 +36,6 @@ const backgroundVideo = "/videos/home/hero-section.webm";
   >
     <VideoButton src={src} />
 
-    <CTAButton />
+    <CtaButton text={textCtaButton} href={hrefCtaButton} />
   </div>
 </div>

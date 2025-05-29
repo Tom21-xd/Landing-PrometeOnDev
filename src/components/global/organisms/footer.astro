@@ -1,7 +1,8 @@
 ---
 import NavItem from "../atoms/navItem.astro";
 import SocialIconFooter from "../atoms/socialIconFooter.astro";
-import LogoButton from "../atoms/logoButton.astro";
+import ThemeToggle from "../atoms/themeToggle.astro";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 const navItems = [
   { label: "Inicio", href: "/" },
@@ -24,17 +25,33 @@ const socialLinks = [
   },
   { href: "#", iconClass: "fa-brands fa-instagram", ariaLabel: "Instagram" },
   {
-    href: "https://wa.me/573204054497?text=Hola%20*PrometeonDev*,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios%20de%20desarrollo%20de%20software%20y%20soluciones%20digitales.",
+    href: getWhatsAppLink(),
     iconClass: "fa-brands fa-whatsapp",
     ariaLabel: "WhatsApp",
   },
 ];
+
+const email = import.meta.env.PUBLIC_EMAIL || "";
 ---
 
 <footer
-  class="bg-background dark:bg-dark-background py-12 flex flex-col items-center gap-8 text-dark dark:text-white transition-colors"
+  class="bg-transparent pt-10 pb-4 flex flex-col items-center gap-6 text-dark dark:text-white transition-colors"
 >
-  <LogoButton title="Prometeon" subtitle="Software Development" />
+  <a href="/">
+    <img
+      src="/global/LOGO-BLANCO.webp"
+      alt="Logo PrometeonDev"
+      class="hidden dark:block w-12 h-14 transition"
+      loading="lazy"
+    />
+
+    <img
+      src="/global/LOGO-NEGRO.webp"
+      alt="Logo PrometeonDev"
+      class="block dark:hidden w-12 h-14 transition"
+      loading="lazy"
+    /></a
+  >
 
   <nav>
     <ul
@@ -44,8 +61,20 @@ const socialLinks = [
     </ul>
   </nav>
 
-  <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+  <div class="flex items-center gap-4 flex-wrap justify-center">
     {socialLinks.map((link) => <SocialIconFooter {...link} />)}
+  </div>
+
+  <div class="text-center flex flex-col items-center gap-4 -mt-4">
+    <a
+      href={`mailto:${email}`}
+      class="flex items-center gap-2 text-sm font-medium hover:text-primary transition"
+    >
+      <i class="fa-solid fa-envelope text-base"></i>
+      {email}
+    </a>
+
+    <ThemeToggle />
   </div>
 
   <hr
@@ -53,6 +82,6 @@ const socialLinks = [
   />
 
   <p class="text-center text-sm opacity-70">
-    © 2025 Prometeon. All Rights Reserved.
+    © 2025 PrometeonDev. All Rights Reserved.
   </p>
 </footer>

@@ -1,11 +1,14 @@
 ---
-id: "3"
 title: "Herbario Virtual HUAZ"
-image: "/images/portfolio/HVHUAZ.webp"
-image2: "/images/portfolio/logoher.webp"
-type: "Proyecto creado con .NET Core y combinando MySQL con MongoDB para su robusta base de datos botánica."
-description: "Sistema de información para la colección de muestras botánicas en el herbario de la Universidad de la Amazonía."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/HVHUAZ.webp"
+  - "/images/portfolio/logoher.webp"
 link: "https://herbariohuaz.com"
+socials: []
+type: "Proyecto creado con .NET Core y combinando MySQL con MongoDB para su robusta base de datos botánica."
 ---
 
 # Herbario Virtual HUAZ

@@ -1,11 +1,15 @@
 ---
-const { title } = Astro.props;
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props as Props;
 ---
 
-<div class="relative group flex items-center overflow-visible">
-  <span
-    class="text-black dark:text-white font-semibold text-lg transition-all duration-300"
-  >
+<div
+  class="relative group text-primary dark:text-white flex items-center overflow-visible"
+>
+  <span class="font-semibold text-lg transition-all duration-300">
     {title}
     <span
       class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 ease-out group-hover:w-full"

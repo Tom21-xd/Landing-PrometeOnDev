@@ -1,5 +1,11 @@
 ---
-const { name, icon, color } = Astro.props;
+interface Props {
+  name: string;
+  icon: string;
+  color: string;
+}
+
+const { name, icon, color } = Astro.props as Props;
 ---
 
 <div class="flex items-center justify-center flex-shrink-0 w-36 sm:px-8">
