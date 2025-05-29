@@ -1,10 +1,9 @@
 ---
 import SectionTitle from "../atoms/sectionTitle.astro";
-const { text = "" } = Astro.props;
+
+const text = "Sobre nosotros";
 ---
 
-<section class="pt-26 pb-0">
-  <div class="max-w-[1200px] mx-auto px-4">
-    <SectionTitle text={text} />
-  </div>
-</section>
+<div class="pt-24 mx-auto px-4">
+  <SectionTitle text={text} />
+</div>

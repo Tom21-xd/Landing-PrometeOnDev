@@ -4,7 +4,13 @@ import CardTitle from "../atoms/cardTitle.astro";
 import HoverLine from "../atoms/hoverLine.astro";
 import ArrowButton from "../atoms/arrowButton.astro";
 
-const { imageSrc, title, index } = Astro.props;
+interface Props {
+  imageSrc: string;
+  title: string;
+  index: number;
+}
+
+const { imageSrc, title, index } = Astro.props as Props;
 ---
 
 <div class="group relative flex flex-col gap-2">

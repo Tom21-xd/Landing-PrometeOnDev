@@ -1,5 +1,9 @@
 ---
-const { src } = Astro.props;
+interface Props {
+  src: string;
+}
+
+const { src } = Astro.props as Props;
 ---
 
 <img

@@ -1,7 +1,13 @@
 ---
-const { text = "" } = Astro.props;
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props as Props;
 ---
 
-<h2 class="text-5xl text-black dark:text-white font-bold text-center mb-10">
+<h2
+  class="text-5xl text-primary dark:text-dark-dark font-bold text-center mb-10"
+>
   {text}
 </h2>

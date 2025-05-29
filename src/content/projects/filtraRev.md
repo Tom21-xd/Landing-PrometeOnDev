@@ -1,11 +1,14 @@
 ---
-id: "8"
 title: "FiltraRev"
-image: "/images/portfolio/filtrarev.webp"
-image2: "/images/portfolio/filtrarevlogo.webp"
-type: "Dashboard desarrollado con las herramientas integradas de Power BI"
-description: "Tablero dinámico para el control y búsqueda de revistas indexadas en Colombia desde Publindex."
+shortDescription: ""
+tools: ""
+author: ""
+gallery:
+  - "/images/portfolio/filtrarev.webp"
+  - "/images/portfolio/filtrarevlogo.webp"
 link: ""
+socials: []
+type: "Dashboard desarrollado con las herramientas integradas de Power BI"
 ---
 
 # FiltraRev

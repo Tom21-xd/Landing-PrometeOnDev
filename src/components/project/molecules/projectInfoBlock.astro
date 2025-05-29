@@ -1,0 +1,72 @@
+---
+import ProjectLabel from "../atoms/projectLabel.astro";
+import ProjectText from "../atoms/projectText.astro";
+import type { ProjectData } from "@/types/project";
+
+interface Props {
+  entry: {
+    data: ProjectData;
+  };
+}
+
+const { entry } = Astro.props as Props;
+const {
+  title,
+  shortDescription,
+  tools,
+  author,
+  link,
+  socials = [],
+} = entry.data;
+---
+
+<div class="space-y-4">
+  <h2 class="text-3xl font-bold text-primary dark:text-dark-dark">
+    {title}
+  </h2>
+
+  <ProjectText text={shortDescription} />
+
+  <div class="flex flex-col gap-2">
+    <ProjectLabel label="Tecnologías utilizadas" />
+    <ProjectText text={tools} />
+  </div>
+
+  <div class="flex items-center gap-2">
+    <ProjectLabel label="Autor:" />
+    <ProjectText text={author} />
+  </div>
+
+  {
+    link && (
+      <div class="flex items-center gap-2">
+        <ProjectLabel label="Enlace: " />
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary dark:text-dark-dark-darker hover:underline decoration-[1.5px] hover:text-primary-dark hover:scale-[1.02] transition-all duration-200"
+        >
+          {link}
+        </a>
+      </div>
+    )
+  }
+
+  {
+    socials.length > 0 && (
+      <div class="flex gap-6">
+        {socials.map((s) => (
+          <a
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary dark:text-dark-dark hover:text-dark dark:hover:text-primary transition duration-300 hover:scale-95"
+          >
+            <i class={`fa-brands fa-${s.icon} text-3xl`} />
+          </a>
+        ))}
+      </div>
+    )
+  }
+</div>

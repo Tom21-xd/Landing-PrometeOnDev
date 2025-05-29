@@ -1,21 +1,43 @@
 ---
 import ContactIcon from "../atoms/contactIcon.astro";
+
+const phone = import.meta.env.PUBLIC_COMPANY_PHONE;
+const email = import.meta.env.PUBLIC_COMPANY_EMAIL;
 ---
 
-<div class="p-8 rounded-lg shadow-lg flex flex-col gap-6 transition-transform transform hover:scale-105 border-1  border-primary-light backdrop-blur-sm ">
-  <h2 class="text-3xl font-bold text-primary dark:text-dark-primary text-center">
-    Contáctanos
-  </h2>
-  <ul class="space-y-4 text-secondary dark:text-dark-secondary-light text-center">
-    <li><i class="fa-solid fa-envelope"></i> lorem@gmail.com</li>
-    <li><i class="fa-solid fa-user"></i> Khzuna Bagenhat</li>
-    <li><i class="fa-solid fa-phone"></i> +80 01231 456708</li>
-  </ul>
-  <p class="text-dark-light dark:text-dark-dark-light text-center">Síguenos en nuestras redes:</p>
-  <div class="flex gap-4 text-2xl justify-center">
-    <ContactIcon icon="fa-brands fa-facebook" link="#" />
-    <ContactIcon icon="fa-brands fa-twitter" link="#" />
-    <ContactIcon icon="fa-brands fa-instagram" link="#" />
-    <ContactIcon icon="fa-brands fa-linkedin" link="#" />
+<div class="flex flex-col gap-4">
+  <p class="text-lg text-dark dark:text-white">
+    ¿Tienes una idea en mente o un proyecto en marcha? ¡Contáctanos y hagámoslo
+    realidad juntos!
+  </p>
+
+  <div class="flex items-center gap-2">
+    <ContactIcon icon="fa-solid fa-phone" />
+    <span>{phone}</span>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <ContactIcon icon="fa-solid fa-envelope" />
+    <span>{email}</span>
+  </div>
+
+  <h3 class="text-lg mt-4 font-semibold">Redes sociales</h3>
+  <div class="flex gap-3 text-xl">
+    <a href="https://www.linkedin.com/company/prometeondev/" target="_blank"
+      ><i class="fa-brands fa-linkedin"></i></a
+    >
+    <a href="https://github.com/prometeondev" target="_blank"
+      ><i class="fa-brands fa-github"></i></a
+    >
+    <a href="https://www.instagram.com/prometeondev" target="_blank"
+      ><i class="fa-brands fa-instagram"></i></a
+    >
+    <a
+      href="https://www.facebook.com/profile.php?id=61575255925454"
+      target="_blank"><i class="fa-brands fa-facebook"></i></a
+    >
+    <a href="https://x.com/prometeondev" target="_blank"
+      ><i class="fa-brands fa-x-twitter"></i></a
+    >
   </div>
 </div>

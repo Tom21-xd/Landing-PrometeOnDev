@@ -1,7 +1,11 @@
 ---
 import CloseModal from "../atoms/closeModal.astro";
 
-const { videoSrc } = Astro.props;
+interface Props {
+  videoSrc: string;
+}
+
+const { videoSrc } = Astro.props as Props;
 ---
 
 <div
