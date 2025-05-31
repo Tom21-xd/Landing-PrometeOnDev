@@ -1,7 +1,11 @@
 ---
 import ContactButton from "../atoms/contactButton.astro";
 
-const { id } = Astro.props;
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props as Props;
 ---
 
 <div

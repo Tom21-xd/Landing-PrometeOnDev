@@ -1,8 +1,9 @@
 ---
-import VideoDetailService from "../molecules/videoDetailService.astro";
-import InfoDetailService from "../molecules/infoDetailService.astro";
+import DetailServiceCard from "../molecules/detailServiceCard.astro";
+import InfoCard from "../atoms/infoCard.astro";
 
-export interface Props {
+interface Props {
+  id: string;
   imageSrc: string;
   title: string;
   alt?: string;
@@ -13,124 +14,67 @@ export interface Props {
   reversed?: boolean;
 }
 
-const { imageSrc, title, alt, infoCards = [], reversed = false } = Astro.props;
-
-const infoCardAnimationClass = reversed ? "info-detail-service-reversed" : "info-detail-service";
-const transformDirection = reversed ? "translateX(-20px)" : "translateX(20px)";
+const {
+  id,
+  imageSrc,
+  title,
+  alt,
+  infoCards = [],
+  reversed = false,
+} = Astro.props as Props;
 ---
 
-<section id="detail-service-section" class="py-20 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class={`grid grid-cols-1 md:grid-cols-2 gap-10 ${reversed ? 'md:flex md:flex-row-reverse' : ''}`}>
-      
-      <div class="sticky top-32 self-start same-size-image-container">
-        <VideoDetailService 
-          imageSrc={imageSrc}
-          title={title}
-          alt={alt}
-        />
-      </div>
-      
-      <div class="space-y-16 mx-6">
-        {infoCards.length > 0 ? (
-          infoCards.map((card, index) => (
-            <div class="detail-service-reveal-card" data-index={index}>
-              <div class={`bg-white rounded-lg shadow-md p-6 ${infoCardAnimationClass} opacity-0`}>
-                <h3 class="text-xl font-semibold mb-3 text-gray-900">{card.title}</h3>
-                <p class="text-gray-600">{card.description}</p>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div class="detail-service-reveal-card">
-            <div class={`bg-white rounded-lg shadow-md p-6 ${infoCardAnimationClass} opacity-0`}>
-              <h3 class="text-xl font-semibold mb-3 text-gray-900">Información del servicio</h3>
-              <p class="text-gray-600">Detalles próximamente. Esta tarjeta aparece como ejemplo cuando no se proporcionan tarjetas de información.</p>
-            </div>
+<section id={id} class="py-10 md:py-12 lg::py-20 px-6">
+  <div
+    class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10"
+  >
+    <div
+      class={`w-full max-w-[500px] mx-auto md:sticky md:top-32 md:self-start ${reversed ? "md:order-2" : "md:order-1"}`}
+    >
+      <DetailServiceCard imageSrc={imageSrc} title={title} alt={alt} />
+    </div>
+
+    <div
+      class={`space-y-6 md:space-y-16 ${reversed ? "md:order-1 pl-2 lg:pl-16" : "md:order-2 pr-2 lg:pr-16"}`}
+    >
+      {
+        infoCards.map((card, index) => (
+          <div class="detail-service-reveal-card" data-index={index}>
+            <InfoCard title={card.title} description={card.description} />
           </div>
-        )}
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>
 
-<style define:vars={{ transformDirection }}>
-  .same-size-image-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .same-size-image-container :global(.video-detail-service) {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .same-size-image-container :global(.image-detail-service-container) {
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .same-size-image-container :global(.image-detail-service-container img) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .info-detail-service {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateX(20px);
-  }
-  
-  .info-detail-service-reversed {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateX(-20px);
-  }
-  
-  .info-detail-service.visible,
-  .info-detail-service-reversed.visible {
-    opacity: 1 !important;
-    transform: translateX(0);
-  }
-</style>
-
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const revealCards = document.querySelectorAll('.detail-service-reveal-card');
-    
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealCards = document.querySelectorAll(
+      ".detail-service-reveal-card"
+    );
+
     if (revealCards.length === 0) return;
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const infoCard = entry.target.querySelector(".transform");
+          if (!infoCard) return;
+
           if (entry.isIntersecting) {
-            const infoCard = entry.target.querySelector('.info-detail-service, .info-detail-service-reversed');
-            if (infoCard) {
-              infoCard.classList.add('visible');
-            }
+            infoCard.classList.add("opacity-100", "translate-x-0");
           } else {
-            const infoCard = entry.target.querySelector('.info-detail-service, .info-detail-service-reversed');
-            if (infoCard) {
-              infoCard.classList.remove('visible');
-            }
+            infoCard.classList.remove("opacity-100", "translate-x-0");
           }
         });
       },
       {
         threshold: 0.3,
-        rootMargin: '0px 0px -10% 0px'
+        rootMargin: "0px 0px -10% 0px",
       }
     );
-    
-    revealCards.forEach(card => {
-      observer.observe(card);
-    });
+
+    revealCards.forEach((card) => observer.observe(card));
   });
 </script>

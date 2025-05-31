@@ -8,7 +8,9 @@ interface Props {
 const { name, icon, color } = Astro.props as Props;
 ---
 
-<div class="flex items-center justify-center flex-shrink-0 w-36 sm:px-8">
+<div
+  class="flex items-center justify-center flex-shrink-0 w-36 sm:px-8 cursor-pointer"
+>
   <i
     class={`${icon} text-4xl text-primary transition-transform duration-300 ${color} hover:scale-110`}
     title={name}></i>

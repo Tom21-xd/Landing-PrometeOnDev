@@ -2,7 +2,7 @@
 import VideoButton from "./videoButton.astro";
 import LogoTextImage from "../atoms/logoTextImage.astro";
 import { getWhatsAppLink } from "@/lib/whatsapp";
-import CtaButton from "../atoms/CTAButton.astro";
+import CtaButton from "../atoms/ctaButton.astro";
 const subtitle = "Impulsamos tu negocio con soluciones digitales.";
 const src = "https://img.youtube.com/vi/X5200TdGRxg/maxresdefault.jpg";
 const backgroundVideo = "/videos/home/contact-section.webm";
@@ -23,10 +23,12 @@ const hrefCtaButton = getWhatsAppLink();
     playsinline
     class="absolute top-0 left-0 w-full h-full object-cover z-10"></video>
 
-  <div class="relative z-10 flex flex-col items-start gap-4 my-16">
+  <div
+    class="relative z-10 flex flex-col items-center md:items-start gap-4 my-16"
+  >
     <LogoTextImage src={logoTextUrl} />
 
-    <p class="text-lg lg:text-2xl text-white w-1/2 text-center">
+    <p class="text-lg lg:text-2xl text-white w-full md:w-1/2 text-center">
       {subtitle}
     </p>
   </div>

@@ -8,8 +8,8 @@ const navItems = [
   { label: "Inicio", href: "/" },
   { label: "Sobre nosotros", href: "/about" },
   { label: "Servicios", href: "/services" },
-  { label: "Contacto", href: "/contact" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Contacto", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -23,7 +23,16 @@ const socialLinks = [
     iconClass: "fa-brands fa-linkedin",
     ariaLabel: "LinkedIn",
   },
-  { href: "#", iconClass: "fa-brands fa-instagram", ariaLabel: "Instagram" },
+  {
+    href: "https://www.instagram.com/prometeon.dev/",
+    iconClass: "fa-brands fa-instagram",
+    ariaLabel: "Instagram",
+  },
+  {
+    href: "https://x.com/PrometeonDev",
+    iconClass: "fa-brands fa-x-twitter",
+    ariaLabel: "X",
+  },
   {
     href: getWhatsAppLink(),
     iconClass: "fa-brands fa-whatsapp",
@@ -31,11 +40,11 @@ const socialLinks = [
   },
 ];
 
-const email = import.meta.env.PUBLIC_EMAIL || "";
+const email: string = import.meta.env.PUBLIC_COMPANY_EMAIL || "";
 ---
 
 <footer
-  class="bg-transparent pt-10 pb-4 flex flex-col items-center gap-6 text-dark dark:text-white transition-colors"
+  class="bg-gradient-to-t from-dark/20 dark:from-dark-background-light via-80% to-60% pt-10 pb-4 flex flex-col items-center gap-6 text-dark dark:text-white transition-colors"
 >
   <a href="/">
     <img

@@ -1,0 +1,11 @@
+---
+interface Props {
+  icon: string;
+}
+
+const { icon } = Astro.props as Props;
+---
+
+<i
+  class={`fas ${icon} text-xl text-gray-200 transition-all duration-200 ease-out group-hover:text-primary group-focus-within:text-primary`}
+></i>

@@ -1,76 +1,100 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ServiveTitle from "../components/services/atoms/serviveTitle.astro";
+import ServiceHeroSection from "../components/services/organims/serviceHeroSection.astro";
 import ServiceOverView from "../components/services/organims/serviceOverView.astro";
 import DetailService from "../components/services/organims/detailService.astro";
 
-const servicioDiseno = {
-  imageSrc: "/images/services/design.webp",
-  title: "Diseño Web",
-  alt: "Ilustración de diseño web",
-  infoCards: [
-    {
-      title: "Diseño Responsivo",
-      description:
-        "Creamos sitios web que se adaptan perfectamente a todos los dispositivos, desde móviles hasta pantallas de escritorio.",
-    },
-    {
-      title: "UX/UI Avanzado",
-      description:
-        "Implementamos las últimas tendencias en experiencia de usuario e interfaz para hacer que tu sitio no solo se vea bien, sino que también sea intuitivo.",
-    },
-    {
-      title: "Performance Optimizado",
-      description:
-        "Optimizamos cada aspecto de tu sitio web para garantizar tiempos de carga rápidos, lo que mejora el SEO y reduce la tasa de rebote.",
-    },
-  ],
-};
-
-const servicioDesarrollo = {
-  imageSrc: "/images/services/software.webp",
-  title: "Desarrollo de Aplicaciones",
-  alt: "Ilustración de desarrollo de aplicaciones",
-  infoCards: [
-    {
-      title: "Aplicaciones Web",
-      description:
-        "Desarrollamos aplicaciones web modernas y escalables utilizando las últimas tecnologías y frameworks para maximizar el rendimiento.",
-    },
-    {
-      title: "Soluciones a Medida",
-      description:
-        "Creamos soluciones personalizadas que se adaptan perfectamente a tus necesidades específicas y a los requerimientos de tu negocio.",
-    },
-    {
-      title: "Tecnología de Punta",
-      description:
-        "Utilizamos las tecnologías más avanzadas para garantizar que tu aplicación sea rápida, segura y fácil de mantener a largo plazo.",
-    },
-  ],
-};
+const services = [
+  {
+    id: "section-soluciones-digitales",
+    imageSrc: "/images/services/soluciones-digitales.webp",
+    title: "Soluciones Digitales",
+    alt: "Ilustración de soluciones digitales",
+    infoCards: [
+      {
+        title: "Desarrollo Web y Móvil",
+        description:
+          "Creamos aplicaciones web y móviles modernas, rápidas y adaptables, utilizando tecnologías actuales que garantizan escalabilidad y rendimiento.",
+      },
+      {
+        title: "Software a la Medida",
+        description:
+          "Diseñamos soluciones personalizadas que se ajustan a las necesidades específicas de tu negocio, asegurando eficiencia y precisión.",
+      },
+      {
+        title: "Diseño UX/UI Enfocado en el Usuario",
+        description:
+          "Construimos interfaces atractivas e intuitivas que mejoran la experiencia del usuario y aumentan la conversión.",
+      },
+    ],
+  },
+  {
+    id: "section-ia-automatizacion",
+    imageSrc: "/images/services/ia.webp",
+    title: "IA y Automatización",
+    alt: "Ilustración de inteligencia artificial",
+    infoCards: [
+      {
+        title: "Modelos de IA Personalizados",
+        description:
+          "Desarrollamos modelos de machine learning que se ajustan a las necesidades de tu negocio y mejoran tu eficiencia.",
+      },
+      {
+        title: "Automatización de Procesos",
+        description:
+          "Reducimos tareas repetitivas mediante bots, scripts inteligentes y flujos automatizados que ahorran tiempo y dinero.",
+      },
+      {
+        title: "Chatbots y Asistentes Virtuales",
+        description:
+          "Creamos asistentes conversacionales para mejorar la atención al cliente y la interacción en tus plataformas digitales.",
+      },
+    ],
+  },
+  {
+    id: "section-soporte-escalabilidad",
+    imageSrc: "/images/services/soporte.webp",
+    title: "Soporte y Escalabilidad",
+    alt: "Ilustración de soporte técnico",
+    infoCards: [
+      {
+        title: "Mantenimiento Continuo",
+        description:
+          "Ofrecemos soporte técnico para asegurar el correcto funcionamiento de tus sistemas digitales en todo momento.",
+      },
+      {
+        title: "Escalabilidad Tecnológica",
+        description:
+          "Preparamos tus soluciones para crecer sin límites, adaptándose a nuevos usuarios, datos o funcionalidades.",
+      },
+      {
+        title: "Acompañamiento Estratégico",
+        description:
+          "Estamos contigo en cada etapa del proceso: desde la ideación hasta el crecimiento sostenido del proyecto.",
+      },
+    ],
+  },
+];
 ---
 
 <Layout
   title="Nuestros Servicios - PrometeonDev"
   description="Descubre los servicios que ofrecemos para llevar tu proyecto al siguiente nivel."
 >
-  <ServiveTitle title="Nuestros Servicios" />
+  <ServiceHeroSection />
 
   <ServiceOverView />
 
-  <DetailService
-    imageSrc={servicioDiseno.imageSrc}
-    title={servicioDiseno.title}
-    alt={servicioDiseno.alt}
-    infoCards={servicioDiseno.infoCards}
-  />
-
-  <DetailService
-    imageSrc={servicioDesarrollo.imageSrc}
-    title={servicioDesarrollo.title}
-    alt={servicioDesarrollo.alt}
-    infoCards={servicioDesarrollo.infoCards}
-    reversed={true}
-  />
+  {
+    services.map((service, index) => (
+      <DetailService
+        id={service.id}
+        imageSrc={service.imageSrc}
+        title={service.title}
+        alt={service.alt}
+        infoCards={service.infoCards}
+        reversed={index % 2 != 0}
+      />
+    ))
+  }
 </Layout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+  icon?: string;
+}
+
+const { text, icon = "fa-paper-plane" } = Astro.props as Props;
+---
+
+<button
+  type="submit"
+  class="flex justify-center items-center gap-3 text-lg cursor-pointer bg-gradient-to-tr from-primary-light via-primary to-primary-light hover:from-primary-dark hover:via-primary hover:to-primary-light text-background dark:text-dark-background px-10 p-2 rounded-full font-semibold duration-300 ease-in-out transition hover:shadow-primary-light"
+>
+  <i class={`fas ${icon}`}></i>
+  {text}
+</button>

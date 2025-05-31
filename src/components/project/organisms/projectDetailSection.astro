@@ -1,9 +1,14 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import ProjectInfoBlock from "../molecules/projectInfoBlock.astro";
 import ProjectGalleryGrid from "../molecules/projectGalleryGrid.astro";
 
-const { entry } = Astro.props;
-const { slug, title, gallery } = entry.data;
+interface Props {
+  entry: CollectionEntry<"projects">;
+}
+
+const { entry } = Astro.props as Props;
+const { title, gallery } = entry.data;
 ---
 
 <section

@@ -7,12 +7,14 @@ const { text } = Astro.props as Props;
 ---
 
 <div class="relative inline group">
-  <p class="text-dark-light dark:text-gray-400 text-base leading-relaxed m-0">
+  <p
+    class="text-dark-light dark:text-gray-400 text-base leading-relaxed m-0 prose"
+  >
     {text}
   </p>
 
   <p
-    class="highlight-layer absolute top-0 left-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in text-black dark:text-dark-dark text-base leading-relaxed m-0"
+    class="highlight-layer absolute top-0 left-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in text-black dark:text-dark-dark text-base leading-relaxed m-0 prose"
   >
     {text}
   </p>

@@ -11,13 +11,13 @@ const { title, index } = Astro.props as Props;
   class="relative group text-primary dark:text-white flex items-center overflow-visible"
 >
   <span
-    class="font-semibold text-lg transition-all duration-300 whitespace-nowrap group-hover:translate-x-8"
+    class="font-primary font-semibold text-xl transition-all duration-300 whitespace-nowrap group-hover:translate-x-8"
   >
     {title}
   </span>
 
   <span
-    class="absolute left-0 opacity-0 font-semibold text-lg transition-all duration-300 whitespace-nowrap group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-100%]"
+    class="absolute left-0 opacity-0 font-primary font-semibold text-xl transition-all duration-300 whitespace-nowrap group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-100%]"
   >
     {index < 10 ? `0${index}.` : `${index}.`}
   </span>
