@@ -5,17 +5,20 @@ import ServicesTextGroup from "../molecules/servicesTextGroup.astro";
 const projects = [
   {
     title: "EdifiK",
-    imageSrc: "/images/portfolio/edifik.webp",
+    imageSrc: "/images/portfolio/edifik/edifik.webp",
+    href: "/portfolio/edifik",
     shortDescription: "Gestión eficiente de propiedades en línea",
   },
   {
     title: "WebSen",
-    imageSrc: "/images/portfolio/websen.webp",
+    imageSrc: "/images/portfolio/websen/websen.webp",
+    href: "/portfolio/websen",
     shortDescription: "Diseño web moderno y adaptable",
   },
   {
     title: "HUAZ",
-    imageSrc: "/images/portfolio/HVHUAZ.webp",
+    imageSrc: "/images/portfolio/hvHuaz/hvhuaz.webp",
+    href: "/portfolio/hvhuaz",
     shortDescription: "Plataforma para catalogar especies vegetales",
   },
 ];
@@ -36,11 +39,12 @@ const url = "/portfolio";
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 flex-1">
       {
-        projects.map((project, index) => (
+        projects.map((project) => (
           <ProjectCard
             title={project.title}
             imageSrc={project.imageSrc}
             shortDescription={project.shortDescription}
+            href={project.href}
           />
         ))
       }

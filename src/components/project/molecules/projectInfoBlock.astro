@@ -1,6 +1,8 @@
 ---
 import ProjectLabel from "../atoms/projectLabel.astro";
 import ProjectText from "../atoms/projectText.astro";
+import ExternalLink from "../atoms/externalLink.astro";
+import SocialLink from "../atoms/socialLink.astro";
 import type { ProjectData } from "@/types/project";
 
 interface Props {
@@ -41,14 +43,8 @@ const {
     link && (
       <div class="flex items-center gap-2">
         <ProjectLabel label="Enlace: " />
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-primary dark:text-dark-dark-darker hover:underline decoration-[1.5px] hover:text-primary-dark hover:scale-[1.02] transition-all duration-200"
-        >
-          {link}
-        </a>
+
+        <ExternalLink link={`https://${link}`} text={link} />
       </div>
     )
   }
@@ -57,14 +53,7 @@ const {
     socials.length > 0 && (
       <div class="flex gap-6">
         {socials.map((s) => (
-          <a
-            href={s.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary dark:text-dark-dark hover:text-dark dark:hover:text-primary transition duration-300 hover:scale-95"
-          >
-            <i class={`fa-brands fa-${s.icon} text-3xl`} />
-          </a>
+          <SocialLink url={s.url} icon={s.icon} />
         ))}
       </div>
     )

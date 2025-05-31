@@ -4,18 +4,21 @@ import ServicesTextGroup from "../molecules/servicesTextGroup.astro";
 
 const services = [
   {
-    title: "Diseño Web",
-    imageSrc: "/images/services/desarrollo.webp",
+    url: "/services#section-soluciones-digitales",
+    title: "Soluciones Digitales",
+    imageSrc: "/images/services/soluciones-digitales.webp",
     index: 1,
   },
   {
-    title: "Desarrollo de Software",
-    imageSrc: "/images/services/disenio.webp",
+    url: "/services#section-ia-automatizacion",
+    title: "IA y Automatización",
+    imageSrc: "/images/services/ia.webp",
     index: 2,
   },
   {
-    title: "Inteligencia Artificial",
-    imageSrc: "/images/services/inteligencia.webp",
+    url: "/services#section-soporte-escalabilidad",
+    title: "Soporte y Escalabilidad",
+    imageSrc: "/images/services/soporte.webp",
     index: 3,
   },
 ];
@@ -34,10 +37,13 @@ const url = "/services";
       url={url}
     />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 flex-1">
+    <div
+      class="grid md:grid-rows-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 flex-1"
+    >
       {
         services.map((service) => (
           <ServicesCard
+            url={service.url}
             title={service.title}
             imageSrc={service.imageSrc}
             index={service.index}

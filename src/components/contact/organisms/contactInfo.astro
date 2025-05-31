@@ -1,0 +1,56 @@
+---
+import ContactCard from "../molecules/contactCard.astro";
+import SocialLink from "@/components/project/atoms/socialLink.astro";
+import { getWhatsAppLink } from "@/lib/whatsapp";
+
+const phone: string = import.meta.env.PUBLIC_COMPANY_PHONE || "";
+const email: string = import.meta.env.PUBLIC_COMPANY_EMAIL || "";
+
+const socialLinks = [
+  { url: "https://www.linkedin.com/company/prometeondev/", icon: "linkedin" },
+  { url: "https://github.com/prometeondev", icon: "github" },
+  { url: "https://www.instagram.com/prometeon.dev", icon: "instagram" },
+  {
+    url: "https://www.facebook.com/profile.php?id=61575255925454",
+    icon: "facebook",
+  },
+  { url: "https://x.com/PrometeonDev", icon: "x-twitter" },
+];
+---
+
+<div
+  class="flex flex-col md:gap-6 p-4 md:p-8 md:pr-10 md:mt-20 md:bg-primary/20 md:dark:bg-dark-background-light/40"
+>
+  <p
+    class="text-3xl md:text-4xl text-dark dark:text-white font-semibold mb-4 leading-snug"
+  >
+    ¿Tienes una <span class="text-primary">idea en mente</span>?<br />
+    ¡Ponte en <span class="text-primary">contacto</span> con <span
+      class="text-primary">nosotros</span
+    >!
+  </p>
+
+  <ContactCard
+    icon="fa-solid fa-phone"
+    label="Llámanos"
+    value={phone}
+    href={getWhatsAppLink()}
+  />
+
+  <ContactCard
+    icon="fa-solid fa-envelope"
+    label="Envíanos un mensaje"
+    value={email}
+    href={`mailto:${email}`}
+  />
+
+  <div class="flex flex-col gap-1">
+    <h3 class="text-lg text-primary dark:text-dark-dark mt-4 font-semibold">
+      Redes sociales
+    </h3>
+
+    <div class="flex gap-3 text-xl">
+      {socialLinks.map((s) => <SocialLink url={s.url} icon={s.icon} />)}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+---
+import FormIcon from "../atoms/formIcon.astro";
+import FormFieldBase from "../atoms/formFieldBase.astro";
+import InputUnderline from "../atoms/inputUnderline.astro";
+
+interface Props {
+  type?: astroHTML.JSX.HTMLInputTypeAttribute;
+  label: string;
+  icon: string;
+  name?: string;
+  value?: string;
+  rows?: number;
+  isTextArea?: boolean;
+}
+
+const {
+  type = "text",
+  label,
+  icon,
+  name,
+  value,
+  rows,
+  isTextArea = false,
+} = Astro.props as Props;
+---
+
+<div class="relative group w-full pb-2">
+  <div class="flex items-start gap-4 px-2">
+    <FormIcon icon={icon} />
+
+    <FormFieldBase
+      isTextArea={isTextArea}
+      type={type}
+      placeholder={label}
+      name={name}
+      value={value}
+      rows={rows}
+    />
+  </div>
+
+  <InputUnderline />
+</div>

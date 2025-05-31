@@ -4,14 +4,14 @@ import StatCard from "../molecules/statCard.astro";
 const stats = [
   { value: "26", label: "Proyectos" },
   { value: "2", label: "Años" },
-  { value: "6", label: "Clientes" },
+  { value: "10", label: "Clientes" },
   { value: "6", label: "En desarrollo" },
 ];
 ---
 
 <section>
   <div
-    class="max-w-10/12 mx-auto w-full px-6 flex items-center justify-between gap-4 text-center"
+    class="max-w-10/12 mx-auto w-full px-6 grid grid-cols-2 md:flex items-center justify-center md:justify-between gap-4 text-center"
   >
     {
       stats.map((stat, index) => (

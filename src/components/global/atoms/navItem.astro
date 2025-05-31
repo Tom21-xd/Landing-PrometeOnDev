@@ -1,5 +1,9 @@
 ---
-const { label, href } = Astro.props;
+interface Props {
+  label: string;
+  href: string;
+}
+const { label, href } = Astro.props as Props;
 ---
 
 <li>

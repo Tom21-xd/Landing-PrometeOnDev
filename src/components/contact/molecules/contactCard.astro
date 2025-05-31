@@ -1,0 +1,19 @@
+---
+import ContactIcon from "../atoms/contactIcon.astro";
+import ContactText from "../atoms/contactText.astro";
+
+interface Props {
+  icon: string;
+  label: string;
+  value: string;
+  href: string;
+}
+
+const { icon, label, value, href } = Astro.props as Props;
+---
+
+<div class="flex items-center gap-4 group">
+  <ContactIcon icon={icon} />
+
+  <ContactText label={label} value={value} href={href} />
+</div>

@@ -1,38 +1,13 @@
 ---
-// src/components/atoms/titleDetailService.astro
-export interface Props {
+interface Props {
   title: string;
-  size?: "small" | "medium" | "large";
-  className?: string;
 }
 
-const { title, size = "medium", className = "" } = Astro.props;
-
-let titleClass = "font-semibold";
-
-switch(size) {
-  case "small":
-    titleClass += " text-lg";
-    break;
-  case "medium":
-    titleClass += " text-xl";
-    break;
-  case "large":
-    titleClass += " text-2xl";
-    break;
-}
+const { title } = Astro.props as Props;
 ---
 
-<h3 class={`${titleClass} ${className} title-detail`}>
+<h3
+  class="text-xl md:text-2xl text-center font-semibold text-primary dark:text-dark-background"
+>
   {title}
 </h3>
-
-<style>
-  .title-detail {
-    color: var(--color-dark);
-  }
-  
-  :global(.dark) .title-detail {
-    color: var(--color-dark-background-light);
-  }
-</style>

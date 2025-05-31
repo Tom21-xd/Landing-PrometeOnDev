@@ -1,0 +1,36 @@
+---
+import ProjectNavLink from "../atoms/projectNavLink.astro";
+
+interface Props {
+  prev: { slug: string; data: { title: string } } | null;
+  next: { slug: string; data: { title: string } } | null;
+}
+
+const { prev, next } = Astro.props as Props;
+---
+
+<div class="flex justify-between items-center gap-4">
+  {
+    prev ? (
+      <ProjectNavLink
+        href={`/portfolio/${prev.slug}`}
+        label={prev.data.title}
+        direction="prev"
+      />
+    ) : (
+      <div />
+    )
+  }
+
+  {
+    next ? (
+      <ProjectNavLink
+        href={`/portfolio/${next.slug}`}
+        label={next.data.title}
+        direction="next"
+      />
+    ) : (
+      <div />
+    )
+  }
+</div>

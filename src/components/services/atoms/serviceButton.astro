@@ -1,0 +1,15 @@
+---
+interface Props {
+  url?: string;
+}
+
+const { url = "#" } = Astro.props;
+---
+
+<a
+  href={`#${url}`}
+  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-background dark:bg-dark-primary dark:text-background hover:bg-primary-dark dark:hover:bg-dark-primary-dark transition"
+  aria-label="Ver más"
+>
+  <i class="fas fa-arrow-right text-sm"></i>
+</a>

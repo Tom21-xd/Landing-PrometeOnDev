@@ -1,0 +1,15 @@
+---
+interface Props {
+  href?: string;
+  text?: string;
+}
+
+const { href = "#services-section", text = "Ver más" } = Astro.props as Props;
+---
+
+<a
+  href={href}
+  class="inline-block bg-primary dark:bg-dark-primary text-white text-sm font-semibold px-8 py-3 rounded-full shadow-md transition-transform transform hover:bg-primary-dark dark:hover:bg-dark-primary-dark"
+>
+  {text}
+</a>

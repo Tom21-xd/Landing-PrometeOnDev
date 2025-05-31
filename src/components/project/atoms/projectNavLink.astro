@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  direction: "prev" | "next";
+}
+
+const { href, label, direction } = Astro.props as Props;
+---
+
+<a
+  href={href}
+  class="flex font-primary font-semibold items-center text-lg gap-2 group text-primary dark:text-dark-dark hover:text-primary-dark dark:hover:text-dark-dark-darker transition-all duration-300"
+>
+  {
+    direction === "prev" && (
+      <i class="fa-solid fa-arrow-left transition-transform duration-300 group-hover:-translate-x-2" />
+    )
+  }
+  <span>{label}</span>
+  {
+    direction === "next" && (
+      <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-2" />
+    )
+  }
+</a>
