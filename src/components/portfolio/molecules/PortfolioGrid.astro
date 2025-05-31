@@ -2,13 +2,15 @@
 import PortfolioCard from "./PortfolioCard.astro";
 import { getCollection } from "astro:content";
 
-const projects = await getCollection("projects");
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.id - b.data.id
+);
 ---
 
-<div class="flex flex-col gap-8 mt-10">
+<div class="flex flex-col gap-4 md:gap-8 mt-10">
   {
     projects.map(({ data, slug }) => {
-      const { title, gallery, type, shortDescription, link } = data;
+      const { title, gallery, tools, shortDescription } = data;
       const image = gallery[0];
       const image2 = gallery[1];
 
@@ -18,9 +20,8 @@ const projects = await getCollection("projects");
           title={title}
           image={image}
           image2={image2}
-          type={type}
+          tools={tools}
           description={shortDescription}
-          link={link}
         />
       );
     })

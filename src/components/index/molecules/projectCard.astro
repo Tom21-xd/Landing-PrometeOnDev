@@ -6,12 +6,13 @@ interface Props {
   imageSrc: string;
   title: string;
   shortDescription: string;
+  href: string;
 }
 
-const { imageSrc, title, shortDescription } = Astro.props as Props;
+const { imageSrc, title, shortDescription, href } = Astro.props as Props;
 ---
 
-<a href="/portfolio" class="group relative flex flex-col gap-2 cursor-pointer">
+<a href={href} class="group relative flex flex-col gap-2 cursor-pointer">
   <div class="transition-all duration-300 hover:scale-105">
     <ImageCard imageSrc={imageSrc} title={title} />
   </div>

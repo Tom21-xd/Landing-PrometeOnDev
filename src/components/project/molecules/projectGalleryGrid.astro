@@ -4,23 +4,24 @@ interface Props {
 }
 
 const { gallery } = Astro.props as Props;
-const [mainImage, ...gridImages] = gallery;
+const mainImage = gallery[1];
+const gridImages = gallery.slice(-2);
 ---
 
-<div class="grid grid-cols-2 gap-4">
-  <img
-    src={mainImage}
-    alt="Vista principal"
-    class="col-span-2 w-full rounded-xl shadow-md"
-  />
-
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   {
     gridImages.map((img: string, i: number) => (
       <img
         src={img}
         alt={`Vista ${i + 2}`}
-        class="w-full h-full object-cover rounded-xl shadow col-span-1"
+        class="w-full h-full object-cover rounded-xl shadow md:col-span-1"
       />
     ))
   }
+
+  <img
+    src={mainImage}
+    alt="Vista principal"
+    class="md:col-span-2 w-full rounded-xl shadow-md"
+  />
 </div>

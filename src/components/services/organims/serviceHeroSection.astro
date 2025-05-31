@@ -1,0 +1,20 @@
+---
+import ServiceHeroText from "../molecules/serviceHeroText.astro";
+import ServiceHeroImage from "../molecules/serviceHeroImage.astro";
+
+const titleHero = "Creamos soluciones digitales que transforman tu negocio";
+const textHero =
+  "Impulsamos tu transformación digital mediante herramientas inteligentes, desarrollo de software a medida y un soporte técnico constante, para que tu negocio crezca con innovación y eficiencia.";
+const imageHero = "/images/services/prometeon-service.png";
+const altImage = "Ilustración de servicio";
+---
+
+<section
+  class="min-h-screen flex flex-col gap-10 md:gap-6 md:flex-row items-center justify-between px-6 md:px-14 lg:px-20 pt-28 pb-10 md:pb-14 bg-gradient-to-br from-blue-200 dark:from-dark-background-light via-50% to-30%"
+>
+  <div class="w-full md:w-1/2">
+    <ServiceHeroText title={titleHero} text={textHero} />
+  </div>
+
+  <ServiceHeroImage src={imageHero} alt={altImage} />
+</section>

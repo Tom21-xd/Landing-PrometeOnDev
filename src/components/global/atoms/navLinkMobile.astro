@@ -1,5 +1,10 @@
 ---
-const { href, label } = Astro.props;
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props as Props;
 const isActive = Astro.url.pathname === href;
 ---
 

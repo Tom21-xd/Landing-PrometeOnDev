@@ -1,0 +1,42 @@
+---
+interface Props {
+  isTextArea?: boolean;
+  type?: astroHTML.JSX.HTMLInputTypeAttribute;
+  placeholder: string;
+  name?: string;
+  value?: string;
+  rows?: number;
+}
+
+const {
+  isTextArea = false,
+  type = "text",
+  placeholder,
+  name,
+  value,
+  rows = 4,
+} = Astro.props as Props;
+---
+
+{
+  isTextArea ? (
+    <textarea
+      name={name}
+      placeholder={placeholder}
+      rows={rows}
+      maxlength="500"
+      required
+      class="bg-transparent w-full focus:outline-none text-background placeholder:text-gray-200 hover:placeholder:text-background placeholder:transition-all placeholder:duration-300 placeholder:ease-out resize-none"
+    />
+  ) : (
+    <input
+      type={type}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      max="100"
+      required
+      class="bg-transparent w-full focus:outline-none text-background placeholder:text-gray-200 hover:placeholder:text-background placeholder:transition-all placeholder:duration-300 placeholder:ease-out"
+    />
+  )
+}

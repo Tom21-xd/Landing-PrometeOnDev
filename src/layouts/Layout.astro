@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Footer from "../components/global/organisms/footer.astro";
 import Header from "../components/global/organisms/header.astro";
+import WhatsappFloatingIcon from "@/components/global/atoms/whatsappFloatingIcon.astro";
 
 interface Props {
   title?: string;
@@ -39,6 +40,7 @@ const {
     >
       <Header />
       <slot />
+      <WhatsappFloatingIcon />
       <Footer />
     </div>
   </body>

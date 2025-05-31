@@ -1,0 +1,20 @@
+---
+import ImageDetailService from "../atoms/imageDetailService.astro";
+import TitleDetailService from "../atoms/titleDetailService.astro";
+
+interface Props {
+  imageSrc: string;
+  title: string;
+  alt?: string;
+}
+
+const { imageSrc, title, alt } = Astro.props as Props;
+---
+
+<div
+  class="bg-gray-50 dark:bg-dark-dark rounded-lg shadow-md shadow-gray-700 dark:shadow-none px-5 pt-5 pb-3 space-y-3 transform transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+>
+  <ImageDetailService src={imageSrc} alt={alt || `Imagen de ${title}`} />
+
+  <TitleDetailService title={title} />
+</div>

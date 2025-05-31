@@ -1,64 +1,51 @@
 ---
-import ServiceCard from "../molecules/serviceCard.astro";
+import SectionHeading from "../molecules/sectionHeading.astro";
+import ServiceCard from "./serviceCard.astro";
+
+const services = [
+  {
+    id: "section-soluciones-digitales",
+    title: "Soluciones Digitales",
+    imageSrc: "/images/services/soluciones-digitales.webp",
+    url: "",
+    description:
+      "Desarrollamos plataformas web y móviles a medida para digitalizar procesos, mejorar la experiencia del usuario y optimizar el rendimiento de tu negocio.",
+  },
+  {
+    id: "section-ia-automatizacion",
+    title: "IA y Automatización",
+    imageSrc: "/images/services/ia.webp",
+    url: "",
+    description:
+      "Implementamos inteligencia artificial, bots y automatización de tareas repetitivas para que tu empresa sea más eficiente, precisa e innovadora.",
+  },
+  {
+    id: "section-soporte-escalabilidad",
+    title: "Soporte y Escalabilidad",
+    imageSrc: "/images/services/soporte.webp",
+    url: "",
+    description:
+      "Te acompañamos en cada etapa del crecimiento de tu sistema, ofreciendo mantenimiento técnico, asesoría continua y soluciones escalables según tus necesidades.",
+  },
+];
+
+const titleSection = "Nuestros Servicios";
 ---
 
-<section id="services-section" class="py-20 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <ServiceCard
-        icon="/images/services/disenio.webp"
-        title="Diseño Web"
-        description="Creamos experiencias unicas para el usuario"
-        url="/servicios/disenio-web"
-      />
-      <ServiceCard
-        icon="/images/services/desarrollo.webp"
-        title="Desarrollo"
-        description="Desarrollamos aplicaciones web y moviles"
-        url="/servicios/desarrollo"
-      />
-      <ServiceCard
-        icon="/images/services/inteligencia.webp"
-        title="Inteligencia de negocio"
-        description="Se desarrollan dashboards interactivos"
-        url="/servicios/inteligencia-negocio"
-      />
-    </div>
+<section id="services-section" class="py-20 px-20 mx-auto">
+  <SectionHeading title={titleSection} />
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    {
+      services.map((service) => (
+        <ServiceCard
+          id={service.id}
+          icon={service.imageSrc}
+          title={service.title}
+          description={service.description}
+          url={service.url}
+        />
+      ))
+    }
   </div>
 </section>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Seleccionar todas las tarjetas dentro de la sección
-            const cards = document.querySelectorAll(
-              "#services-section .service-card"
-            );
-
-            // Animar cada tarjeta con un retraso diferente
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add("animate");
-              }, index * 200); // 200ms de retraso entre cada tarjeta
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Activar cuando al menos el 20% de la sección sea visible
-        rootMargin: "0px 0px -100px 0px", // Margen negativo para activar un poco antes
-      }
-    );
-
-    // Observar la sección de servicios
-    const servicesSection = document.getElementById("services-section");
-
-    if (servicesSection) {
-      observer.observe(servicesSection);
-    }
-  });
-</script>
