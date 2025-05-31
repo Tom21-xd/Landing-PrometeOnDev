@@ -2,6 +2,9 @@
 	"version": 3,
 	"routes": [
 		{
+			"handle": "filesystem"
+		},
+		{
 			"src": "^/_astro/(.*)$",
 			"headers": {
 				"cache-control": "public, max-age=31536000, immutable"
@@ -9,55 +12,20 @@
 			"continue": true
 		},
 		{
-			"handle": "filesystem"
-		},
-		{
-			"src": "^\\/_server-islands\\/([^/]+?)\\/?$",
+			"src": "^/_server-islands/([^/]+?)/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/_image\\/?$",
+			"src": "^/_image/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/404\\/?$",
+			"src": "^/api/contact/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/about\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/api\\/contact\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/contact\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/our-team\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/portfolio\\/([^/]+?)\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/portfolio\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/services\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/$",
-			"dest": "_render"
-		},
-		{
-			"src": "/.*",
-			"dest": "_render",
+			"src": "^/.*$",
+			"dest": "/404.html",
 			"status": 404
 		}
 	]

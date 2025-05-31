@@ -6,12 +6,12 @@ async function sendEmail(to, subject, htmlContent) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "prometeondev@gmail.com",
-        pass: "bcihodratbyzoely"
+        user: undefined                          ,
+        pass: undefined                          
       }
     });
     const mailOptions = {
-      from: `"PrometeonDev" <${"prometeondev@gmail.com"}>`,
+      from: `"PrometeonDev" <${undefined                          }>`,
       to,
       subject,
       html: htmlContent
@@ -160,7 +160,7 @@ const POST = async ({ request }) => {
   });
   try {
     await sendEmail(
-      "prometeondev@gmail.com",
+      undefined                                    ,
       "Nuevo mensaje de contacto",
       html
     );
