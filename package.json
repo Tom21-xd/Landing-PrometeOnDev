@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.4.0",
     "@astrojs/vercel": "^8.0.4",
     "@lottiefiles/lottie-player": "^2.0.12",
     "@studio-freight/lenis": "^1.0.42",

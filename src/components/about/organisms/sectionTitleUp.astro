@@ -1,7 +1,10 @@
 ---
 import SectionTitle from "../atoms/sectionTitle.astro";
 
-const text = "Sobre nosotros";
+interface Props {
+  text?: string;
+}
+const { text = "Sobre nosotros" } = Astro.props as Props;
 ---
 
 <div class="pt-24 mx-auto px-4">

@@ -2,12 +2,15 @@
 interface Props {
   src?: string;
   alt?: string;
+  title?: string;
   className?: string;
 }
 
 const {
-  src = "/global/LOGO-BLANCO-TEXTO.webp",
+  src = "/global/logo-blanco-texto.webp",
   alt = "PrometeonDev - Software Development",
+  title = alt,
+
   className = "",
 } = Astro.props as Props;
 ---
@@ -15,6 +18,7 @@ const {
 <img
   src={src}
   alt={alt}
+  title={title}
   loading="lazy"
   class={`w-full md:max-w-[60%] xl:max-w-[50%] h-auto ${className}`}
 />

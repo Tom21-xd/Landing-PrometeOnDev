@@ -1,13 +1,16 @@
 ---
 interface Props {
-  url?: string;
+  url: string;
+  title: string;
 }
 
-const { url = "#" } = Astro.props;
+const { url, title } = Astro.props;
 ---
 
 <a
-  href={`#${url}`}
+  href={url}
+  title={`Ver más sobre ${title}`}
+  aria-label={`Ver más sobre ${title}`}
   class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-background dark:bg-dark-primary dark:text-background hover:bg-primary-dark dark:hover:bg-dark-primary-dark transition"
   aria-label="Ver más"
 >

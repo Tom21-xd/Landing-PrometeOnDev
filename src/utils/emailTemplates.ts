@@ -108,7 +108,7 @@ export function generateEmailTemplate(options: EmailTemplateOptions) {
       <body>
           <div class="container">
               <div class="header">
-                  <img src="https://prometeondev.com/global/LOGO-BLANCO-TEXTO.png" alt="PrometeonDev Logo">
+                  <img src="https://prometeondev.com/global/logo-blanco-texto.png" alt="PrometeonDev Logo">
               </div>
               <div class="content">
                   <h2>${title}</h2>
@@ -122,7 +122,14 @@ export function generateEmailTemplate(options: EmailTemplateOptions) {
               </div>
               <div class="footer">
                   <p>© ${new Date().getFullYear()} PrometonDev. Todos los derechos reservados.</p>
-                  <p><a href="https://prometeondev.com">Sitio Web</a> | <a href="mailto:prometeondev@gmail.com">Soporte</a></p>
+                  <p><a href="https://prometeondev.com">Sitio Web</a> | <a
+                    href="mailto:prometeondev@gmail.com"
+                    title="Enviar correo a PrometeonDev para soporte"
+                    aria-label="Enviar correo a PrometeonDev para soporte"
+                    >
+                    Soporte
+                    </a>
+                  </p>
               </div>
           </div>
       </body>

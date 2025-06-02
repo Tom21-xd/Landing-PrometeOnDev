@@ -16,7 +16,14 @@ const projects = defineCollection({
         })
       )
       .optional(),
-    gallery: z.array(z.string()),
+    gallery: z.array(
+      z.object({
+        src: z.string(),
+        alt: z.string(),
+        title: z.string(),
+      })
+    ),
+    keywords: z.union([z.string(), z.array(z.string())]).optional(),
   }),
 });
 

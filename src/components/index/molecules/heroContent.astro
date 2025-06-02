@@ -2,14 +2,19 @@
 import VideoButton from "./videoButton.astro";
 import LogoTextImage from "../atoms/logoTextImage.astro";
 import { getWhatsAppLink } from "@/lib/whatsapp";
-import CtaButton from "../atoms/ctaButton.astro";
+import CtaButton from "../atoms/CTAButton.astro";
 const subtitle = "Impulsamos tu negocio con soluciones digitales.";
 const src = "https://img.youtube.com/vi/X5200TdGRxg/maxresdefault.jpg";
 const backgroundVideo = "/videos/home/contact-section.webm";
-const logoTextUrl = "/global/LOGO-BLANCO-TEXTO.webp";
+
+const logoTextUrl = "/global/logo-blanco-texto.webp";
+const titleLogo = "Logo PrometeonDev - Desarrollo de Software a Medida";
 
 const textCtaButton = "Cotiza tu proyecto";
 const hrefCtaButton = getWhatsAppLink();
+
+const altThumbnail = "Miniatura del video promocional de PrometeonDev";
+const titleThumbnail = "Reproducir video institucional de PrometeonDev";
 ---
 
 <div
@@ -26,7 +31,7 @@ const hrefCtaButton = getWhatsAppLink();
   <div
     class="relative z-10 flex flex-col items-center md:items-start gap-4 my-16"
   >
-    <LogoTextImage src={logoTextUrl} />
+    <LogoTextImage src={logoTextUrl} title={titleLogo} />
 
     <p class="text-lg lg:text-2xl text-white w-full md:w-1/2 text-center">
       {subtitle}
@@ -36,7 +41,7 @@ const hrefCtaButton = getWhatsAppLink();
   <div
     class="absolute bottom-4 left-4 right-4 sm:bottom-6 md:left-10 md:right-10 z-20 flex flex-col items-center sm:items-end gap-10 sm:flex-row sm:justify-between"
   >
-    <VideoButton src={src} />
+    <VideoButton src={src} alt={altThumbnail} title={titleThumbnail} />
 
     <CtaButton text={textCtaButton} href={hrefCtaButton} />
   </div>

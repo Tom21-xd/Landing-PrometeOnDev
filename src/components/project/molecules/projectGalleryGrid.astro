@@ -1,6 +1,10 @@
 ---
 interface Props {
-  gallery: string[];
+  gallery: {
+    src: string;
+    alt: string;
+    title: string;
+  }[];
 }
 
 const { gallery } = Astro.props as Props;
@@ -10,17 +14,20 @@ const gridImages = gallery.slice(-2);
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   {
-    gridImages.map((img: string, i: number) => (
+    gridImages.map((img, i) => (
       <img
-        src={img}
-        alt={`Vista ${i + 2}`}
+        src={img.src}
+        alt={img.alt}
+        title={img.title}
         class="w-full h-full object-cover rounded-xl shadow md:col-span-1"
       />
     ))
   }
 
   <img
-    src={mainImage}
+    src={mainImage.src}
+    alt={mainImage.alt}
+    title={mainImage.title}
     alt="Vista principal"
     class="md:col-span-2 w-full rounded-xl shadow-md"
   />

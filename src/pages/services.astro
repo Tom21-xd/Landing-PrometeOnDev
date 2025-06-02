@@ -75,12 +75,15 @@ const services = [
     ],
   },
 ];
+
+const title = "Nuestros Servicios - PrometeonDev";
+const description =
+  "Descubre cómo PrometeonDev puede ayudarte a impulsar tu proyecto con desarrollo web, apps móviles, inteligencia artificial, automatización y software a medida.";
+const keywords =
+  "servicios de desarrollo web, desarrollo de apps móviles, software a medida, inteligencia artificial empresarial, automatización de procesos, mantenimiento de software, escalabilidad tecnológica, UX/UI, PrometeonDev, Prometeon";
 ---
 
-<Layout
-  title="Nuestros Servicios - PrometeonDev"
-  description="Descubre los servicios que ofrecemos para llevar tu proyecto al siguiente nivel."
->
+<Layout {title} {description} {keywords}>
   <ServiceHeroSection />
 
   <ServiceOverView />

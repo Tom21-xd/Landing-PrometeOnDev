@@ -2,13 +2,16 @@
 interface Props {
   url: string;
   icon: string;
+  title: string;
 }
 
-const { url, icon } = Astro.props as Props;
+const { url, icon, title } = Astro.props as Props;
 ---
 
 <a
   href={url}
+  title={title}
+  aria-label={`Abrir ${title} en una nueva pestaña`}
   target="_blank"
   rel="noopener noreferrer"
   class="text-dark dark:text-dark-dark hover:text-primary dark:hover:text-primary transition duration-300 hover:scale-95"

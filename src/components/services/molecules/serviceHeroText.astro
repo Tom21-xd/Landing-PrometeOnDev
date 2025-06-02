@@ -4,14 +4,16 @@ import ServiceHeroButton from "../atoms/serviceHeroButton.astro";
 interface Props {
   title: string;
   text: string;
+  hrefButton: string;
+  titleButton: string;
 }
 
-const { title, text } = Astro.props as Props;
+const { title, text, hrefButton, titleButton } = Astro.props as Props;
 ---
 
 <div class="text-center md:text-left space-y-4 lg:space-y-6">
   <h1
-    class="text-4xl lg:text-6xl font-bold text-dark-primary dark:text-dark-dark prose"
+    class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-dark-primary dark:text-dark-dark prose"
   >
     {title}
   </h1>
@@ -23,6 +25,10 @@ const { title, text } = Astro.props as Props;
   </p>
 
   <div class="pt-3 md:pt-4 lg:pt-6">
-    <ServiceHeroButton />
+    <ServiceHeroButton
+      href={hrefButton}
+      title={titleButton}
+      text="Explora nuestros servicios"
+    />
   </div>
 </div>

@@ -8,29 +8,37 @@ interface Props {
 }
 
 const { entry } = Astro.props as Props;
-const { title, gallery } = entry.data;
+const { title, gallery } = entry.data as {
+  title: string;
+  gallery: {
+    src: string;
+    alt: string;
+    title: string;
+  }[];
+};
 ---
 
 <section
-  class="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 md:gap-x-10 px-6 md:px-12 lg:px-20 py-12 bg-background dark:bg-dark-background"
+  class="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 md:gap-x-10 px-6 md:px-8 lg:px-20 py-12 bg-background dark:bg-dark-background"
 >
-  <div class="order-1 md:order-2 md:sticky md:top-2/7 self-start">
+  <div class="order-1 md:order-2 md:sticky md:top-1/7 self-start">
     <ProjectInfoBlock entry={entry} />
   </div>
 
   <div class="order-2 md:order-1 space-y-6 col-span-2">
     <img
       id={`img-${title}`}
-      src={gallery[0]}
-      alt="Vista principal"
+      src={gallery[0].src}
+      alt={gallery[0].alt}
+      title={gallery[0].title}
       class="w-full rounded-xl shadow-lg"
     />
 
     <h2 class="text-4xl font-bold text-primary dark:text-dark-dark mb-4">
-      {title}
+      Sobre el proyecto {title}
     </h2>
 
-    <div class="prose dark:prose-invert max-w-none">
+    <div class="prose dark:prose-invert max-w-none text-justify">
       <slot />
     </div>
 

@@ -11,5 +11,10 @@ export interface ProjectData {
   author: string;
   link?: string;
   socials?: Social[];
-  gallery: string[];
+  gallery: {
+    src: string;
+    alt: string;
+    title: string;
+  }[];
+  keywords?: string | string[];
 }

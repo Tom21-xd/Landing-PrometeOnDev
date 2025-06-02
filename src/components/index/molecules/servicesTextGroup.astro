@@ -3,11 +3,13 @@ import ViewMoreButton from "../atoms/viewMoreButton.astro";
 
 interface Props {
   name: string;
+  title: string;
   description: string;
   url: string;
+  text: string;
 }
 
-const { name, description, url } = Astro.props as Props;
+const { name, title, description, url, text } = Astro.props as Props;
 ---
 
 <div
@@ -21,5 +23,5 @@ const { name, description, url } = Astro.props as Props;
     {description}
   </p>
 
-  <ViewMoreButton text="Ver más" url={url} />
+  <ViewMoreButton text={text} url={url} title={title} />
 </div>

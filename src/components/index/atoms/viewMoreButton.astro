@@ -2,13 +2,16 @@
 interface Props {
   text: string;
   url: string;
+  title: string;
 }
 
-const { text, url } = Astro.props as Props;
+const { text, url, title } = Astro.props as Props;
 ---
 
 <a
   href={url}
+  title={title}
+  aria-label={title}
   class="flex items-center gap-2 group text-primary dark:text-white transition-all duration-300"
 >
   <span class="text-lg font-primary font-semibold">{text}</span>
