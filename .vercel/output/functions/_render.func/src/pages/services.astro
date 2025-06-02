@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceHeroSection from "../components/services/organims/serviceHeroSection.astro";
+import ServiceOverView from "../components/services/organims/serviceOverView.astro";
+import DetailService from "../components/services/organims/detailService.astro";
+
+const services = [
+  {
+    id: "section-soluciones-digitales",
+    imageSrc: "/images/services/soluciones-digitales.webp",
+    title: "Soluciones Digitales",
+    alt: "Ilustración de soluciones digitales",
+    infoCards: [
+      {
+        title: "Desarrollo Web y Móvil",
+        description:
+          "Creamos aplicaciones web y móviles modernas, rápidas y adaptables, utilizando tecnologías actuales que garantizan escalabilidad y rendimiento.",
+      },
+      {
+        title: "Software a la Medida",
+        description:
+          "Diseñamos soluciones personalizadas que se ajustan a las necesidades específicas de tu negocio, asegurando eficiencia y precisión.",
+      },
+      {
+        title: "Diseño UX/UI Enfocado en el Usuario",
+        description:
+          "Construimos interfaces atractivas e intuitivas que mejoran la experiencia del usuario y aumentan la conversión.",
+      },
+    ],
+  },
+  {
+    id: "section-ia-automatizacion",
+    imageSrc: "/images/services/ia.webp",
+    title: "IA y Automatización",
+    alt: "Ilustración de inteligencia artificial",
+    infoCards: [
+      {
+        title: "Modelos de IA Personalizados",
+        description:
+          "Desarrollamos modelos de machine learning que se ajustan a las necesidades de tu negocio y mejoran tu eficiencia.",
+      },
+      {
+        title: "Automatización de Procesos",
+        description:
+          "Reducimos tareas repetitivas mediante bots, scripts inteligentes y flujos automatizados que ahorran tiempo y dinero.",
+      },
+      {
+        title: "Chatbots y Asistentes Virtuales",
+        description:
+          "Creamos asistentes conversacionales para mejorar la atención al cliente y la interacción en tus plataformas digitales.",
+      },
+    ],
+  },
+  {
+    id: "section-soporte-escalabilidad",
+    imageSrc: "/images/services/soporte.webp",
+    title: "Soporte y Escalabilidad",
+    alt: "Ilustración de soporte técnico",
+    infoCards: [
+      {
+        title: "Mantenimiento Continuo",
+        description:
+          "Ofrecemos soporte técnico para asegurar el correcto funcionamiento de tus sistemas digitales en todo momento.",
+      },
+      {
+        title: "Escalabilidad Tecnológica",
+        description:
+          "Preparamos tus soluciones para crecer sin límites, adaptándose a nuevos usuarios, datos o funcionalidades.",
+      },
+      {
+        title: "Acompañamiento Estratégico",
+        description:
+          "Estamos contigo en cada etapa del proceso: desde la ideación hasta el crecimiento sostenido del proyecto.",
+      },
+    ],
+  },
+];
+
+const title = "Nuestros Servicios - PrometeonDev";
+const description =
+  "Descubre cómo PrometeonDev puede ayudarte a impulsar tu proyecto con desarrollo web, apps móviles, inteligencia artificial, automatización y software a medida.";
+const keywords =
+  "servicios de desarrollo web, desarrollo de apps móviles, software a medida, inteligencia artificial empresarial, automatización de procesos, mantenimiento de software, escalabilidad tecnológica, UX/UI, PrometeonDev, Prometeon";
+---
+
+<Layout {title} {description} {keywords}>
+  <ServiceHeroSection />
+
+  <ServiceOverView />
+
+  {
+    services.map((service, index) => (
+      <DetailService
+        id={service.id}
+        imageSrc={service.imageSrc}
+        title={service.title}
+        alt={service.alt}
+        infoCards={service.infoCards}
+        reversed={index % 2 != 0}
+      />
+    ))
+  }
+</Layout>
