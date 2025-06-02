@@ -6,12 +6,12 @@ async function sendEmail(to, subject, htmlContent) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: undefined                          ,
-        pass: undefined                          
+        user: "prometeondev@gmail.com",
+        pass: "bcihodratbyzoely"
       }
     });
     const mailOptions = {
-      from: `"PrometeonDev" <${undefined                          }>`,
+      from: `"PrometeonDev" <${"prometeondev@gmail.com"}>`,
       to,
       subject,
       html: htmlContent
@@ -118,7 +118,7 @@ function generateEmailTemplate(options) {
       <body>
           <div class="container">
               <div class="header">
-                  <img src="https://prometeondev.com/global/LOGO-BLANCO-TEXTO.png" alt="PrometeonDev Logo">
+                  <img src="https://prometeondev.com/global/logo-blanco-texto.png" alt="PrometeonDev Logo">
               </div>
               <div class="content">
                   <h2>${title}</h2>
@@ -132,7 +132,14 @@ function generateEmailTemplate(options) {
               </div>
               <div class="footer">
                   <p>© ${(/* @__PURE__ */ new Date()).getFullYear()} PrometonDev. Todos los derechos reservados.</p>
-                  <p><a href="https://prometeondev.com">Sitio Web</a> | <a href="mailto:prometeondev@gmail.com">Soporte</a></p>
+                  <p><a href="https://prometeondev.com">Sitio Web</a> | <a
+                    href="mailto:prometeondev@gmail.com"
+                    title="Enviar correo a PrometeonDev para soporte"
+                    aria-label="Enviar correo a PrometeonDev para soporte"
+                    >
+                    Soporte
+                    </a>
+                  </p>
               </div>
           </div>
       </body>
@@ -160,7 +167,7 @@ const POST = async ({ request }) => {
   });
   try {
     await sendEmail(
-      undefined                                    ,
+      "prometeondev@gmail.com",
       "Nuevo mensaje de contacto",
       html
     );

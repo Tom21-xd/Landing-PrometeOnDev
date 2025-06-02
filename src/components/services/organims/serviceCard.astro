@@ -8,15 +8,16 @@ interface Props {
   title: string;
   description: string;
   url?: string;
+  titleImage: string;
 }
 
-const { id, icon, title, description, url = "#" } = Astro.props;
+const { id, icon, title, description, url = "#", titleImage } = Astro.props;
 ---
 
 <div
-  class="group flex flex-col items-center bg-gray-50 dark:bg-dark-background-light rounded-xl shadow-gray-700 dark:shadow-gray-500 shadow-md transform transition duration-300 hover:-translate-y-3 max-w-xs min-h-96 w-full mx-auto group cursor-pointer"
+  class="group flex flex-col items-center bg-gray-50 dark:bg-dark-background-light rounded-xl shadow-gray-700 dark:shadow-gray-500 shadow-md transform transition duration-300 hover:-translate-y-3 max-w-xl min-h-96 w-full mx-auto group cursor-pointer"
 >
-  <ServiceImage src={icon} alt={title} />
+  <ServiceImage src={icon} alt={title} title={titleImage} />
 
   <ServiceContentCard
     id={id}

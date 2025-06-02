@@ -2,14 +2,16 @@
 interface Props {
   icon: string;
   href: string;
+  title: string;
   delay?: number;
 }
 
-const { icon, href, delay = 100 } = Astro.props as Props;
+const { icon, href, title, delay = 100 } = Astro.props as Props;
 ---
 
 <a
   href={href}
+  title={title}
   target="_blank"
   rel="noopener noreferrer"
   class={`text-background text-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-[${delay}ms]`}

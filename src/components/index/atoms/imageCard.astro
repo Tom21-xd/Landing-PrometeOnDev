@@ -13,6 +13,7 @@ const { title, imageSrc } = Astro.props as Props;
   <img
     src={imageSrc}
     alt={title}
+    title={title}
     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
   />
 

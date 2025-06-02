@@ -1,9 +1,8 @@
 import { j as joinPaths, i as isRemotePath } from './path_Cvt6sEOY.mjs';
-import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, o as MissingImageDimension, p as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, q as UnsupportedImageConversion, t as toStyleString, s as NoImageMetadata, v as FailedToFetchRemoteImageDimensions, w as ExpectedImageOptions, x as ExpectedNotESMImage, y as InvalidImageService, c as createComponent, a as createAstro, z as ImageMissingAlt, m as maybeRenderHead, b as addAttribute, B as spreadAttributes, r as renderTemplate, C as ExperimentalFontsNotEnabled, G as FontFamilyNotFound, u as unescapeHTML } from './astro/server_BVx6XpY2.mjs';
+import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, o as MissingImageDimension, p as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, q as UnsupportedImageConversion, t as toStyleString, s as NoImageMetadata, v as FailedToFetchRemoteImageDimensions, w as ExpectedImageOptions, x as ExpectedNotESMImage, y as InvalidImageService, c as createAstro, a as createComponent, z as ImageMissingAlt, m as maybeRenderHead, b as addAttribute, B as spreadAttributes, r as renderTemplate } from './astro/server_BFZvC8At.mjs';
 import { D as DEFAULT_OUTPUT_FORMAT, a as VALID_SUPPORTED_FORMATS, b as DEFAULT_HASH_PROPS } from './consts_BmVDRGlB.mjs';
 import * as mime from 'mrmime';
 import 'clsx';
-import 'kleur/colors';
 
 const DEFAULT_RESOLUTIONS = [
   640,
@@ -73,7 +72,7 @@ const getWidths = ({
   if (layout === "fixed") {
     return originalWidth && width > originalWidth ? [originalWidth] : [width, maxSize];
   }
-  if (layout === "constrained") {
+  if (layout === "responsive") {
     return [
       // Always include the image at 1x and 2x the specified width
       width,
@@ -93,13 +92,13 @@ const getSizesAttribute = ({
   switch (layout) {
     // If screen is wider than the max size then image width is the max size,
     // otherwise it's the width of the screen
-    case "constrained":
+    case `responsive`:
       return `(min-width: ${width}px) ${width}px, 100vw`;
     // Image is always the same width, whatever the size of the screen
-    case "fixed":
+    case `fixed`:
       return `${width}px`;
     // Image is always the width of the screen
-    case "full-width":
+    case `full-width`:
       return `100vw`;
     case "none":
     default:
@@ -1156,9 +1155,15 @@ function detector(input) {
   return types.find((fileType) => typeHandlers.get(fileType).validate(input));
 }
 
+const globalOptions = {
+  disabledTypes: []
+};
 function lookup(input) {
   const type = detector(input);
   if (typeof type !== "undefined") {
+    if (globalOptions.disabledTypes.includes(type)) {
+      throw new TypeError("disabled file type: " + type);
+    }
     const size = typeHandlers.get(type).calculate(input);
     if (size !== void 0) {
       size.type = size.type ?? type;
@@ -1235,7 +1240,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_BOFuLOOX.mjs'
+      './sharp_BIr65hW-.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1329,6 +1334,8 @@ async function getImage$1(options, imageConfig) {
     if (layout !== "none") {
       resolvedOptions.style = addCSSVarsToStyle(
         {
+          w: String(resolvedOptions.width),
+          h: String(resolvedOptions.height),
           fit: cssFitValues.includes(resolvedOptions.fit ?? "") && resolvedOptions.fit,
           pos: resolvedOptions.position
         },
@@ -1379,9 +1386,9 @@ async function getImage$1(options, imageConfig) {
   };
 }
 
-const $$Astro$2 = createAstro();
+const $$Astro$1 = createAstro("https://prometeondev.com");
 const $$Image = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$Image;
   const props = Astro2.props;
   if (props.alt === void 0 || props.alt === null) {
@@ -1407,11 +1414,11 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "C:/Users/USER/Desktop/U/PrometeOnDev/Landing-PrometeOnDev/node_modules/astro/components/Image.astro", void 0);
+}, "D:/PrometeonDev/Landing-PrometeOnDev/node_modules/astro/components/Image.astro", void 0);
 
-const $$Astro$1 = createAstro();
+const $$Astro = createAstro("https://prometeondev.com");
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Picture;
   const defaultFormats = ["webp"];
   const defaultFallbackFormat = "png";
@@ -1478,32 +1485,9 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(mime.lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "C:/Users/USER/Desktop/U/PrometeOnDev/Landing-PrometeOnDev/node_modules/astro/components/Picture.astro", void 0);
+}, "D:/PrometeonDev/Landing-PrometeOnDev/node_modules/astro/components/Picture.astro", void 0);
 
-const mod = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null
-}, Symbol.toStringTag, { value: 'Module' }));
-
-const $$Astro = createAstro();
-const $$Font = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
-  Astro2.self = $$Font;
-  const { fontsData } = mod;
-  if (!fontsData) {
-    throw new AstroError(ExperimentalFontsNotEnabled);
-  }
-  const { cssVariable, preload = false } = Astro2.props;
-  const data = fontsData.get(cssVariable);
-  if (!data) {
-    throw new AstroError({
-      ...FontFamilyNotFound,
-      message: FontFamilyNotFound.message(cssVariable)
-    });
-  }
-  return renderTemplate`${preload && data.preloadData.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}<style>${unescapeHTML(data.css)}</style>`;
-}, "C:/Users/USER/Desktop/U/PrometeOnDev/Landing-PrometeOnDev/node_modules/astro/components/Font.astro", void 0);
-
-const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[],"experimentalDefaultStyles":true,"experimentalResponsiveImages":false};
+const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[],"experimentalResponsiveImages":false};
 							const getImage = async (options) => await getImage$1(options, imageConfig);
 
 const _astro_assets = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

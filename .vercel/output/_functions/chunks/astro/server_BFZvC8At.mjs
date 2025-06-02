@@ -4,7 +4,7 @@ import { escape } from 'html-escaper';
 import { decodeBase64, encodeHexUpperCase, encodeBase64, decodeHex } from '@oslojs/encoding';
 import 'cssesc';
 
-const ASTRO_VERSION = "5.8.1";
+const ASTRO_VERSION = "5.6.2";
 const REROUTE_DIRECTIVE_HEADER = "X-Astro-Reroute";
 const REWRITE_DIRECTIVE_HEADER_KEY = "X-Astro-Rewrite";
 const REWRITE_DIRECTIVE_HEADER_VALUE = "yes";
@@ -277,18 +277,6 @@ The static route '${to}' is rendered by the component
 HTML file, which can't be retrieved at runtime by Astro.`,
   hint: (component) => `Add \`export const prerender = false\` to the component '${component}', or use a Astro.redirect().`
 };
-const ExperimentalFontsNotEnabled = {
-  name: "ExperimentalFontsNotEnabled",
-  title: "Experimental fonts are not enabled",
-  message: "The Font component is used but experimental fonts have not been registered in the config.",
-  hint: "Check that you have enabled experimental fonts and also configured your preferred fonts."
-};
-const FontFamilyNotFound = {
-  name: "FontFamilyNotFound",
-  title: "Font family not found",
-  message: (family) => `No data was found for the \`"${family}"\` family passed to the \`<Font>\` component.`,
-  hint: "This is often caused by a typo. Check that your Font component is using a `cssVariable` specified in your config."
-};
 const UnknownContentCollectionError = {
   name: "UnknownContentCollectionError",
   title: "Unknown Content Collection Error."
@@ -314,13 +302,13 @@ const SessionStorageInitError = {
   name: "SessionStorageInitError",
   title: "Session storage could not be initialized.",
   message: (error, driver) => `Error when initializing session storage${driver ? ` with driver \`${driver}\`` : ""}. \`${error ?? ""}\``,
-  hint: "For more information, see https://docs.astro.build/en/guides/sessions/"
+  hint: "For more information, see https://docs.astro.build/en/reference/experimental-flags/sessions/"
 };
 const SessionStorageSaveError = {
   name: "SessionStorageSaveError",
   title: "Session data could not be saved.",
   message: (error, driver) => `Error when saving session data${driver ? ` with driver \`${driver}\`` : ""}. \`${error ?? ""}\``,
-  hint: "For more information, see https://docs.astro.build/en/guides/sessions/"
+  hint: "For more information, see https://docs.astro.build/en/reference/experimental-flags/sessions/"
 };
 
 function normalizeLF(code) {
@@ -452,7 +440,7 @@ function createAstro(site) {
   return {
     // TODO: this is no longer necessary for `Astro.site`
     // but it somehow allows working around caching issues in content collections for some tests
-    site: void 0,
+    site: new URL(site) ,
     generator: `Astro v${ASTRO_VERSION}`,
     glob: createAstroGlobFn()
   };
@@ -600,17 +588,6 @@ function unescapeHTML(str) {
 const AstroJSX = "astro:jsx";
 function isVNode(vnode) {
   return vnode && typeof vnode === "object" && vnode[AstroJSX];
-}
-
-function isAstroComponentFactory(obj) {
-  return obj == null ? false : obj.isAstroComponentFactory === true;
-}
-function isAPropagatingComponent(result, factory) {
-  let hint = factory.propagation || "none";
-  if (factory.moduleId && result.componentMetadata.has(factory.moduleId) && hint === "none") {
-    hint = result.componentMetadata.get(factory.moduleId).propagation;
-  }
-  return hint === "in-tree" || hint === "self";
 }
 
 const RenderInstructionSymbol = Symbol.for("astro:render");
@@ -901,6 +878,17 @@ function shorthash(text) {
   return sign + result;
 }
 
+function isAstroComponentFactory(obj) {
+  return obj == null ? false : obj.isAstroComponentFactory === true;
+}
+function isAPropagatingComponent(result, factory) {
+  let hint = factory.propagation || "none";
+  if (factory.moduleId && result.componentMetadata.has(factory.moduleId) && hint === "none") {
+    hint = result.componentMetadata.get(factory.moduleId).propagation;
+  }
+  return hint === "in-tree" || hint === "self";
+}
+
 const headAndContentSym = Symbol.for("astro.headAndContent");
 function isHeadAndContent(obj) {
   return typeof obj === "object" && obj !== null && !!obj[headAndContentSym];
@@ -1019,9 +1007,6 @@ Make sure to use the static attribute syntax (\`${key}={value}\`) instead of the
   }
   if (value === "") {
     return markHTMLString(` ${key}`);
-  }
-  if (key === "popover" && typeof value === "boolean") {
-    return markHTMLString(value ? ` popover` : "");
   }
   return markHTMLString(` ${key}="${toAttributeString(value, shouldEscape)}"`);
 }
@@ -1650,11 +1635,10 @@ class AstroComponentInstance {
     }
   }
 }
-function validateComponentProps(props, clientDirectives, displayName) {
+function validateComponentProps(props, displayName) {
   if (props != null) {
-    const directives = [...clientDirectives.keys()].map((directive) => `client:${directive}`);
     for (const prop of Object.keys(props)) {
-      if (directives.includes(prop)) {
+      if (prop.startsWith("client:")) {
         console.warn(
           `You are attempting to render <${displayName} ${prop} />, but ${displayName} is an Astro component. Astro components do not render in the client and should not have a hydration directive. Please use a framework component for client rendering.`
         );
@@ -1663,7 +1647,7 @@ function validateComponentProps(props, clientDirectives, displayName) {
   }
 }
 function createAstroComponentInstance(result, displayName, factory, props, slots = {}) {
-  validateComponentProps(props, result.clientDirectives, displayName);
+  validateComponentProps(props, displayName);
   const instance = new AstroComponentInstance(result, props, slots, factory);
   if (isAPropagatingComponent(result, factory)) {
     result._metadata.propagators.add(instance);
@@ -2358,7 +2342,7 @@ Did you forget to import the component or is it possible there is a typo?`);
       }
       case vnode.type === Symbol.for("astro:fragment"):
         return renderJSX(result, vnode.props.children);
-      case isAstroComponentFactory(vnode.type): {
+      case vnode.type.isAstroComponentFactory: {
         let props = {};
         let slots = {};
         for (const [key, value] of Object.entries(vnode.props ?? {})) {
@@ -2368,13 +2352,10 @@ Did you forget to import the component or is it possible there is a typo?`);
             props[key] = value;
           }
         }
-        const str = await renderComponentToString(
-          result,
-          vnode.type.name,
-          vnode.type,
-          props,
-          slots
-        );
+        const str = await renderToString(result, vnode.type, props, slots);
+        if (str instanceof Response) {
+          throw str;
+        }
         const html = markHTMLString(str);
         return html;
       }
@@ -2597,4 +2578,4 @@ function spreadAttributes(values = {}, _name, { class: scopedClassName } = {}) {
   return markHTMLString(output);
 }
 
-export { GetStaticPathsExpectedParams as $, AstroError as A, spreadAttributes as B, ExperimentalFontsNotEnabled as C, DEFAULT_404_COMPONENT as D, ExpectedImage as E, Fragment as F, FontFamilyNotFound as G, decryptString as H, IncompatibleDescriptorOptions as I, createSlotValueFromString as J, isAstroComponentFactory as K, LocalImageUsedWrongly as L, MissingSharp as M, NOOP_MIDDLEWARE_HEADER as N, ROUTE_TYPE_HEADER as O, REROUTE_DIRECTIVE_HEADER as P, i18nNoLocaleFoundInPath as Q, RenderUndefinedEntryError as R, ResponseSentError as S, MiddlewareNoDataOrNextCalled as T, UnknownContentCollectionError as U, MiddlewareNotAResponse as V, originPathnameSymbol as W, RewriteWithBodyUsed as X, GetStaticPathsRequired as Y, InvalidGetStaticPathsReturn as Z, InvalidGetStaticPathsEntry as _, createAstro as a, GetStaticPathsInvalidRouteParam as a0, PageNumberParamNotFound as a1, ActionNotFoundError as a2, NoMatchingStaticPathFound as a3, PrerenderDynamicEndpointPathCollide as a4, ReservedSlotName as a5, renderSlotToString as a6, renderJSX as a7, chunkToString as a8, isRenderInstruction as a9, ForbiddenRewrite as aa, SessionStorageSaveError as ab, SessionStorageInitError as ac, ASTRO_VERSION as ad, LocalsReassigned as ae, PrerenderClientAddressNotAvailable as af, clientAddressSymbol as ag, ClientAddressNotAvailable as ah, StaticClientAddressNotAvailable as ai, AstroResponseHeadersReassigned as aj, responseSentSymbol as ak, renderPage as al, REWRITE_DIRECTIVE_HEADER_KEY as am, REWRITE_DIRECTIVE_HEADER_VALUE as an, renderEndpoint as ao, LocalsNotAnObject as ap, REROUTABLE_STATUS_CODES as aq, addAttribute as b, createComponent as c, renderComponent as d, decodeKey as e, renderUniqueStylesheet as f, renderScriptElement as g, createHeadAndContent as h, REDIRECT_STATUS_CODES as i, ActionsReturnedInvalidDataError as j, renderSlot as k, renderScript as l, maybeRenderHead as m, renderHead as n, MissingImageDimension as o, UnsupportedImageFormat as p, UnsupportedImageConversion as q, renderTemplate as r, NoImageMetadata as s, toStyleString as t, unescapeHTML as u, FailedToFetchRemoteImageDimensions as v, ExpectedImageOptions as w, ExpectedNotESMImage as x, InvalidImageService as y, ImageMissingAlt as z };
+export { PageNumberParamNotFound as $, AstroError as A, spreadAttributes as B, decryptString as C, DEFAULT_404_COMPONENT as D, ExpectedImage as E, Fragment as F, createSlotValueFromString as G, isAstroComponentFactory as H, IncompatibleDescriptorOptions as I, ROUTE_TYPE_HEADER as J, REROUTE_DIRECTIVE_HEADER as K, LocalImageUsedWrongly as L, MissingSharp as M, NOOP_MIDDLEWARE_HEADER as N, i18nNoLocaleFoundInPath as O, ResponseSentError as P, MiddlewareNoDataOrNextCalled as Q, RenderUndefinedEntryError as R, MiddlewareNotAResponse as S, originPathnameSymbol as T, UnknownContentCollectionError as U, RewriteWithBodyUsed as V, GetStaticPathsRequired as W, InvalidGetStaticPathsReturn as X, InvalidGetStaticPathsEntry as Y, GetStaticPathsExpectedParams as Z, GetStaticPathsInvalidRouteParam as _, createComponent as a, ActionNotFoundError as a0, NoMatchingStaticPathFound as a1, PrerenderDynamicEndpointPathCollide as a2, ReservedSlotName as a3, renderSlotToString as a4, renderJSX as a5, chunkToString as a6, isRenderInstruction as a7, ForbiddenRewrite as a8, SessionStorageSaveError as a9, SessionStorageInitError as aa, ASTRO_VERSION as ab, LocalsReassigned as ac, PrerenderClientAddressNotAvailable as ad, clientAddressSymbol as ae, ClientAddressNotAvailable as af, StaticClientAddressNotAvailable as ag, AstroResponseHeadersReassigned as ah, responseSentSymbol as ai, renderPage as aj, REWRITE_DIRECTIVE_HEADER_KEY as ak, REWRITE_DIRECTIVE_HEADER_VALUE as al, renderEndpoint as am, LocalsNotAnObject as an, REROUTABLE_STATUS_CODES as ao, addAttribute as b, createAstro as c, renderComponent as d, decodeKey as e, renderUniqueStylesheet as f, renderScriptElement as g, createHeadAndContent as h, REDIRECT_STATUS_CODES as i, ActionsReturnedInvalidDataError as j, renderSlot as k, renderScript as l, maybeRenderHead as m, renderHead as n, MissingImageDimension as o, UnsupportedImageFormat as p, UnsupportedImageConversion as q, renderTemplate as r, NoImageMetadata as s, toStyleString as t, unescapeHTML as u, FailedToFetchRemoteImageDimensions as v, ExpectedImageOptions as w, ExpectedNotESMImage as x, InvalidImageService as y, ImageMissingAlt as z };

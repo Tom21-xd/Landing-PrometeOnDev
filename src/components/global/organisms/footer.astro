@@ -16,50 +16,53 @@ const socialLinks = [
   {
     href: "https://www.facebook.com/profile.php?id=61575255925454",
     iconClass: "fa-brands fa-facebook",
-    ariaLabel: "Facebook",
+    ariaLabel: "Visitar el perfil de PrometeonDev en Facebook",
   },
   {
     href: "https://www.linkedin.com/company/prometeondev/",
     iconClass: "fa-brands fa-linkedin",
-    ariaLabel: "LinkedIn",
+    ariaLabel: "Visitar la página de empresa de PrometeonDev en LinkedIn",
   },
   {
     href: "https://www.instagram.com/prometeon.dev/",
     iconClass: "fa-brands fa-instagram",
-    ariaLabel: "Instagram",
+    ariaLabel: "Ver el perfil de PrometeonDev en Instagram",
   },
   {
     href: "https://x.com/PrometeonDev",
     iconClass: "fa-brands fa-x-twitter",
-    ariaLabel: "X",
+    ariaLabel: "Ir al perfil de PrometeonDev en X (Twitter)",
   },
   {
     href: getWhatsAppLink(),
     iconClass: "fa-brands fa-whatsapp",
-    ariaLabel: "WhatsApp",
+    ariaLabel: "Enviar mensaje a PrometeonDev por WhatsApp",
   },
 ];
 
 const email: string = import.meta.env.PUBLIC_COMPANY_EMAIL || "";
-console.log("Phone: ", import.meta.env.PUBLIC_COMPANY_PHONE);
-console.log("Email: ", import.meta.env.PUBLIC_COMPANY_EMAIL);
-
 ---
 
 <footer
   class="bg-gradient-to-t from-dark/20 dark:from-dark-background-light via-80% to-60% pt-10 pb-4 flex flex-col items-center gap-6 text-dark dark:text-white transition-colors"
 >
-  <a href="/">
+  <a
+    href="/"
+    title="Ir al inicio de PrometeonDev"
+    aria-label="Ir al inicio de PrometeonDev"
+  >
     <img
-      src="/global/LOGO-BLANCO.webp"
+      src="/global/logo-blanco.webp"
       alt="Logo PrometeonDev"
+      title="Volver al inicio de PrometeonDev"
       class="hidden dark:block w-12 h-14 transition"
       loading="lazy"
     />
 
     <img
-      src="/global/LOGO-NEGRO.webp"
+      src="/global/logo-negro.webp"
       alt="Logo PrometeonDev"
+      title="Volver al inicio de PrometeonDev"
       class="block dark:hidden w-12 h-14 transition"
       loading="lazy"
     /></a
@@ -80,6 +83,8 @@ console.log("Email: ", import.meta.env.PUBLIC_COMPANY_EMAIL);
   <div class="text-center flex flex-col items-center gap-4 -mt-4">
     <a
       href={`mailto:${email}`}
+      title="Enviar un correo electrónico a PrometeonDev"
+      aria-label="Enviar un correo electrónico a PrometeonDev"
       class="flex items-center gap-2 text-sm font-medium hover:text-primary transition"
     >
       <i class="fa-solid fa-envelope text-base"></i>

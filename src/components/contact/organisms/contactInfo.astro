@@ -16,25 +16,30 @@ const socialLinks = [
   },
   { url: "https://x.com/PrometeonDev", icon: "x-twitter" },
 ];
+
+function capitalize(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
 ---
 
 <div
   class="flex flex-col md:gap-6 p-4 md:p-8 md:pr-10 md:mt-20 md:bg-primary/20 md:dark:bg-dark-background-light/40"
 >
-  <p
+  <h2
     class="text-3xl md:text-4xl text-dark dark:text-white font-semibold mb-4 leading-snug"
   >
     ¿Tienes una <span class="text-primary">idea en mente</span>?<br />
     ¡Ponte en <span class="text-primary">contacto</span> con <span
       class="text-primary">nosotros</span
     >!
-  </p>
+  </h2>
 
   <ContactCard
     icon="fa-solid fa-phone"
     label="Llámanos"
     value={phone}
     href={getWhatsAppLink()}
+    ariaLabel="Llamar o enviar mensaje a PrometeonDev por WhatsApp"
   />
 
   <ContactCard
@@ -42,6 +47,7 @@ const socialLinks = [
     label="Envíanos un mensaje"
     value={email}
     href={`mailto:${email}`}
+    ariaLabel="Enviar un correo electrónico a PrometeonDev"
   />
 
   <div class="flex flex-col gap-1">
@@ -50,7 +56,15 @@ const socialLinks = [
     </h3>
 
     <div class="flex gap-3 text-xl">
-      {socialLinks.map((s) => <SocialLink url={s.url} icon={s.icon} />)}
+      {
+        socialLinks.map((s) => (
+          <SocialLink
+            url={s.url}
+            icon={s.icon}
+            title={`${s.icon === "x" ? "Twitter/X" : capitalize(s.icon)} de PrometeonDev`}
+          />
+        ))
+      }
     </div>
   </div>
 </div>

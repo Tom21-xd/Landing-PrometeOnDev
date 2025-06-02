@@ -14,7 +14,12 @@ interface Props {
 const { url, imageSrc, title, index } = Astro.props as Props;
 ---
 
-<a href={url} class="group relative flex flex-col gap-2 cursor-pointer">
+<a
+  href={url}
+  title={`Ver más sobre ${title}`}
+  aria-label={`Ver más sobre ${title}`}
+  class="group relative flex flex-col gap-2 cursor-pointer"
+>
   <ImageCard imageSrc={imageSrc} title={title} />
 
   <div class="flex items-center justify-between pt-2">

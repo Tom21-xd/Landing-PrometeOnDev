@@ -12,7 +12,12 @@ interface Props {
 const { imageSrc, title, shortDescription, href } = Astro.props as Props;
 ---
 
-<a href={href} class="group relative flex flex-col gap-2 cursor-pointer">
+<a
+  href={href}
+  title={`Ver más sobre ${title}`}
+  aria-label={`Ver más sobre ${title}`}
+  class="group relative flex flex-col gap-2 cursor-pointer"
+>
   <div class="transition-all duration-300 hover:scale-105">
     <ImageCard imageSrc={imageSrc} title={title} />
   </div>

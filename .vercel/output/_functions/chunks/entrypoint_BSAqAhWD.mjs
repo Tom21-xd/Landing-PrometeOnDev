@@ -1,8 +1,8 @@
-import { H as decryptString, J as createSlotValueFromString, K as isAstroComponentFactory, d as renderComponent, r as renderTemplate, O as ROUTE_TYPE_HEADER, P as REROUTE_DIRECTIVE_HEADER, A as AstroError, Q as i18nNoLocaleFoundInPath, S as ResponseSentError, T as MiddlewareNoDataOrNextCalled, V as MiddlewareNotAResponse, W as originPathnameSymbol, X as RewriteWithBodyUsed, Y as GetStaticPathsRequired, Z as InvalidGetStaticPathsReturn, _ as InvalidGetStaticPathsEntry, $ as GetStaticPathsExpectedParams, a0 as GetStaticPathsInvalidRouteParam, a1 as PageNumberParamNotFound, D as DEFAULT_404_COMPONENT, a2 as ActionNotFoundError, a3 as NoMatchingStaticPathFound, a4 as PrerenderDynamicEndpointPathCollide, a5 as ReservedSlotName, a6 as renderSlotToString, a7 as renderJSX, a8 as chunkToString, a9 as isRenderInstruction, aa as ForbiddenRewrite, ab as SessionStorageSaveError, ac as SessionStorageInitError, ad as ASTRO_VERSION, ae as LocalsReassigned, af as PrerenderClientAddressNotAvailable, ag as clientAddressSymbol, ah as ClientAddressNotAvailable, ai as StaticClientAddressNotAvailable, aj as AstroResponseHeadersReassigned, ak as responseSentSymbol$1, al as renderPage, am as REWRITE_DIRECTIVE_HEADER_KEY, an as REWRITE_DIRECTIVE_HEADER_VALUE, ao as renderEndpoint, ap as LocalsNotAnObject, aq as REROUTABLE_STATUS_CODES } from './astro/server_BVx6XpY2.mjs';
-import { bold, red, yellow, dim, blue, green } from 'kleur/colors';
+import { C as decryptString, G as createSlotValueFromString, H as isAstroComponentFactory, d as renderComponent, r as renderTemplate, J as ROUTE_TYPE_HEADER, K as REROUTE_DIRECTIVE_HEADER, A as AstroError, O as i18nNoLocaleFoundInPath, P as ResponseSentError, Q as MiddlewareNoDataOrNextCalled, S as MiddlewareNotAResponse, T as originPathnameSymbol, V as RewriteWithBodyUsed, W as GetStaticPathsRequired, X as InvalidGetStaticPathsReturn, Y as InvalidGetStaticPathsEntry, Z as GetStaticPathsExpectedParams, _ as GetStaticPathsInvalidRouteParam, $ as PageNumberParamNotFound, D as DEFAULT_404_COMPONENT, a0 as ActionNotFoundError, a1 as NoMatchingStaticPathFound, a2 as PrerenderDynamicEndpointPathCollide, a3 as ReservedSlotName, a4 as renderSlotToString, a5 as renderJSX, a6 as chunkToString, a7 as isRenderInstruction, a8 as ForbiddenRewrite, a9 as SessionStorageSaveError, aa as SessionStorageInitError, ab as ASTRO_VERSION, ac as LocalsReassigned, ad as PrerenderClientAddressNotAvailable, ae as clientAddressSymbol, af as ClientAddressNotAvailable, ag as StaticClientAddressNotAvailable, ah as AstroResponseHeadersReassigned, ai as responseSentSymbol$1, aj as renderPage, ak as REWRITE_DIRECTIVE_HEADER_KEY, al as REWRITE_DIRECTIVE_HEADER_VALUE, am as renderEndpoint, an as LocalsNotAnObject, ao as REROUTABLE_STATUS_CODES } from './astro/server_BFZvC8At.mjs';
+import { bold, red, yellow, dim, blue } from 'kleur/colors';
 import 'clsx';
 import { serialize, parse } from 'cookie';
-import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_HYrnU8-A.mjs';
+import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_C93xAqus.mjs';
 import 'es-module-lexer';
 import buffer from 'node:buffer';
 import crypto$1 from 'node:crypto';
@@ -10,7 +10,7 @@ import { Http2ServerResponse } from 'node:http2';
 import { a as appendForwardSlash, j as joinPaths, b as removeTrailingForwardSlash, p as prependForwardSlash, t as trimSlashes, f as fileExtension, s as slash, c as collapseDuplicateTrailingSlashes, h as hasFileExtension } from './path_Cvt6sEOY.mjs';
 import { unflatten as unflatten$1, stringify as stringify$1 } from 'devalue';
 import { createStorage, builtinDrivers } from 'unstorage';
-import '@vercel/routing-utils';
+import 'fast-glob';
 import nodePath from 'node:path';
 
 function shouldAppendForwardSlash(trailingSlash, buildFormat) {
@@ -845,15 +845,13 @@ function getActionContext(context) {
           }
           throw e;
         }
-        const omitKeys = ["props", "getActionResult", "callAction", "redirect"];
-        const actionAPIContext = Object.create(
-          Object.getPrototypeOf(context),
-          Object.fromEntries(
-            Object.entries(Object.getOwnPropertyDescriptors(context)).filter(
-              ([key]) => !omitKeys.includes(key)
-            )
-          )
-        );
+        const {
+          props: _props,
+          getActionResult: _getActionResult,
+          callAction: _callAction,
+          redirect: _redirect,
+          ...actionAPIContext
+        } = context;
         Reflect.set(actionAPIContext, ACTION_API_CONTEXT_SYMBOL, true);
         const handler = baseAction.bind(actionAPIContext);
         return handler(input);
@@ -1150,14 +1148,9 @@ function findRouteToRewrite({
   }
   let pathname = newUrl.pathname;
   const shouldAppendSlash = shouldAppendForwardSlash(trailingSlash, buildFormat);
-  if (base !== "/") {
-    const isBasePathRequest = newUrl.pathname === base || newUrl.pathname === removeTrailingForwardSlash(base);
-    if (isBasePathRequest) {
-      pathname = shouldAppendSlash ? "/" : "";
-    } else if (newUrl.pathname.startsWith(base)) {
-      pathname = shouldAppendSlash ? appendForwardSlash(newUrl.pathname) : removeTrailingForwardSlash(newUrl.pathname);
-      pathname = pathname.slice(base.length);
-    }
+  if (base !== "/" && newUrl.pathname.startsWith(base)) {
+    pathname = shouldAppendSlash ? appendForwardSlash(newUrl.pathname) : removeTrailingForwardSlash(newUrl.pathname);
+    pathname = pathname.slice(base.length);
   }
   if (!pathname.startsWith("/") && shouldAppendSlash && newUrl.pathname.endsWith("/")) {
     pathname = prependForwardSlash(pathname);
@@ -1165,11 +1158,7 @@ function findRouteToRewrite({
   if (pathname === "/" && base !== "/" && !shouldAppendSlash) {
     pathname = "";
   }
-  if (base !== "/" && (pathname === "" || pathname === "/") && !shouldAppendSlash) {
-    newUrl.pathname = removeTrailingForwardSlash(base);
-  } else {
-    newUrl.pathname = joinPaths(...[base, pathname].filter(Boolean));
-  }
+  newUrl.pathname = joinPaths(...[base, pathname].filter(Boolean));
   const decodedPathname = decodeURI(pathname);
   let foundRoute;
   for (const route of routes) {
@@ -1787,7 +1776,6 @@ function sequence(...handlers) {
                 handleContext.request
               );
             }
-            const oldPathname = handleContext.url.pathname;
             const pipeline = Reflect.get(handleContext, apiContextRoutesSymbol);
             const { routeData, pathname } = await pipeline.tryRewrite(
               payload,
@@ -1809,7 +1797,6 @@ function sequence(...handlers) {
             handleContext.url = new URL(newRequest.url);
             handleContext.cookies = new AstroCookies(newRequest);
             handleContext.params = getParams(routeData, pathname);
-            setOriginPathname(handleContext.request, oldPathname);
           }
           return applyHandle(i + 1, handleContext);
         } else {
@@ -1871,7 +1858,7 @@ class AstroSession {
   constructor(cookies, {
     cookie: cookieConfig = DEFAULT_COOKIE_NAME,
     ...config
-  }, runtimeMode) {
+  }) {
     this.#cookies = cookies;
     let cookieConfigObject;
     if (typeof cookieConfig === "object") {
@@ -1883,7 +1870,7 @@ class AstroSession {
     }
     this.#cookieConfig = {
       sameSite: "lax",
-      secure: runtimeMode === "production",
+      secure: true,
       path: "/",
       ...cookieConfigObject,
       httpOnly: true
@@ -2164,14 +2151,12 @@ class AstroSession {
       });
     }
     let driver = null;
+    const driverPackage = await resolveSessionDriver(this.#config.driver);
     try {
       if (this.#config.driverModule) {
         driver = (await this.#config.driverModule()).default;
-      } else if (this.#config.driver) {
-        const driverName = resolveSessionDriverName(this.#config.driver);
-        if (driverName) {
-          driver = (await import(driverName)).default;
-        }
+      } else if (driverPackage) {
+        driver = (await import(driverPackage)).default;
       }
     } catch (err) {
       if (err.code === "ERR_MODULE_NOT_FOUND") {
@@ -2179,7 +2164,7 @@ class AstroSession {
           {
             ...SessionStorageInitError,
             message: SessionStorageInitError.message(
-              err.message.includes(`Cannot find package`) ? "The driver module could not be found." : err.message,
+              err.message.includes(`Cannot find package '${driverPackage}'`) ? "The driver module could not be found." : err.message,
               this.#config.driver
             )
           },
@@ -2214,16 +2199,16 @@ class AstroSession {
     }
   }
 }
-function resolveSessionDriverName(driver) {
+async function resolveSessionDriver(driver) {
   if (!driver) {
     return null;
   }
   try {
     if (driver === "fs") {
-      return builtinDrivers.fsLite;
+      return await import.meta.resolve(builtinDrivers.fsLite);
     }
     if (driver in builtinDrivers) {
-      return builtinDrivers[driver];
+      return await import.meta.resolve(builtinDrivers[driver]);
     }
   } catch {
     return null;
@@ -2233,7 +2218,7 @@ function resolveSessionDriverName(driver) {
 
 const apiContextRoutesSymbol = Symbol.for("context.routes");
 class RenderContext {
-  constructor(pipeline, locals, middleware, actions, pathname, request, routeData, status, clientAddress, cookies = new AstroCookies(request), params = getParams(routeData, pathname), url = new URL(request.url), props = {}, partial = void 0, session = pipeline.manifest.sessionConfig ? new AstroSession(cookies, pipeline.manifest.sessionConfig, pipeline.runtimeMode) : void 0) {
+  constructor(pipeline, locals, middleware, actions, pathname, request, routeData, status, clientAddress, cookies = new AstroCookies(request), params = getParams(routeData, pathname), url = new URL(request.url), props = {}, partial = void 0, session = pipeline.manifest.sessionConfig ? new AstroSession(cookies, pipeline.manifest.sessionConfig) : void 0) {
     this.pipeline = pipeline;
     this.locals = locals;
     this.middleware = middleware;
@@ -2326,7 +2311,6 @@ class RenderContext {
     }
     const lastNext = async (ctx, payload) => {
       if (payload) {
-        const oldPathname = this.pathname;
         pipeline.logger.debug("router", "Called rewriting to:", payload);
         const {
           routeData,
@@ -2357,10 +2341,10 @@ class RenderContext {
         }
         this.isRewriting = true;
         this.url = new URL(this.request.url);
+        this.cookies = new AstroCookies(this.request);
         this.params = getParams(routeData, pathname);
         this.pathname = pathname;
         this.status = 200;
-        setOriginPathname(this.request, oldPathname);
       }
       let response2;
       if (!ctx.isPrerendered) {
@@ -2438,7 +2422,6 @@ class RenderContext {
   }
   async #executeRewrite(reroutePayload) {
     this.pipeline.logger.debug("router", "Calling rewrite: ", reroutePayload);
-    const oldPathname = this.pathname;
     const { routeData, componentInstance, newUrl, pathname } = await this.pipeline.tryRewrite(
       reroutePayload,
       this.request
@@ -2469,12 +2452,11 @@ class RenderContext {
     this.pathname = pathname;
     this.isRewriting = true;
     this.status = 200;
-    setOriginPathname(this.request, oldPathname);
     return await this.render(componentInstance);
   }
   createActionAPIContext() {
     const renderContext = this;
-    const { cookies, params, pipeline, url } = this;
+    const { cookies, params, pipeline, url, session } = this;
     const generator = `Astro v${ASTRO_VERSION}`;
     const rewrite = async (reroutePayload) => {
       return await this.#executeRewrite(reroutePayload);
@@ -2510,23 +2492,7 @@ class RenderContext {
       get originPathname() {
         return getOriginPathname(renderContext.request);
       },
-      get session() {
-        if (this.isPrerendered) {
-          pipeline.logger.warn(
-            "session",
-            `context.session was used when rendering the route ${green(this.routePattern)}, but it is not available on prerendered routes. If you need access to sessions, make sure that the route is server-rendered using \`export const prerender = false;\` or by setting \`output\` to \`"server"\` in your Astro config to make all your routes server-rendered by default. For more information, see https://docs.astro.build/en/guides/sessions/`
-          );
-          return void 0;
-        }
-        if (!renderContext.session) {
-          pipeline.logger.warn(
-            "session",
-            `context.session was used when rendering the route ${green(this.routePattern)}, but no storage configuration was provided. Either configure the storage manually or use an adapter that provides session storage. For more information, see https://docs.astro.build/en/guides/sessions/`
-          );
-          return void 0;
-        }
-        return renderContext.session;
-      }
+      session
     };
   }
   async createResult(mod, ctx) {
@@ -2633,7 +2599,7 @@ class RenderContext {
   }
   createAstroPagePartial(result, astroStaticPartial, apiContext) {
     const renderContext = this;
-    const { cookies, locals, params, pipeline, url } = this;
+    const { cookies, locals, params, pipeline, url, session } = this;
     const { response } = result;
     const redirect = (path, status = 302) => {
       if (this.request[responseSentSymbol$1]) {
@@ -2653,23 +2619,7 @@ class RenderContext {
       routePattern: this.routeData.route,
       isPrerendered: this.routeData.prerender,
       cookies,
-      get session() {
-        if (this.isPrerendered) {
-          pipeline.logger.warn(
-            "session",
-            `Astro.session was used when rendering the route ${green(this.routePattern)}, but it is not available on prerendered pages. If you need access to sessions, make sure that the page is server-rendered using \`export const prerender = false;\` or by setting \`output\` to \`"server"\` in your Astro config to make all your pages server-rendered by default. For more information, see https://docs.astro.build/en/guides/sessions/`
-          );
-          return void 0;
-        }
-        if (!renderContext.session) {
-          pipeline.logger.warn(
-            "session",
-            `Astro.session was used when rendering the route ${green(this.routePattern)}, but no storage configuration was provided. Either configure the storage manually or use an adapter that provides session storage. For more information, see https://docs.astro.build/en/guides/sessions/`
-          );
-          return void 0;
-        }
-        return renderContext.session;
-      },
+      session,
       get clientAddress() {
         return renderContext.getClientAddress();
       },
@@ -2862,7 +2812,8 @@ function redirectTemplate({
 }
 
 class AppPipeline extends Pipeline {
-  static create({
+  #manifestData;
+  static create(manifestData, {
     logger,
     manifest,
     runtimeMode,
@@ -2890,6 +2841,7 @@ class AppPipeline extends Pipeline {
       void 0,
       defaultRoutes
     );
+    pipeline.#manifestData = manifestData;
     return pipeline;
   }
   headElements(routeData) {
@@ -2976,7 +2928,7 @@ class App {
     };
     ensure404Route(this.#manifestData);
     this.#baseWithoutTrailingSlash = removeTrailingForwardSlash(this.#manifest.base);
-    this.#pipeline = this.#createPipeline(streaming);
+    this.#pipeline = this.#createPipeline(this.#manifestData, streaming);
     this.#adapterLogger = new AstroIntegrationLogger(
       this.#logger.options,
       this.#manifest.adapterName
@@ -2988,11 +2940,12 @@ class App {
   /**
    * Creates a pipeline by reading the stored manifest
    *
+   * @param manifestData
    * @param streaming
    * @private
    */
-  #createPipeline(streaming = false) {
-    return AppPipeline.create({
+  #createPipeline(manifestData, streaming = false) {
+    return AppPipeline.create(manifestData, {
       logger: this.#logger,
       manifest: this.#manifest,
       runtimeMode: "production",
@@ -3559,41 +3512,54 @@ apply();
 
 nodePath.posix.join;
 
-const ASTRO_PATH_HEADER = "x-astro-path";
-const ASTRO_PATH_PARAM = "x_astro_path";
-const ASTRO_LOCALS_HEADER = "x-astro-locals";
-const ASTRO_MIDDLEWARE_SECRET_HEADER = "x-astro-middleware-secret";
+/**
+ * The edge function calls the node server at /_render,
+ * with the original path as the value of this header.
+ */
+const ASTRO_PATH_HEADER = 'x-astro-path';
+const ASTRO_PATH_PARAM = 'x_astro_path';
+/**
+ * The edge function calls the node server at /_render,
+ * with the locals serialized into this header.
+ */
+const ASTRO_LOCALS_HEADER = 'x-astro-locals';
+const ASTRO_MIDDLEWARE_SECRET_HEADER = 'x-astro-middleware-secret';
 
+// Keep at the top
 const createExports = (manifest, { middlewareSecret, skewProtection }) => {
-  const app = new NodeApp(manifest);
-  const handler = async (req, res) => {
-    const url = new URL(`https://example.com${req.url}`);
-    const clientAddress = req.headers["x-forwarded-for"];
-    const localsHeader = req.headers[ASTRO_LOCALS_HEADER];
-    const middlewareSecretHeader = req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
-    const realPath = req.headers[ASTRO_PATH_HEADER] ?? url.searchParams.get(ASTRO_PATH_PARAM);
-    if (typeof realPath === "string") {
-      req.url = realPath;
-    }
-    let locals = {};
-    if (localsHeader) {
-      if (middlewareSecretHeader !== middlewareSecret) {
-        res.statusCode = 403;
-        res.end("Forbidden");
-        return;
-      }
-      locals = typeof localsHeader === "string" ? JSON.parse(localsHeader) : JSON.parse(localsHeader[0]);
-    }
-    delete req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
-    if (skewProtection && process.env.VERCEL_SKEW_PROTECTION_ENABLED === "1") {
-      req.headers["x-deployment-id"] = process.env.VERCEL_DEPLOYMENT_ID;
-    }
-    const webResponse = await app.render(req, { addCookieHeader: true, clientAddress, locals });
-    await NodeApp.writeResponse(webResponse, res);
-  };
-  return { default: handler };
+    const app = new NodeApp(manifest);
+    const handler = async (req, res) => {
+        const url = new URL(`https://example.com${req.url}`);
+        const clientAddress = req.headers['x-forwarded-for'];
+        const localsHeader = req.headers[ASTRO_LOCALS_HEADER];
+        const middlewareSecretHeader = req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
+        const realPath = req.headers[ASTRO_PATH_HEADER] ?? url.searchParams.get(ASTRO_PATH_PARAM);
+        if (typeof realPath === 'string') {
+            req.url = realPath;
+        }
+        let locals = {};
+        if (localsHeader) {
+            if (middlewareSecretHeader !== middlewareSecret) {
+                res.statusCode = 403;
+                res.end('Forbidden');
+                return;
+            }
+            locals =
+                typeof localsHeader === 'string' ? JSON.parse(localsHeader) : JSON.parse(localsHeader[0]);
+        }
+        // hide the secret from the rest of user code
+        delete req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
+        // https://vercel.com/docs/deployments/skew-protection#supported-frameworks
+        if (skewProtection && process.env.VERCEL_SKEW_PROTECTION_ENABLED === '1') {
+            req.headers['x-deployment-id'] = process.env.VERCEL_DEPLOYMENT_ID;
+        }
+        const webResponse = await app.render(req, { addCookieHeader: true, clientAddress, locals });
+        await NodeApp.writeResponse(webResponse, res);
+    };
+    return { default: handler };
 };
-function start() {
-}
+// HACK: prevent warning
+// @astrojs-ssr-virtual-entry (22:23) "start" is not exported by "dist/serverless/entrypoint.js", imported by "@astrojs-ssr-virtual-entry".
+function start() { }
 
 export { createExports as c, start as s };

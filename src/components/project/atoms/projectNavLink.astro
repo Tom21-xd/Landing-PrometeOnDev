@@ -10,6 +10,8 @@ const { href, label, direction } = Astro.props as Props;
 
 <a
   href={href}
+  title={`Siguiente proyecto - ${label}`}
+  aria-label={`Siguiente proyecto - ${label}`}
   class="flex font-primary font-semibold items-center text-lg gap-2 group text-primary dark:text-dark-dark hover:text-primary-dark dark:hover:text-dark-dark-darker transition-all duration-300"
 >
   {

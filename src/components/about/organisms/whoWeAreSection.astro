@@ -3,10 +3,16 @@ import ImageTextBlock from "../molecules/imageTextBlock.astro";
 
 const title = "¿Quiénes somos?";
 const text =
-  "PrometeonDev es un emprendimiento enfocado en el desarrollo de soluciones tecnológicas a la medida, creado para apoyar a empresas, startups y emprendedores en su transformación digital. Nos especializamos en el diseño y desarrollo de aplicaciones web y móviles, sistemas de gestión empresarial y plataformas personalizadas que se adaptan a las necesidades de cada cliente. Nuestro enfoque combina innovación, eficiencia y acompañamiento cercano, permitiendo entregar productos escalables, funcionales y alineados con los objetivos de negocio. Creemos en el poder de la tecnología como motor de crecimiento y transformación.";
+  "PrometeonDev es una empresa enfocada en el desarrollo de soluciones tecnológicas a la medida, creada para apoyar a empresas, startups y emprendedores en su transformación digital. Nos especializamos en el diseño y desarrollo de aplicaciones web y móviles, sistemas de gestión empresarial y plataformas personalizadas que se adaptan a las necesidades de cada cliente. Nuestro enfoque combina innovación, eficiencia y acompañamiento cercano, permitiendo entregar productos escalables, funcionales y alineados con los objetivos de negocio. Creemos en el poder de la tecnología como motor de crecimiento y transformación.";
 const image = "/images/about/somos.webp";
+const ariaLabel = "Equipo de PrometeonDev trabajando";
 ---
 
 <section class="lg:max-w-6xl flex mx-auto px-6 md:px-12">
-  <ImageTextBlock title={title} text={text} image={image} />
+  <ImageTextBlock
+    title={title}
+    text={text}
+    image={image}
+    ariaLabel={ariaLabel}
+  />
 </section>

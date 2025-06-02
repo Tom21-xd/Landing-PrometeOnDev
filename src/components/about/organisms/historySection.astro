@@ -5,8 +5,16 @@ const title = "Nuestra historia";
 const image = "/images/about/historia.webp";
 const text =
   "PrometeOnDev nace de la iniciativa de seis estudiantes de Ingeniería de Sistemas que decidieron transformar su pasión por la tecnología en soluciones reales. Nos enfocamos en el desarrollo de aplicaciones web y móviles, sistemas de gestión y plataformas personalizadas que impulsan la transformación digital de empresas, startups y emprendedores. Combinamos innovación, eficiencia y acompañamiento cercano para crear productos funcionales y escalables.F";
+const ariaLabel =
+  "Representación del origen de PrometeonDev por estudiantes de Ingeniería de Sistemas";
 ---
 
 <section class="max-w-6xl flex mx-auto px-6 md:px-12">
-  <ImageTextBlock title={title} image={image} text={text} reverse={true} />
+  <ImageTextBlock
+    title={title}
+    image={image}
+    text={text}
+    reverse={true}
+    ariaLabel={ariaLabel}
+  />
 </section>

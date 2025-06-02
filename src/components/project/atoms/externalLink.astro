@@ -1,7 +1,7 @@
 ---
 interface Props {
   link: string;
-  text?: string;
+  text: string;
 }
 
 const { link, text } = Astro.props as Props;
@@ -9,9 +9,11 @@ const { link, text } = Astro.props as Props;
 
 <a
   href={link}
+  title={text}
+  aria-label={text}
   target="_blank"
   rel="noopener noreferrer"
   class="text-primary dark:text-dark-dark-darker hover:underline decoration-[1.5px] hover:text-dark dark:hover:text-dark-primary hover:scale-[1.02] transition-all duration-200"
 >
-  {text || link}
+  {text}
 </a>

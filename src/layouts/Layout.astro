@@ -7,11 +7,13 @@ import WhatsappFloatingIcon from "@/components/global/atoms/whatsappFloatingIcon
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
 }
 
 const {
   title = "PrometeonDev - Desarrollo de Software, Web y Móvil",
   description = "PrometeOnDev es una empresa de desarrollo de software que ofrece soluciones innovadoras en desarrollo web, móvil, inteligencia artificial y dashboards. Simplificamos la tecnología para llevar tu negocio al siguiente nivel.",
+  keywords = "desarrollo de software a medida, desarrollo web profesional, aplicaciones móviles Android, inteligencia artificial para empresas, dashboards interactivos Power BI, soluciones digitales, PrometeonDev Colombia, automatización empresarial, Prometeon, PrometeonDev",
 } = Astro.props as Props;
 ---
 
@@ -22,26 +24,69 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <title>{title}</title>
     <meta name="description" content={description} />
-
-    <meta
-      name="keywords"
-      content="desarrollo de software, desarrollo web, desarrollo móvil, inteligencia artificial, dashboards, tecnología, prometeondev, landing page"
-    />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="PrometeOnDev" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="PrometeonDev - Desarrollo de software a medida"
+    />
+    <meta
+      property="og:description"
+      content="Impulsamos tu negocio con soluciones digitales."
+    />
+    <meta
+      property="og:image"
+      content="https://prometeondev.com/images/prometeon.png"
+    />
+    <meta property="og:url" content="https://prometeondev.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="PrometeonDev - Desarrollo de software a medida"
+    />
+    <meta
+      name="twitter:description"
+      content="Impulsamos tu negocio con soluciones digitales."
+    />
+    <meta
+      name="twitter:image"
+      content="https://prometeondev.com/images/prometeon.png"
+    />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PrometeonDev",
+        "url": "https://prometeondev.com",
+        "logo": "https://prometeondev.com/global/logo.png",
+        "sameAs": [
+          "https://www.linkedin.com/company/prometeondev",
+          "https://www.facebook.com/profile.php?id=61575255925454",
+          "https://github.com/prometeondev"
+        ]
+      }
+    </script>
   </head>
 
   <body>
-    <div
+    <main
       class="bg-background dark:bg-dark-background text-dark dark:text-gray-400"
     >
       <Header />
       <slot />
       <WhatsappFloatingIcon />
       <Footer />
-    </div>
+    </main>
   </body>
 </html>

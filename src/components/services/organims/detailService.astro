@@ -6,7 +6,7 @@ interface Props {
   id: string;
   imageSrc: string;
   title: string;
-  alt?: string;
+  alt: string;
   infoCards: {
     title: string;
     description: string;
@@ -22,6 +22,8 @@ const {
   infoCards = [],
   reversed = false,
 } = Astro.props as Props;
+
+const titleImage = `Ilustración representativa del servicio ${title}`;
 ---
 
 <section id={id} class="py-10 md:py-12 lg::py-20 px-6">
@@ -31,11 +33,16 @@ const {
     <div
       class={`w-full max-w-[500px] mx-auto md:sticky md:top-32 md:self-start ${reversed ? "md:order-2" : "md:order-1"}`}
     >
-      <DetailServiceCard imageSrc={imageSrc} title={title} alt={alt} />
+      <DetailServiceCard
+        imageSrc={imageSrc}
+        title={title}
+        alt={alt}
+        titleImage={titleImage}
+      />
     </div>
 
     <div
-      class={`space-y-6 md:space-y-16 ${reversed ? "md:order-1 pl-2 lg:pl-16" : "md:order-2 pr-2 lg:pr-16"}`}
+      class={`space-y-6 md:space-y-16 ${reversed ? "md:order-1 lg:pl-16" : "md:order-2 lg:pr-16"}`}
     >
       {
         infoCards.map((card, index) => (

@@ -1,5 +1,5 @@
-import { A as AstroError, M as MissingSharp } from './astro/server_BVx6XpY2.mjs';
-import { b as baseService, p as parseQuality } from './_astro_assets_CCBlj2rw.mjs';
+import { A as AstroError, M as MissingSharp } from './astro/server_BFZvC8At.mjs';
+import { b as baseService, p as parseQuality } from './_astro_assets_DNkUibJi.mjs';
 
 let sharp;
 const qualityTable = {
@@ -74,17 +74,7 @@ const sharpService = {
           quality = transform.quality in qualityTable ? qualityTable[transform.quality] : void 0;
         }
       }
-      const isGifInput = inputBuffer[0] === 71 && // 'G'
-      inputBuffer[1] === 73 && // 'I'
-      inputBuffer[2] === 70 && // 'F'
-      inputBuffer[3] === 56 && // '8'
-      (inputBuffer[4] === 57 || inputBuffer[4] === 55) && // '9' or '7'
-      inputBuffer[5] === 97;
-      if (transform.format === "webp" && isGifInput) {
-        result.webp({ quality: typeof quality === "number" ? quality : void 0, loop: 0 });
-      } else {
-        result.toFormat(transform.format, { quality });
-      }
+      result.toFormat(transform.format, { quality });
     }
     const { data, info } = await result.toBuffer({ resolveWithObject: true });
     return {

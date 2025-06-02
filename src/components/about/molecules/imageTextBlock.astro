@@ -5,11 +5,12 @@ import Paragraph from "../atoms/paragraph.astro";
 interface Props {
   image: string;
   title: string;
+  ariaLabel: string;
   text: string;
   reverse?: boolean;
 }
 
-const { image, title, text, reverse = false } = Astro.props as Props;
+const { image, title, ariaLabel, text, reverse = false } = Astro.props as Props;
 ---
 
 <div
@@ -20,7 +21,9 @@ const { image, title, text, reverse = false } = Astro.props as Props;
   >
     <img
       src={image}
-      alt={title}
+      alt={`Imagen ilustrativa: ${title}`}
+      title={ariaLabel}
+      loading="lazy"
       class="w-full h-auto object-cover transition-transform duration-300 hover:scale-105 hover:brightness-90"
     />
   </div>
