@@ -4,13 +4,14 @@ import ViewMoreButton from "@/components/index/atoms/viewMoreButton.astro";
 interface Props {
   slug: string;
   title: string;
-  image: string;
-  image2: string;
+  image: { src: string; alt: string; title: string };
   tools: string;
   description: string;
 }
 
 const { slug, title, image, tools, description } = Astro.props as Props;
+
+const viewMoreTitle = `Ver más detalles del proyecto ${title}`;
 ---
 
 <div
@@ -18,12 +19,15 @@ const { slug, title, image, tools, description } = Astro.props as Props;
 >
   <a
     href={`/portfolio/${slug}`}
+    title={`Ir al proyecto ${title}`}
+    aria-label={`Ir al proyecto ${title} en PrometeonDev`}
     class="relative overflow-hidden hover:bg-dark-background dark:hover:bg-background rounded-lg shadow-lg md:w-2/3 transition duration-300 ease-in-out object-contain items-center justify-center"
   >
     <img
       id={`img-${title}`}
-      src={image}
-      alt={title}
+      src={image.src}
+      alt={image.alt}
+      title={image.title}
       class="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-[1.02]"
     />
   </a>
@@ -31,11 +35,11 @@ const { slug, title, image, tools, description } = Astro.props as Props;
   <div
     class="flex flex-col justify-center py-2 md:py-8 md:w-1/3 relative group text-dark-light dark:text-dark-dark-darker"
   >
-    <h3
+    <h2
       class="text-3xl font-bold text-primary group-hover:text-dark dark:group-hover:text-dark-primary dark:text-dark-dark group-hover mb-2 transition-all duration-300"
     >
       {title}
-    </h3>
+    </h2>
 
     <p class="mb-4">
       {description}
@@ -46,7 +50,11 @@ const { slug, title, image, tools, description } = Astro.props as Props;
     </p>
 
     <div class="hover:underline">
-      <ViewMoreButton text="Ir a conocer" url={`/portfolio/${slug}`} />
+      <ViewMoreButton
+        text={`Ir a conocer ${title}`}
+        url={`/portfolio/${slug}`}
+        title={viewMoreTitle}
+      />
     </div>
   </div>
 </div>

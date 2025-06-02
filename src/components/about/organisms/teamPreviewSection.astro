@@ -62,8 +62,9 @@ export const team = [
 ];
 
 const textHeading = "Nuestro equipo";
-const textButton = "Ver todos";
-const urlButton = "/our-team";
+const textButton = "Ver todo el equipo";
+const urlButton = "/about/our-team";
+const titleButton = "Ver todos los miembros del equipo PrometeonDev";
 
 const selected = team.sort(() => 0.5 - Math.random()).slice(0, 3);
 ---
@@ -75,11 +76,15 @@ const selected = team.sort(() => 0.5 - Math.random()).slice(0, 3);
     >
       <Heading text={textHeading} />
 
-      <ViewMoreButton text={textButton} url={urlButton} />
+      <ViewMoreButton text={textButton} url={urlButton} title={titleButton} />
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-      {selected.map((member) => <TeamMemberCard {...member} />)}
+      {
+        selected.map((member) => (
+          <TeamMemberCard {...member} headingLevel={3} />
+        ))
+      }
     </div>
   </div>
 </section>

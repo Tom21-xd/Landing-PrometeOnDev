@@ -4,13 +4,15 @@ import PlayIcon from "../atoms/playIcon.astro";
 
 interface Props {
   src: string;
+  alt: string;
+  title: string;
 }
 
-const { src } = Astro.props as Props;
+const { src, alt, title } = Astro.props as Props;
 ---
 
 <div id="video-play" class="relative group cursor-pointer">
-  <VideoThumbnail src={src} />
+  <VideoThumbnail src={src} alt={alt} title={title} />
 
   <PlayIcon />
 </div>

@@ -9,6 +9,8 @@ const { label, href } = Astro.props as Props;
 <li>
   <a
     href={href}
+    title={`Ir a la sección ${label}`}
+    aria-label={`Navegar a la sección ${label}`}
     class="relative group text-dark dark:text-white transition-colors"
   >
     {label}

@@ -12,14 +12,12 @@ const projects = (await getCollection("projects")).sort(
     projects.map(({ data, slug }) => {
       const { title, gallery, tools, shortDescription } = data;
       const image = gallery[0];
-      const image2 = gallery[1];
 
       return (
         <PortfolioCard
           slug={slug}
           title={title}
           image={image}
-          image2={image2}
           tools={tools}
           description={shortDescription}
         />

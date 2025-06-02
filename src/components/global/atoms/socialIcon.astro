@@ -2,13 +2,16 @@
 interface Props {
   href: string;
   icon: string;
+  title: string;
 }
 
-const { href, icon } = Astro.props as Props;
+const { href, icon, title } = Astro.props as Props;
 ---
 
 <a
   href={href}
+  title={title}
+  aria-label={title}
   target="_blank"
   rel="noopener noreferrer"
   class="text-dark dark:text-light text-xl flex items-center justify-center w-12 h-12 rounded-full border border-primary dark:border-dark-dark hover:bg-primary hover:text-background hover:-translate-y-2 shadow-md shadow-gray-400 transition-all duration-300 ease-out"

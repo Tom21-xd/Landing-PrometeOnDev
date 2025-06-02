@@ -7,13 +7,14 @@ interface Props {
   label: string;
   value: string;
   href: string;
+  ariaLabel: string;
 }
 
-const { icon, label, value, href } = Astro.props as Props;
+const { icon, label, value, href, ariaLabel } = Astro.props as Props;
 ---
 
-<div class="flex items-center gap-4 group">
+<div class="flex items-center gap-4 group h-auto">
   <ContactIcon icon={icon} />
 
-  <ContactText label={label} value={value} href={href} />
+  <ContactText label={label} value={value} href={href} ariaLabel={ariaLabel} />
 </div>

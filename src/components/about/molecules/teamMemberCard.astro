@@ -9,9 +9,18 @@ interface Props {
     github?: string;
     linkedin?: string;
   };
+  headingLevel?: number;
 }
 
-const { name, role, image, socials = {} } = Astro.props as Props;
+const {
+  name,
+  role,
+  image,
+  socials = {},
+  headingLevel = "2",
+} = Astro.props as Props;
+
+const HeadingTag = `h${headingLevel}` as keyof HTMLElementTagNameMap;
 ---
 
 <div
@@ -21,6 +30,7 @@ const { name, role, image, socials = {} } = Astro.props as Props;
     <img
       src={image}
       alt={name}
+      title={`${name} - ${role} en PrometeonDev`}
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
     />
 
@@ -30,13 +40,21 @@ const { name, role, image, socials = {} } = Astro.props as Props;
       <div class="flex space-x-6">
         {
           socials.github && (
-            <SocialIcon icon="fab fa-github" href={socials.github} />
+            <SocialIcon
+              icon="fab fa-github"
+              href={socials.github}
+              title={`Ver perfil de ${name} en GitHub`}
+            />
           )
         }
 
         {
           socials.linkedin && (
-            <SocialIcon icon="fab fa-linkedin-in" href={socials.linkedin} />
+            <SocialIcon
+              icon="fab fa-linkedin-in"
+              href={socials.linkedin}
+              title={`Ver perfil de ${name} en Linkedin`}
+            />
           )
         }
       </div>
@@ -44,7 +62,9 @@ const { name, role, image, socials = {} } = Astro.props as Props;
   </div>
 
   <div class="p-4">
-    <h3 class="text-lg font-semibold">{name}</h3>
+    <Fragment
+      set:html={`<${HeadingTag} class="text-lg font-semibold">${name}</${HeadingTag}>`}
+    />
 
     <p class="text-sm">{role}</p>
   </div>

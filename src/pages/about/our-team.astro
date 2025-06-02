@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TeamFullSection from "@/components/about/organisms/teamFullSection.astro";
+import ValuesCarousel from "@/components/about/organisms/valuesCarousel.astro";
+import SectionTitleUp from "@/components/about/organisms/sectionTitleUp.astro";
+
+const title = "Equipo de expertos en software - PrometeonDev";
+const description =
+  "Conoce al equipo de PrometeonDev: desarrolladores, diseñadores y especialistas que crean soluciones tecnológicas a tu medida.";
+const keywords =
+  "equipo de desarrollo, expertos en software, desarrolladores web, diseñadores UX/UI, PrometeonDev, equipo tecnológico, soluciones digitales, empresa de software Colombia";
+---
+
+<Layout {title} {description} {keywords}>
+  <SectionTitleUp text="Nuestro equipo" />
+
+  <TeamFullSection />
+
+  <ValuesCarousel />
+</Layout>

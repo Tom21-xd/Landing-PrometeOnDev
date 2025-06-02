@@ -2,9 +2,10 @@
 interface Props {
   src: string;
   alt: string;
+  title: string;
 }
 
-const { src, alt } = Astro.props;
+const { src, alt, title } = Astro.props;
 ---
 
 <div
@@ -13,6 +14,7 @@ const { src, alt } = Astro.props;
   <img
     src={src}
     alt={alt}
+    title={title}
     class="object-cover w-full h-full group-hover:grayscale-25 transition-transform duration-1000 ease-in-out group-hover:scale-105"
   />
 </div>

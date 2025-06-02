@@ -32,7 +32,7 @@ const services = [
 const titleSection = "Nuestros Servicios";
 ---
 
-<section id="services-section" class="py-20 px-20 mx-auto">
+<section id="services-section" class="p-6 md:p-10 lg:p-20 mx-auto">
   <SectionHeading title={titleSection} />
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -44,6 +44,7 @@ const titleSection = "Nuestros Servicios";
           title={service.title}
           description={service.description}
           url={service.url}
+          titleImage={`Ilustración del servicio ${service.title}`}
         />
       ))
     }

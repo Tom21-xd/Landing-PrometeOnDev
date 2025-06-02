@@ -1,13 +1,17 @@
 ---
 interface Props {
   src: string;
+  alt: string;
+  title: string;
 }
 
-const { src } = Astro.props as Props;
+const { src, alt, title } = Astro.props as Props;
 ---
 
 <img
   src={src}
+  alt={alt}
+  title={title}
   alt="Video Thumbnail"
   class="rounded-xl border-2 w-64 h-40 border-primary-light transition-all duration-300 ease-in-out transform hover:shadow-[0_0_10px_1px_rgba(0,0,0,0.2)] hover:shadow-primary-light"
 />

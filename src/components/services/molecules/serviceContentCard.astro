@@ -18,5 +18,5 @@ const { id, title, description, url = "#" } = Astro.props;
 
   <ServiceDescription description={description} />
 
-  <ServiceButton url={id} />
+  <ServiceButton url={id} title={title} />
 </div>

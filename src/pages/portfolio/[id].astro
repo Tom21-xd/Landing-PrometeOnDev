@@ -35,11 +35,21 @@ if (!entry) {
 }
 
 const { Content } = await render(entry);
+
+const defaultKeywords =
+  "desarrollo web, app móvil, software personalizado, PrometeonDev, proyecto tecnológico";
+
+const keywords = entry.data.keywords
+  ? Array.isArray(entry.data.keywords)
+    ? entry.data.keywords.join(", ")
+    : entry.data.keywords
+  : `${entry.data.title}, ${defaultKeywords}`;
 ---
 
 <Layout
-  title=`${entry.data.title} - PrometeonDev`
+  title={`${entry.data.title} - Proyecto desarrollado por PrometeonDev`}
   description={entry.data.shortDescription}
+  keywords={keywords}
 >
   <div class="container mx-auto text-center py-28 px-4 pb-4">
     <h1

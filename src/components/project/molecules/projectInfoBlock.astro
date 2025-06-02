@@ -20,11 +20,15 @@ const {
   link,
   socials = [],
 } = entry.data;
+
+function capitalize(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
 ---
 
 <div class="space-y-4">
   <h2 class="text-3xl font-bold text-primary dark:text-dark-dark">
-    {title}
+    Información de {title}
   </h2>
 
   <ProjectText text={shortDescription} />
@@ -42,9 +46,9 @@ const {
   {
     link && (
       <div class="flex items-center gap-2">
-        <ProjectLabel label="Enlace: " />
+        <ProjectLabel label="Sitio web: " />
 
-        <ExternalLink link={`https://${link}`} text={link} />
+        <ExternalLink link={`https://${link}`} text={`¡Visitar ${title}!`} />
       </div>
     )
   }
@@ -53,7 +57,11 @@ const {
     socials.length > 0 && (
       <div class="flex gap-6">
         {socials.map((s) => (
-          <SocialLink url={s.url} icon={s.icon} />
+          <SocialLink
+            url={s.url}
+            icon={s.icon}
+            title={`${s.icon === "x" ? "Twitter/X" : capitalize(s.icon)} de ${author}`}
+          />
         ))}
       </div>
     )
