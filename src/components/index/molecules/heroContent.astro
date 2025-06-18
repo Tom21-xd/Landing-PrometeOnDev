@@ -6,7 +6,7 @@ import CtaButton from "../atoms/ctaButton.astro";
 
 const subtitle = "Impulsamos tu negocio con soluciones digitales.";
 const src = "https://img.youtube.com/vi/-M_18UPW_Ns/maxresdefault.jpg";
-const backgroundVideo = "/videos/home/contact-section.webm";
+const backgroundVideo = "/videos/home/contact-section.mp4";
 
 const logoTextUrl = "/global/logo-blanco-texto.webp";
 const titleLogo = "Logo PrometeonDev - Desarrollo de Software a Medida";
@@ -27,6 +27,8 @@ const titleThumbnail = "Reproducir video institucional de PrometeonDev";
     loop
     muted
     playsinline
+    preload="none"
+    poster="/images/home/thumbnail-contact-section.webp"
     class="absolute top-0 left-0 w-full h-full object-cover z-10"></video>
 
   <div

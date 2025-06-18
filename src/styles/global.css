@@ -111,7 +111,7 @@
   }
 }
 
-@keyframes scroll {
+/* @keyframes scroll {
   0% {
     transform: translateX(0);
   }
@@ -123,3 +123,7 @@
 .paused:hover {
   animation-play-state: paused !important;
 }
+
+.group:hover .animate-[scroll_10s_linear_infinite] {
+  animation-play-state: paused;
+} */
