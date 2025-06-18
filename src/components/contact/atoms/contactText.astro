@@ -18,7 +18,7 @@ const { label, value, href, ariaLabel } = Astro.props as Props;
     href={href}
     title={ariaLabel}
     aria-label={ariaLabel}
-    class="text-xl sm:text-2xl font-semibold text-dark hover:text-primary dark:text-dark-dark dark:hover:text-dark-dark-darker transition"
+    class="text-xl sm:text-2xl font-semibold text-dark group-hover:text-primary dark:text-dark-dark dark:group-hover:text-dark-primary transition-colors duration-300"
   >
     {value}
   </a>
