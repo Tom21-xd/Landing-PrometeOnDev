@@ -19,9 +19,50 @@ const logos = [
 ];
 ---
 
-<div class="relative w-full overflow-hidden py-8">
-  <div class="flex animate-[scroll_10s_linear_infinite] paused w-fit">
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+    will-change: transform;
+  }
+
+  .group:hover .animate-scroll {
+    animation-play-state: paused !important;
+  }
+</style>
+
+<div class="group relative w-full overflow-hidden py-8">
+  <div id="tech-carousel" class="flex w-fit">
     {logos.map((logo) => <TechLogo id={logo.id} color={logo.color} />)}
     {logos.map((logo) => <TechLogo id={logo.id} color={logo.color} />)}
   </div>
 </div>
+
+<script type="module">
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const carousel = document.getElementById("tech-carousel");
+        if (!carousel) return;
+
+        if (entry.isIntersecting) {
+          carousel.classList.add("animate-scroll");
+        } else {
+          carousel.classList.remove("animate-scroll");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  const target = document.getElementById("tech-carousel");
+  if (target) observer.observe(target);
+</script>
