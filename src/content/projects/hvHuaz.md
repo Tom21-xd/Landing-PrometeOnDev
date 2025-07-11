@@ -1,5 +1,5 @@
 ---
-id: 3
+id: 2
 title: "Herbario Virtual HUAZ"
 shortDescription: "Sistema web para gestionar muestras botánicas del Herbario HUAZ, con registro, consulta y digitalización de especies usando .NET, MySQL y MongoDB."
 tools: ".NET Core, MySQL, MongoDB, Bootstrap"
