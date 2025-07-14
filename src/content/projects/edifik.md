@@ -1,5 +1,5 @@
 ---
-id: 2
+id: 1
 title: "EdifiK"
 shortDescription: "Aplicación web moderna para gestionar y publicar propiedades en venta, arriendo y proyectos inmobiliarios, con enfoque en diseño y rendimiento."
 tools: "Next.js, MySQL, AWS, TailwindCSS, TypeScript"
